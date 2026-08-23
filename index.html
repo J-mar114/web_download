@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriGuard - Smart Agricultural Protection & Monitoring System</title>
+    <link rel="icon" type="image/jpeg" href="app_logo2.jpeg">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Styles & Configurations -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        @media (max-width: 639px) {
+            .hero-stat-divider {
+                display: none;
+            }
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-slate-200/80 transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl overflow-hidden shadow-md shadow-brand-600/20">
+                    <img src="app_logo2.jpeg" alt="AgriGuard app icon" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-slate-900 block leading-none">AgriGuard</span>
+                    <span class="text-[10px] font-semibold text-brand-600 uppercase tracking-widest">Thesis Edition</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+                <a href="#overview" class="hover:text-brand-600 transition-colors">Overview</a>
+                <a href="#features" class="hover:text-brand-600 transition-colors">Features</a>
+                <a href="#how-it-works" class="hover:text-brand-600 transition-colors">How It Works</a>
+                <a href="#screenshots" class="hover:text-brand-600 transition-colors">Screenshots</a>
+                <a href="#specs" class="hover:text-brand-600 transition-colors">Specs & Installation</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <button onclick="openDownloadModal()" aria-label="Download APK" class="bg-brand-600 hover:bg-brand-700 text-white px-3 sm:px-4 py-2 rounded-xl font-semibold text-sm shadow-lg shadow-brand-600/30 hover:shadow-brand-600/40 transition-all duration-200 flex items-center gap-2">
+                    <i class="fa-solid fa-download"></i>
+                    <span class="hidden sm:inline">Download APK</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero / Play Store Banner Section -->
+        <section id="overview" class="pt-8 pb-16 bg-gradient-to-b from-emerald-50/50 via-slate-50 to-slate-50 border-b border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Breadcrumb Badge -->
+                <div class="inline-flex flex-wrap items-center gap-2 px-3 py-1 rounded-full bg-brand-100/80 border border-brand-200 text-brand-800 text-xs font-semibold mb-6">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span>Official Undergraduate Thesis Mobile Application</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- App Info Main -->
+                    <div class="lg:col-span-8 flex flex-col md:flex-row gap-4 sm:gap-6 items-start">
+                        <!-- App Icon -->
+                        <div class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-3xl overflow-hidden flex-shrink-0 shadow-2xl shadow-brand-600/30 relative border-4 border-white">
+                            <img src="app_logo2.jpeg" alt="AgriGuard app icon" class="w-full h-full object-cover">
+                        </div>
+
+                        <!-- App Title & Developer Meta -->
+                        <div class="space-y-3">
+                            <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+                                AgriGuard: Smart Crop Protection & AI Monitoring System
+                            </h1>
+                            <p class="text-brand-700 font-semibold text-base flex items-center gap-2">
+                                <span>AgriGuard Research & Development Team</span>
+                                <i class="fa-solid fa-circle-check text-xs text-brand-600" title="Verified Research Project"></i>
+                            </p>
+                            <p class="text-slate-600 text-sm md:text-base leading-relaxed max-w-2xl">
+                                Protect crops with real-time bird monitoring and smart deterrent tracking. Agriguard records bird detections, alarm responses, and effectiveness levels to help farmers keep fields safe and productive.
+                            </p>
+
+                            <!-- Play Store Stats Bar -->
+                            <div class="pt-4 flex flex-wrap items-center gap-x-4 gap-y-3 border-t border-slate-200/80 text-slate-700 text-sm">
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-brands fa-android text-brand-600 text-base"></i>
+                                    <span class="font-bold text-slate-900">Android App</span>
+                                    <span class="text-xs text-slate-500">APK Download</span>
+                                </div>
+                                <div class="hero-stat-divider h-4 w-px bg-slate-300"></div>
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-file-code text-brand-600"></i>
+                                    <span class="font-bold text-slate-900">45 MB</span>
+                                    <span class="text-xs text-slate-500">APK Size</span>
+                                </div>
+                                <div class="hero-stat-divider h-4 w-px bg-slate-300"></div>
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-mobile-screen-button text-brand-600"></i>
+                                    <span class="font-bold text-slate-900">Android 8.0+</span>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="pt-4 flex flex-wrap gap-4">
+                                <button onclick="openDownloadModal()" class="w-full sm:w-auto justify-center bg-brand-600 hover:bg-brand-700 text-white px-8 py-3.5 rounded-2xl font-bold text-base shadow-xl shadow-brand-600/30 hover:shadow-brand-600/40 hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-3">
+                                    <i class="fa-solid fa-download text-lg"></i>
+                                    <span>Download Direct APK</span>
+                                </button>
+                                <a href="#guide" class="w-full sm:w-auto justify-center bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 px-6 py-3.5 rounded-2xl font-semibold text-base transition-colors flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-info text-slate-500"></i>
+                                    <span>3-Step Installation Guide</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Side Card - Quick Verification -->
+                    <div class="lg:col-span-4 bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm space-y-4">
+                        <h3 class="font-bold text-slate-900 flex items-center gap-2 text-base">
+                            <i class="fa-solid fa-clipboard-check text-brand-600"></i>
+                            <span>Tested APK Package</span>
+                        </h3>
+                        <p class="text-xs text-slate-500">
+                            This application has been tested across various Android environments for academic evaluation.
+                        </p>
+
+                        <ul class="space-y-3 text-xs text-slate-600 pt-2 border-t border-slate-100">
+                            <li class="flex justify-between items-center">
+                                <span class="text-slate-400">Version:</span>
+                                <span class="font-semibold text-slate-800">v1.0.0</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span class="text-slate-400">File Size:</span>
+                                <span class="font-semibold text-slate-800">45 MB</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span class="text-slate-400">Android:</span>
+                                <span class="font-semibold text-slate-800">8.0 or higher</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span class="text-slate-400">Last Updated:</span>
+                                <span class="font-semibold text-slate-800">August 21, 2026</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span class="text-slate-400">Category:</span>
+                                <span class="font-semibold text-slate-800">Smart Agriculture / AI & IoT</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span class="text-slate-400">Permissions:</span>
+                                <span class="font-semibold text-slate-800">Wi-Fi, Internet Access</span>
+                            </li>
+                        </ul>
+
+                        <div class="pt-2">
+                            <div class="bg-slate-50 rounded-xl p-3 border border-slate-200 flex items-center gap-3">
+                                <i class="fa-solid fa-mobile-screen-button text-brand-600 text-lg"></i>
+                                <div>
+                                    <div class="text-xs font-bold text-slate-800">Prepared for Android Installation</div>
+                                    <div class="text-[10px] text-slate-500">Tested for academic evaluation on supported Android devices.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="py-16 bg-white border-b border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-100 text-brand-800 text-xs font-semibold mb-3">
+                        <i class="fa-solid fa-circle-play"></i>
+                        <span>Simple workflow</span>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight">
+                        How AgriGuard Works
+                    </h2>
+                    <p class="text-slate-600 text-sm mt-2">
+                        Built to protect crops in real time through monitoring, instant alerting, and field action.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+                        <div class="w-12 h-12 bg-brand-100 text-brand-700 rounded-xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-camera"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">1. Detect</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            The Agricrow system detects bird activity in the field using smart monitoring hardware.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+                        <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-bell"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">2. Alert</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            The alarm speaker is triggered to scare away birds and reduce crop damage immediately.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+                        <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-chart-column"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">3. Record</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            The app logs each event with the time of detection and how long the bird remained in the area.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+                        <div class="w-12 h-12 bg-violet-100 text-violet-700 rounded-xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">4. Measure</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Effectiveness is calculated based on how quickly the birds leave after the alarm is activated.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screenshots Interactive Gallery Section -->
+        <section id="screenshots" class="py-16 bg-slate-50 border-b border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight">
+                            Application Screenshots
+                        </h2>
+                        <p class="text-slate-500 text-sm mt-1">
+                            Explore the main screens and user interface of the AgriGuard mobile app.
+                        </p>
+                    </div>
+                    <!-- Navigation Controls -->
+                    <div class="flex gap-2 mt-4 md:mt-0">
+                        <button onclick="scrollScreenshots(-300)" class="w-10 h-10 rounded-full border border-slate-300 bg-white hover:bg-slate-100 flex items-center justify-center text-slate-600 transition-colors shadow-sm">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <button onclick="scrollScreenshots(300)" class="w-10 h-10 rounded-full border border-slate-300 bg-white hover:bg-slate-100 flex items-center justify-center text-slate-600 transition-colors shadow-sm">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Horizontal Scroll Container -->
+                <div id="screenshotContainer" class="flex gap-6 overflow-x-auto pb-6 scroll-smooth snap-x snap-mandatory">
+                    <!-- Application screenshots -->
+                    <div class="flex-none w-72 md:w-80 snap-start overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl flex flex-col">
+                        <div class="flex items-center gap-3 px-4 py-3 bg-brand-50 border-b border-brand-100">
+                            <img src="app_logo2.jpeg" alt="AgriGuard logo" class="w-9 h-9 rounded-lg object-cover">
+                            <div>
+                                <div class="text-sm font-bold text-slate-900">AgriGuard</div>
+                                <div class="text-[10px] font-semibold uppercase tracking-wider text-brand-600">Smart farm dashboard</div>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 items-center justify-center bg-slate-50 p-3">
+                            <img src="pic1.jpeg" alt="AgriGuard application screenshot 1" class="block w-full h-auto object-contain">
+                        </div>
+                        <div class="px-4 py-4 bg-white border-t border-slate-200">
+                            <div class="flex items-center justify-between text-xs font-semibold text-slate-800">
+                                <span>Dashboard Overview</span>
+                                <span class="text-brand-600"><i class="fa-solid fa-circle-check mr-1"></i>Active</span>
+                            </div>
+                            <p class="mt-1 text-[11px] leading-relaxed text-slate-500">Real-time crop monitoring and smart protection insights.</p>
+                        </div>
+                    </div>
+                    <div class="flex-none w-72 md:w-80 snap-start overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
+                        <img src="pic2.jpeg" alt="AgriGuard application screenshot 2" class="block w-full h-auto">
+                    </div>
+                    <div class="flex-none w-72 md:w-80 snap-start overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
+                        <img src="pic3.jpeg" alt="AgriGuard application screenshot 3" class="block w-full h-auto">
+                    </div>
+                    <div class="flex-none w-72 md:w-80 snap-start overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
+                        <img src="pic4.jpeg" alt="AgriGuard application screenshot 4" class="block w-full h-auto">
+                    </div>
+                    <div class="flex-none w-72 md:w-80 snap-start overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
+                        <img src="pic5.jpeg" alt="AgriGuard application screenshot 5" class="block w-full h-auto">
+                    </div>
+                    
+                    <!-- Screen 1 Mockup -->
+                    <div class="hidden flex-none w-72 md:w-80 snap-start bg-slate-900 rounded-[2.5rem] p-3 shadow-xl ring-1 ring-slate-900/10 relative">
+                        <div class="bg-slate-800 rounded-[2rem] overflow-hidden border border-slate-700/50 text-white">
+                            <!-- Mobile Notch -->
+                            <div class="h-6 bg-slate-900 flex justify-center items-center">
+                                <div class="w-20 h-3 bg-slate-950 rounded-full"></div>
+                            </div>
+                            <!-- Screen Content -->
+                            <div class="p-5 bg-gradient-to-b from-slate-900 to-slate-800 h-[480px] flex flex-col justify-between">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs font-semibold text-brand-400">Dashboard</span>
+                                        <i class="fa-solid fa-bell text-xs text-slate-400"></i>
+                                    </div>
+                                    <div class="bg-brand-900/40 border border-brand-500/30 p-4 rounded-2xl">
+                                        <div class="text-xs text-slate-300">Soil Moisture Level</div>
+                                        <div class="text-2xl font-bold text-white mt-1">Optimal (78%)</div>
+                                        <div class="text-[10px] text-brand-400 mt-2"><i class="fa-solid fa-check-circle"></i> Sufficient moisture levels in crop field</div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
+                                            <div class="text-[10px] text-slate-400">Temperature</div>
+                                            <div class="text-lg font-bold text-white">31°C</div>
+                                        </div>
+                                        <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
+                                            <div class="text-[10px] text-slate-400">NPK Sensor</div>
+                                            <div class="text-lg font-bold text-emerald-400">Balanced</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center pt-4 border-t border-slate-700/60">
+                                    <span class="text-xs font-semibold text-slate-300">1. Dashboard Monitor</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Screen 2 Mockup -->
+                    <div class="hidden flex-none w-72 md:w-80 snap-start bg-slate-900 rounded-[2.5rem] p-3 shadow-xl ring-1 ring-slate-900/10 relative">
+                        <div class="bg-slate-800 rounded-[2rem] overflow-hidden border border-slate-700/50 text-white">
+                            <div class="h-6 bg-slate-900 flex justify-center items-center">
+                                <div class="w-20 h-3 bg-slate-950 rounded-full"></div>
+                            </div>
+                            <div class="p-5 bg-gradient-to-b from-slate-900 to-slate-800 h-[480px] flex flex-col justify-between">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs font-semibold text-brand-400">AI Plant Scanner</span>
+                                        <i class="fa-solid fa-camera text-xs text-slate-400"></i>
+                                    </div>
+                                    <div class="bg-slate-800 h-44 rounded-2xl border-2 border-dashed border-brand-500/50 flex flex-col items-center justify-center relative overflow-hidden">
+                                        <i class="fa-solid fa-virus-covid text-4xl text-amber-400 mb-2"></i>
+                                        <span class="text-xs text-slate-300">Detected: Leaf Blight</span>
+                                        <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full mt-1">94% Confidence</span>
+                                    </div>
+                                    <div class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                                        <div class="text-xs font-bold text-slate-200 mb-1">Recommended Action:</div>
+                                        <p class="text-[11px] text-slate-400 leading-snug">Apply organic fungicide spray and limit evening overhead irrigation.</p>
+                                    </div>
+                                </div>
+                                <div class="text-center pt-4 border-t border-slate-700/60">
+                                    <span class="text-xs font-semibold text-slate-300">2. AI Pest & Disease Scanner</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Screen 3 Mockup -->
+                    <div class="hidden flex-none w-72 md:w-80 snap-start bg-slate-900 rounded-[2.5rem] p-3 shadow-xl ring-1 ring-slate-900/10 relative">
+                        <div class="bg-slate-800 rounded-[2rem] overflow-hidden border border-slate-700/50 text-white">
+                            <div class="h-6 bg-slate-900 flex justify-center items-center">
+                                <div class="w-20 h-3 bg-slate-950 rounded-full"></div>
+                            </div>
+                            <div class="p-5 bg-gradient-to-b from-slate-900 to-slate-800 h-[480px] flex flex-col justify-between">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs font-semibold text-brand-400">Weather & Advisory</span>
+                                        <i class="fa-solid fa-cloud-sun-rain text-xs text-slate-400"></i>
+                                    </div>
+                                    <div class="bg-blue-950/40 border border-blue-500/30 p-4 rounded-2xl">
+                                        <div class="text-xs text-blue-300">Weather Forecast</div>
+                                        <div class="text-xl font-bold text-white mt-1">Rain Expected (2:00 PM)</div>
+                                        <div class="text-[10px] text-blue-300 mt-2"><i class="fa-solid fa-circle-exclamation"></i> Auto-close irrigation valves</div>
+                                    </div>
+                                    <div class="bg-slate-800 p-3 rounded-xl border border-slate-700 space-y-2">
+                                        <div class="text-xs font-bold text-slate-200">Current Market Rates:</div>
+                                        <div class="flex justify-between text-xs text-slate-300">
+                                            <span>Dry Palay</span>
+                                            <span class="font-bold text-emerald-400">₱22.50 / kg</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center pt-4 border-t border-slate-700/60">
+                                    <span class="text-xs font-semibold text-slate-300">3. Weather & Market Analytics</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Screen 4 Mockup -->
+                    <div class="hidden flex-none w-72 md:w-80 snap-start bg-slate-900 rounded-[2.5rem] p-3 shadow-xl ring-1 ring-slate-900/10 relative">
+                        <div class="bg-slate-800 rounded-[2rem] overflow-hidden border border-slate-700/50 text-white">
+                            <div class="h-6 bg-slate-900 flex justify-center items-center">
+                                <div class="w-20 h-3 bg-slate-950 rounded-full"></div>
+                            </div>
+                            <div class="p-5 bg-gradient-to-b from-slate-900 to-slate-800 h-[480px] flex flex-col justify-between">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs font-semibold text-brand-400">IoT Control</span>
+                                        <i class="fa-solid fa-wifi text-xs text-slate-400"></i>
+                                    </div>
+                                    <div class="bg-slate-800 p-4 rounded-2xl border border-slate-700 space-y-3">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-xs font-bold text-slate-200">Water Pump Valve #1</span>
+                                            <div class="w-10 h-6 bg-brand-600 rounded-full flex items-center justify-end px-1">
+                                                <div class="w-4 h-4 bg-white rounded-full"></div>
+                                            </div>
+                                        </div>
+                                        <div class="text-[10px] text-slate-400">Status: Active (15 mins remaining)</div>
+                                    </div>
+                                </div>
+                                <div class="text-center pt-4 border-t border-slate-700/60">
+                                    <span class="text-xs font-semibold text-slate-300">4. IoT Smart Controls</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-16 bg-white border-b border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight">
+                        Key Features of AgriGuard
+                    </h2>
+                    <p class="text-slate-600 text-sm mt-2">
+                        Combining Artificial Intelligence (AI) and the Internet of Things (IoT) to deliver modern solutions to the agricultural sector.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:max-w-6xl lg:mx-auto">
+                    
+                    <!-- Feature 1 -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow min-h-[220px]">
+                        <div class="w-11 h-11 bg-brand-100 text-brand-700 rounded-xl flex items-center justify-center text-lg mb-4">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Bird Detection Monitoring</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Detects bird activity in real time and sends immediate alerts when intruders enter the monitored farm area.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow min-h-[220px]">
+                        <div class="w-11 h-11 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-lg mb-4">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Farm Protection Status</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Shows the current condition of the Agricrow system, including real-time monitoring, alarm activity, and recent bird alerts.
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow min-h-[220px]">
+                        <div class="w-11 h-11 bg-purple-100 text-purple-700 rounded-xl flex items-center justify-center text-lg mb-4">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Bird Activity Tracking</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Logs each bird detection, exact time of occurrence, and how long the bird remains in the monitored area.
+                        </p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow min-h-[220px]">
+                        <div class="w-11 h-11 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center text-lg mb-4">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Deterrent Effectiveness</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Measures how quickly birds respond to the alarm and calculates the effectiveness level of the deterrent system.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Specs & Installation Guide Section -->
+        <section id="specs" class="py-16 bg-slate-50 border-b border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    
+                    <!-- Installation Steps -->
+                    <div id="guide" class="lg:col-span-7 space-y-6">
+                        <div>
+                            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">
+                                How to Install AgriGuard APK on Android
+                            </h2>
+                            <p class="text-slate-500 text-sm mt-1">
+                                You can install the application directly via its Android Package (APK) file.
+                            </p>
+                        </div>
+
+                        <div class="space-y-4 pt-2">
+                            <!-- Step 1 -->
+                            <div class="flex gap-4 p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm">
+                                <div class="w-8 h-8 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center flex-shrink-0 text-sm">
+                                    1
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800 text-sm">Download the APK File</h4>
+                                    <p class="text-xs text-slate-600 mt-0.5">
+                                        Click the "Download APK" button above to save <code class="bg-slate-100 px-1 py-0.5 rounded text-slate-800 font-mono">agriguard-v1.0.0.apk</code> to your device.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="flex gap-4 p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm">
+                                <div class="w-8 h-8 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center flex-shrink-0 text-sm">
+                                    2
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800 text-sm">Enable "Install Unknown Apps"</h4>
+                                    <p class="text-xs text-slate-600 mt-0.5">
+                                        Go to Android Settings &gt; Security (or Privacy) &gt; Enable "Allow installation from unknown sources" for your web browser.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="flex gap-4 p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm">
+                                <div class="w-8 h-8 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center flex-shrink-0 text-sm">
+                                    3
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800 text-sm">Install and Open AgriGuard</h4>
+                                    <p class="text-xs text-slate-600 mt-0.5">
+                                        Open your phone's Downloads folder, tap the APK file, confirm the installation, then open AgriGuard.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tech Specs Table -->
+                    <div class="lg:col-span-5 bg-slate-900 text-white p-6 rounded-3xl shadow-xl space-y-4">
+                        <div class="flex items-center gap-2 text-brand-400 font-semibold text-xs tracking-wider uppercase">
+                            <i class="fa-solid fa-sliders"></i>
+                            <span>System Requirements</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Technical Specifications</h3>
+
+                        <div class="space-y-3 text-xs pt-2">
+                            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 py-2 border-b border-slate-800">
+                                <span class="text-slate-400">Operating System:</span>
+                                <span class="font-medium text-slate-200 sm:text-right break-words">Android 8.0 (Oreo) or higher</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 py-2 border-b border-slate-800">
+                                <span class="text-slate-400">RAM Requirement:</span>
+                                <span class="font-medium text-slate-200 sm:text-right break-words">2 GB minimum (4 GB recommended)</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 py-2 border-b border-slate-800">
+                                <span class="text-slate-400">Storage Space:</span>
+                                <span class="font-medium text-slate-200 sm:text-right break-words">At least 100 MB free space</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 py-2 border-b border-slate-800">
+                                <span class="text-slate-400">Tech Stack:</span>
+                                <span class="font-medium text-slate-200 sm:text-right break-words">Kotlin, Android Studio, Python, OpenCV, YOLO, Flask API, SQLite</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 py-2 border-b border-slate-800">
+                                <span class="text-slate-400">IoT Hardware:</span>
+                                <span class="font-medium text-slate-200 sm:text-right break-words">Raspberry Pi 4, Sensor Module, Speaker Alarm</span>
+                            </div>
+                        </div>
+
+                        <!-- Public App Access -->
+                        <div class="bg-slate-800/90 border border-slate-700 p-3.5 rounded-xl text-[11px] text-slate-300 space-y-1">
+                            <div class="font-bold text-emerald-400 flex items-center gap-1.5">
+                                <i class="fa-solid fa-download"></i>
+                                <span>App Availability</span>
+                            </div>
+                            <p>
+                                AgriGuard is available for Android users and can be downloaded directly through the app download button on this page.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-2xl font-bold text-center text-slate-900 tracking-tight mb-8">
+                    Frequently Asked Questions (FAQ)
+                </h2>
+
+                <div class="space-y-4">
+                    <details class="group bg-slate-50 p-4 rounded-2xl border border-slate-200/80 [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-800 cursor-pointer text-sm">
+                            <span>Is AgriGuard free to download and use?</span>
+                            <span class="transition group-open:rotate-180">
+                                <i class="fa-solid fa-chevron-down text-xs text-slate-500"></i>
+                            </span>
+                        </summary>
+                        <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+                            Yes, AgriGuard is completely free for academic evaluation, testing, and research demonstration purposes.
+                        </p>
+                    </details>
+
+                    <details class="group bg-slate-50 p-4 rounded-2xl border border-slate-200/80 [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-800 cursor-pointer text-sm">
+                            <span>Are IoT Sensors required to use the app?</span>
+                            <span class="transition group-open:rotate-180">
+                                <i class="fa-solid fa-chevron-down text-xs text-slate-500"></i>
+                            </span>
+                        </summary>
+                        <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+                            No. You can use the AI Disease Scanner and weather advisories standalone. However, hardware connectivity is required for real-time soil moisture and sensor monitoring.
+                        </p>
+                    </details>
+
+                    <details class="group bg-slate-50 p-4 rounded-2xl border border-slate-200/80 [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-800 cursor-pointer text-sm">
+                            <span>How was this APK prepared?</span>
+                            <span class="transition group-open:rotate-180">
+                                <i class="fa-solid fa-chevron-down text-xs text-slate-500"></i>
+                            </span>
+                        </summary>
+                        <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+                            The APK was built from the AgriGuard thesis project source code and prepared for academic evaluation on supported Android devices.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Development Team Section -->
+        <section id="team" class="py-12 bg-slate-50 border-t border-slate-200/60">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-xl mx-auto mb-8">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-semibold mb-3">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Project Team</span>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight">
+                        Research & Development Team
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center text-lg font-bold mb-3">JB</div>
+                        <h3 class="text-base font-bold text-slate-900">Jaymar Budduan</h3>
+                        <p class="text-xs text-slate-500 mt-1">Project Lead / System Integrator</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center text-lg font-bold mb-3">LM</div>
+                        <h3 class="text-base font-bold text-slate-900">Lencher Marcos</h3>
+                        <p class="text-xs text-slate-500 mt-1">Documentation</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center text-lg font-bold mb-3">JF</div>
+                        <h3 class="text-base font-bold text-slate-900">Justine Felipe</h3>
+                        <p class="text-xs text-slate-500 mt-1">Evaluation</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center text-lg font-bold mb-3">AP</div>
+                        <h3 class="text-base font-bold text-slate-900">Ahronne Jian Pinera</h3>
+                        <p class="text-xs text-slate-500 mt-1">Field Testing</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Download Modal -->
+    <div id="downloadModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden transition-opacity">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-5 border border-slate-100 relative">
+            <!-- Close Button -->
+            <button onclick="closeDownloadModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center space-y-2">
+                <div class="w-16 h-16 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-3xl mx-auto shadow-inner">
+                    <i class="fa-solid fa-download"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900">Download AgriGuard APK</h3>
+                <p class="text-xs text-slate-500">
+                    Version 1.0.0 (Official Thesis Build) • 45 MB
+                </p>
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 text-xs text-slate-600 space-y-2">
+                <div class="flex justify-between font-semibold text-slate-800">
+                    <span>File Name:</span>
+                    <span class="font-mono text-brand-700">AgriGuard.apk</span>
+                </div>
+                <div class="flex justify-between text-[11px] text-slate-500">
+                    <span>MD5 Checksum:</span>
+                    <span class="font-mono">e99a18c428cb38d5</span>
+                </div>
+            </div>
+
+            <!-- APK DOWNLOAD LINK -->
+            <div class="space-y-3">
+                <a id="apkDownloadBtn" href="AgriGuard.apk" download class="w-full bg-brand-600 hover:bg-brand-700 text-white py-3.5 px-4 rounded-xl font-bold text-sm shadow-lg shadow-brand-600/30 flex items-center justify-center gap-2 transition-all">
+                    <i class="fa-solid fa-circle-down text-lg"></i>
+                    <span>Start Download (.APK)</span>
+                </a>
+
+                <button onclick="closeDownloadModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 py-2.5 px-4 rounded-xl font-semibold text-xs transition-colors">
+                    Cancel
+                </button>
+            </div>
+
+            <p class="text-[10px] text-center text-slate-400">
+                By downloading, you agree to use this application for research evaluation purposes.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-10 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white">
+                    <i class="fa-solid fa-shield-halved text-sm"></i>
+                </div>
+                <div>
+                    <div class="font-bold text-white text-sm">AgriGuard</div>
+                    <div class="text-[10px] uppercase tracking-[0.22em] text-slate-500">Smart Crop Protection System</div>
+                </div>
+            </div>
+            <div class="text-center md:text-right text-slate-500">
+                © 2026 AgriGuard
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        function scrollScreenshots(offset) {
+            const container = document.getElementById('screenshotContainer');
+            container.scrollBy({ left: offset, behavior: 'smooth' });
+        }
+
+        function openDownloadModal() {
+            const modal = document.getElementById('downloadModal');
+            modal.classList.remove('hidden');
+        }
+
+        function closeDownloadModal() {
+            const modal = document.getElementById('downloadModal');
+            modal.classList.add('hidden');
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('downloadModal');
+            if (event.target === modal) {
+                closeDownloadModal();
+            }
+        };
+    </script>
+</body>
+</html>
+
