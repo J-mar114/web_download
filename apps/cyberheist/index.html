@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080b0c">
+    <meta name="description" content="Explore Cyberheist, a cybersecurity arcade experience with five safe, isolated challenges in password hygiene, code breaking, log analysis, incident response, and digital forensics.">
+    <title>Cyberheist | Cybersecurity Arcade Showcase</title>
+    <link rel="icon" type="image/svg+xml" href="cyberheist-logo.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { color-scheme: dark; --bg: #080b0c; --panel: #0e1314; --line: #202a28; --muted: #9aa8a1; --green: #b6ff68; }
+        html { scroll-padding-top: 5rem; }
+        body { margin: 0; background: var(--bg); color: #e8eee9; font-family: "Space Grotesk", sans-serif; }
+        .mono { font-family: "DM Mono", monospace; }
+        .panel { background: linear-gradient(145deg, rgba(17, 26, 22, .94), rgba(11, 15, 15, .96)); border: 1px solid var(--line); }
+        .grid-glow { background-image: linear-gradient(rgba(182,255,104,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(182,255,104,.045) 1px, transparent 1px); background-size: 42px 42px; }
+        .text-green { color: var(--green); }
+        .btn-primary { background: var(--green); color: #0a1009; transition: transform .18s ease, box-shadow .18s ease; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(182,255,104,.18); }
+        .btn-outline { border: 1px solid #39483d; color: #e8eee9; transition: border-color .18s ease, background .18s ease; }
+        .btn-outline:hover { border-color: var(--green); background: rgba(182,255,104,.06); }
+        .shot-frame { background: #070a09; border: 1px solid #28352d; box-shadow: 0 24px 80px rgba(0,0,0,.4); }
+        .shot-frame img { display: block; width: 100%; height: auto; }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+    </style>
+</head>
+<body class="antialiased selection:bg-lime-300 selection:text-black">
+    <header class="sticky top-0 z-40 border-b border-white/10 bg-[#080b0c]/90 backdrop-blur-xl">
+        <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+            <a href="#top" class="flex items-center gap-3" aria-label="Cyberheist showcase home">
+                <img src="cyberheist-logo.svg" alt="" class="h-10 w-10">
+                <span class="font-bold tracking-wide">CYBER<span class="text-green">HEIST</span><small class="mono mt-0.5 block text-[9px] font-normal tracking-[.18em] text-slate-400">CSIT // LIVE EVENT</small></span>
+            </a>
+            <nav class="hidden items-center gap-6 text-xs text-slate-300 md:flex" aria-label="Page navigation">
+                <a class="hover:text-green" href="#overview">Overview</a>
+                <a class="hover:text-green" href="#missions">Challenges</a>
+                <a class="hover:text-green" href="#screenshots">Screenshots</a>
+                <a class="hover:text-green" href="#how-to-play">How to play</a>
+            </nav>
+            <div class="flex items-center gap-2">
+                <a href="../../index.html" class="btn-outline rounded-xl px-3 py-2 text-xs font-semibold"><i class="fa-solid fa-arrow-left mr-1.5"></i><span class="hidden sm:inline">CSIT App Store</span><span class="sm:hidden">Store</span></a>
+                <a href="https://cyberheist12.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn-primary rounded-xl px-3 py-2 text-xs font-bold"><i class="fa-solid fa-play mr-1.5"></i>PLAY LIVE</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="top" class="grid-glow relative overflow-hidden border-b border-white/10">
+            <div class="pointer-events-none absolute -right-40 -top-32 h-[32rem] w-[32rem] rounded-full bg-lime-300/5 blur-3xl"></div>
+            <div id="overview" class="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-2 lg:px-8 lg:py-24">
+                <div>
+                    <a href="../../index.html" class="mono mb-8 inline-flex items-center gap-2 text-[11px] text-slate-400 hover:text-green"><i class="fa-solid fa-arrow-left text-[9px]"></i> CSIT APP STORE <span class="text-slate-600">/</span> CYBERSECURITY ARCADE</a>
+                    <div class="mb-5 flex flex-wrap gap-2">
+                        <span class="mono rounded-full border border-lime-300/30 bg-lime-300/10 px-3 py-1 text-[10px] text-green"><i class="fa-solid fa-shield-halved mr-1.5"></i>SAFE SIMULATION</span>
+                        <span class="mono rounded-full border border-slate-700 bg-slate-900/70 px-3 py-1 text-[10px] text-slate-300">5 CHALLENGES · ~10 MIN</span>
+                    </div>
+                    <h1 class="max-w-3xl text-4xl font-bold leading-[1.04] tracking-tight sm:text-6xl">BREAK THE SYSTEM.<br><span class="text-green">CLAIM YOUR RANK.</span></h1>
+                    <p class="mt-6 max-w-xl text-base leading-7 text-slate-300 sm:text-lg">Think like a defender, investigate the clues, and put your security instincts to the test. Cyberheist turns cybersecurity fundamentals into a fast, command-driven arcade challenge.</p>
+                    <p class="mt-4 max-w-xl text-sm leading-6 text-slate-400">Each run draws five objectives from an isolated training simulation. No real systems are accessed; the focus is on careful analysis, ethical decision-making, and learning how to spot security risks.</p>
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <a href="https://cyberheist12.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn-primary rounded-xl px-5 py-3 text-sm font-bold"><i class="fa-solid fa-arrow-up-right-from-square mr-2"></i>Launch Cyberheist</a>
+                        <a href="#screenshots" class="btn-outline rounded-xl px-5 py-3 text-sm font-semibold"><i class="fa-regular fa-images mr-2"></i>View screenshots</a>
+                    </div>
+                    <div class="mono mt-9 flex flex-wrap gap-x-6 gap-y-3 text-[10px] tracking-wide text-slate-400">
+                        <span><i class="fa-solid fa-lock mr-1.5 text-green"></i>ISOLATED TRAINING</span>
+                        <span><i class="fa-solid fa-terminal mr-1.5 text-green"></i>COMMAND-DRIVEN</span>
+                        <span><i class="fa-solid fa-trophy mr-1.5 text-green"></i>LEADERBOARD RUNS</span>
+                    </div>
+                </div>
+                <figure class="shot-frame overflow-hidden rounded-2xl">
+                    <div class="mono flex items-center justify-between border-b border-white/10 px-4 py-3 text-[10px] text-slate-400"><span><i class="fa-solid fa-circle mr-1 text-[7px] text-red-400"></i><i class="fa-solid fa-circle mr-1 text-[7px] text-amber-300"></i><i class="fa-solid fa-circle mr-2 text-[7px] text-green"></i>CYBERHEIST // HOME</span><span>LIVE PREVIEW</span></div>
+                    <img src="cyberheist-home.png" alt="Screenshot of Cyberheist's dark cybersecurity arcade landing page" width="824" height="768">
+                    <figcaption class="border-t border-white/10 px-4 py-3 text-xs text-slate-400">The live event home screen introduces the challenges and safe simulation.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="border-b border-white/10 bg-[#0b1010]">
+            <div class="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-7 sm:px-6 md:grid-cols-4 lg:px-8">
+                <div><p class="mono text-[10px] text-slate-500">EXPERIENCE</p><p class="mt-1 text-sm font-semibold">Cybersecurity Arcade</p></div>
+                <div><p class="mono text-[10px] text-slate-500">RUN LENGTH</p><p class="mt-1 text-sm font-semibold">About 10 minutes</p></div>
+                <div><p class="mono text-[10px] text-slate-500">OBJECTIVES</p><p class="mt-1 text-sm font-semibold">5 per run</p></div>
+                <div><p class="mono text-[10px] text-slate-500">PLATFORM</p><p class="mt-1 text-sm font-semibold">Browser-based web app</p></div>
+            </div>
+        </section>
+
+        <section id="missions" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+            <div class="mb-8 max-w-2xl">
+                <p class="mono text-[10px] tracking-[.22em] text-green">MISSION TYPES // 01—05</p>
+                <h2 class="mt-3 text-3xl font-bold sm:text-4xl">Five ways to <span class="text-green">outsmart the system.</span></h2>
+                <p class="mt-3 text-sm leading-6 text-slate-400">Every challenge rewards observation and reasoning—not real-world access or intrusion.</p>
+            </div>
+            <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                <article class="panel rounded-2xl p-5"><span class="mono text-xs text-green">01 // CREDENTIALS</span><h3 class="mt-4 font-bold">Password Crack</h3><p class="mt-2 text-sm leading-6 text-slate-400">Read the clues and identify the weak credential in a simulated scenario.</p></article>
+                <article class="panel rounded-2xl p-5"><span class="mono text-xs text-green">02 // CIPHER</span><h3 class="mt-4 font-bold">Code Breaker</h3><p class="mt-2 text-sm leading-6 text-slate-400">Decode a message by following the evidence and applying pattern recognition.</p></article>
+                <article class="panel rounded-2xl p-5"><span class="mono text-xs text-green">03 // SIGNAL</span><h3 class="mt-4 font-bold">Log Analysis</h3><p class="mt-2 text-sm leading-6 text-slate-400">Separate a suspicious event from routine activity in a log-based puzzle.</p></article>
+                <article class="panel rounded-2xl p-5"><span class="mono text-xs text-green">04 // RESPONSE</span><h3 class="mt-4 font-bold">Security Breach</h3><p class="mt-2 text-sm leading-6 text-slate-400">Choose a safe, responsible response to a fictional security incident.</p></article>
+                <article class="panel rounded-2xl p-5 sm:col-span-2 lg:col-span-2"><span class="mono text-xs text-green">05 // EVIDENCE</span><h3 class="mt-4 font-bold">Digital Forensics</h3><p class="mt-2 text-sm leading-6 text-slate-400">Follow a trail of fictional evidence and find the signal that explains what happened.</p></article>
+            </div>
+        </section>
+
+        <section id="how-to-play" class="border-y border-white/10 bg-[#0b1010]">
+            <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+                <div class="mb-8">
+                    <p class="mono text-[10px] tracking-[.22em] text-green">PLAYER GUIDE // TERMINAL BASICS</p>
+                    <h2 class="mt-3 text-3xl font-bold sm:text-4xl">Type commands. <span class="text-green">Follow the evidence.</span></h2>
+                </div>
+                <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    <article class="panel rounded-2xl p-5"><span class="mono text-xs text-green">01 / START</span><h3 class="mt-3 font-bold">Launch your run</h3><p class="mt-2 text-sm leading-6 text-slate-400">Choose a difficulty, set a callsign, and begin a training run.</p></article>
+                    <article class="panel rounded-2xl p-5"><span class="mono text-xs text-green">02 / SCAN</span><h3 class="mt-3 font-bold">Map the training node</h3><p class="mt-2 text-sm leading-6 text-slate-400">Type <code class="mono rounded bg-black/40 px-1.5 py-0.5 text-green">scan</code> to review the objective.</p></article>
+                    <article class="panel rounded-2xl p-5"><span class="mono text-xs text-green">03 / INSPECT</span><h3 class="mt-3 font-bold">Read the evidence</h3><p class="mt-2 text-sm leading-6 text-slate-400">Use <code class="mono rounded bg-black/40 px-1.5 py-0.5 text-green">inspect</code> to see clues and possible findings.</p></article>
+                    <article class="panel rounded-2xl p-5"><span class="mono text-xs text-green">04 / ANALYZE</span><h3 class="mt-3 font-bold">Submit your finding</h3><p class="mt-2 text-sm leading-6 text-slate-400">Use <code class="mono rounded bg-black/40 px-1.5 py-0.5 text-green">analyze B</code> to submit a candidate answer.</p></article>
+                    <article class="panel rounded-2xl p-5 sm:col-span-2"><span class="mono text-xs text-green">05 / CONTINUE</span><h3 class="mt-3 font-bold">Move to the next objective</h3><p class="mt-2 text-sm leading-6 text-slate-400">After resolving a challenge, type <code class="mono rounded bg-black/40 px-1.5 py-0.5 text-green">next</code>. Use <code class="mono rounded bg-black/40 px-1.5 py-0.5 text-green">help</code> to review available commands.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section id="screenshots" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+            <div class="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                <div><p class="mono text-[10px] tracking-[.22em] text-green">LIVE APP // SCREENSHOTS</p><h2 class="mt-3 text-3xl font-bold sm:text-4xl">A look inside <span class="text-green">the experience.</span></h2></div>
+                <p class="max-w-md text-sm leading-6 text-slate-400">Captured from the public Cyberheist app. Screens show its landing page and the operator sign-up flow.</p>
+            </div>
+            <div class="grid items-start gap-6 lg:grid-cols-[1.2fr_.8fr]">
+                <figure class="shot-frame overflow-hidden rounded-2xl">
+                    <img src="cyberheist-home.png" alt="Live Cyberheist home page with the terminal-themed hero and event navigation" width="824" height="768" loading="lazy">
+                    <figcaption class="border-t border-white/10 px-4 py-3 text-xs text-slate-400">01 — Landing page and terminal-inspired visual.</figcaption>
+                </figure>
+                <figure class="shot-frame overflow-hidden rounded-2xl">
+                    <img src="cyberheist-operator-flow.png" alt="Cyberheist operator ID sign-up screen with a callsign field" width="824" height="768" loading="lazy">
+                    <figcaption class="border-t border-white/10 px-4 py-3 text-xs text-slate-400">02 — Operator ID sign-up screen.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="mx-auto max-w-7xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
+            <div class="panel grid gap-8 rounded-3xl p-6 sm:p-9 lg:grid-cols-[1fr_auto] lg:items-center">
+                <div>
+                    <p class="mono text-[10px] tracking-[.22em] text-green">ETHICAL PLAY // SAFETY FIRST</p>
+                    <h2 class="mt-3 text-2xl font-bold">Practice in the sandbox. <span class="text-green">Protect the real world.</span></h2>
+                    <p class="mt-3 max-w-2xl text-sm leading-6 text-slate-400">Cyberheist is designed as a safe, fictional training experience. Its terminal commands operate only within the app's local challenge simulation; they are not instructions to access outside systems.</p>
+                </div>
+                <a href="https://cyberheist12.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn-primary inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-bold"><i class="fa-solid fa-arrow-right mr-2"></i>Enter the heist</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-white/10 bg-[#060808]">
+        <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+            <span>© 2026 CYBER HEIST · BUILT FOR CSIT</span>
+            <div class="flex gap-5"><a href="../../index.html" class="hover:text-green">CSIT App Store</a><a href="https://cyberheist12.netlify.app/" target="_blank" rel="noopener noreferrer" class="hover:text-green">Live App <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[9px]"></i></a></div>
+        </div>
+    </footer>
+</body>
+</html>

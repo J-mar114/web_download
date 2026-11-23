@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#facc15">
+    <meta name="description" content="BALDE AGAINST EL NIÑO: One Bucket, One Family — Satirical Pinoy Survival Web Game & Civic Educational Advocacy created by Jaymar Budduan for CITS Week 2026 at STI College Laoag.">
+    <title>BALDE AGAINST EL NIÑO | One Bucket, One Family (Web Game)</title>
+    <link rel="icon" type="image/svg+xml" href="balde-logo.svg">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Luckiest Guy, Bangers, Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Custom Tailwind Theme Tokens -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        comic: {
+                            yellow: '#facc15',
+                            amber: '#f59e0b',
+                            red: '#e11d48',
+                            blue: '#0284c7',
+                            dark: '#111827',
+                            sand: '#fef08a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .font-komiks {
+            font-family: 'Luckiest Guy', cursive, sans-serif;
+            letter-spacing: 0.04em;
+        }
+        .font-bangers {
+            font-family: 'Bangers', cursive, sans-serif;
+            letter-spacing: 0.05em;
+        }
+        /* Comic Brutalist Borders & Shadows */
+        .border-comic { border: 3px solid #111827; }
+        .border-comic-thick { border: 4px solid #111827; }
+        .shadow-comic { box-shadow: 4px 4px 0px #111827; }
+        .shadow-comic-lg { box-shadow: 6px 6px 0px #111827; }
+        .shadow-comic-sm { box-shadow: 2px 2px 0px #111827; }
+
+        .btn-comic {
+            border: 3px solid #111827;
+            box-shadow: 4px 4px 0px #111827;
+            transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+            user-select: none;
+        }
+        .btn-comic:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 6px 6px 0px #111827;
+        }
+        .btn-comic:active {
+            transform: translate(3px, 3px);
+            box-shadow: 1px 1px 0px #111827;
+        }
+
+        .speech-balloon {
+            position: relative;
+            background: #ffffff;
+            border: 3px solid #111827;
+            border-radius: 1.25rem;
+            box-shadow: 4px 4px 0px #111827;
+        }
+        .speech-balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -14px;
+            left: 28px;
+            border-width: 14px 14px 0;
+            border-style: solid;
+            border-color: #111827 transparent;
+            display: block;
+            width: 0;
+        }
+        .speech-balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -9px;
+            left: 31px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: #ffffff transparent;
+            display: block;
+            width: 0;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="bg-amber-100 text-slate-900 antialiased selection:bg-rose-500 selection:text-white overflow-x-hidden">
+
+    <!-- Top Comic Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-yellow-400 border-b-4 border-slate-900 transition-all duration-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
+            
+            <!-- App Identity -->
+            <a href="#" class="flex items-center gap-2.5 sm:gap-3 flex-shrink-0 group">
+                <div class="w-10 h-10 bg-white border-2 border-slate-900 rounded-xl overflow-hidden shadow-comic-sm flex items-center justify-center p-1 group-hover:rotate-6 transition-transform">
+                    <img src="balde-logo.svg" alt="Balde Against El Niño app logo" class="w-full h-full object-contain">
+                </div>
+                <div>
+                    <span class="font-komiks text-base sm:text-lg text-slate-900 block leading-tight">BALDE AGAINST EL NIÑO</span>
+                    <span class="font-bangers text-[11px] sm:text-xs text-rose-700 tracking-wider block">One Bucket, One Family</span>
+                </div>
+            </a>
+
+            <!-- Nav Links -->
+            <nav class="hidden md:flex items-center gap-6 text-xs font-bold text-slate-900">
+                <a href="#overview" class="hover:text-rose-600 transition">Game Storyline</a>
+                <a href="#levels" class="hover:text-rose-600 transition">5 Comic Levels</a>
+                <a href="#screenshots" class="hover:text-rose-600 transition">UI Screenshots</a>
+                <a href="#gameplay" class="hover:text-rose-600 transition">Controls &amp; Tech</a>
+                <a href="#author" class="hover:text-rose-600 transition">Author &amp; Advocacy</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <a href="../../index.html" aria-label="Back to CSIT App Store" class="btn-comic bg-white hover:bg-slate-50 text-slate-900 px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5">
+                    <i class="fa-solid fa-arrow-left text-[11px]"></i>
+                    <span class="hidden sm:inline">CSIT App Store</span>
+                    <span class="sm:hidden">Hub</span>
+                </a>
+                <a href="https://j-mar114.github.io/Balde-Against-El-Ni-o/" target="_blank" rel="noopener noreferrer" class="btn-comic bg-rose-600 hover:bg-rose-500 text-white px-3 sm:px-4 py-1.5 rounded-xl font-komiks text-xs sm:text-sm flex items-center gap-1.5">
+                    <i class="fa-solid fa-gamepad text-xs"></i>
+                    <span>PLAY LIVE GAME!</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1">
+
+        <!-- HERO SECTION -->
+        <section id="overview" class="py-8 sm:py-16 border-b-4 border-slate-900 bg-amber-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Category Badges -->
+                <div class="flex flex-wrap items-center gap-2 mb-4">
+                    <span class="border-comic bg-rose-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-comic-sm">
+                        🎮 Interactive Web Game
+                    </span>
+                    <span class="border-comic bg-yellow-300 text-slate-900 px-3 py-0.5 rounded-full text-xs font-bold shadow-comic-sm">
+                        🔥 43°C Heat Index Survival
+                    </span>
+                    <span class="border-comic bg-sky-400 text-slate-900 px-3 py-0.5 rounded-full text-xs font-bold shadow-comic-sm">
+                        📢 Civic Educational Advocacy
+                    </span>
+                    <span class="border-comic bg-white text-slate-800 px-3 py-0.5 rounded-full text-xs font-bold shadow-comic-sm">
+                        🎓 BSIT / BSCS Project • STI College Laoag
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Left Hero Copy -->
+                    <div class="lg:col-span-7 space-y-4">
+                        <h1 class="font-komiks text-3xl sm:text-5xl md:text-6xl text-slate-900 leading-tight">
+                            BALDE AGAINST EL NIÑO
+                        </h1>
+                        <p class="font-bangers text-xl sm:text-3xl text-rose-600 tracking-wide">
+                            "One Bucket, One Family: Can 20 Liters Save Your Household from the Heat Wave?!"
+                        </p>
+                        <p class="text-slate-800 text-sm sm:text-base leading-relaxed font-medium">
+                            An interactive satirical Pinoy survival web game and civic advocacy project inspired by the real-world El Niño drought crises in the Philippines and official statements advising households to survive with a single bucket (*"balde"*). Experience the authentic daily dilemma: can 20 liters of water truly sustain drinking, cooking rice, emergency sponge baths, and household pets under a blistering 43°C Heat Index?
+                        </p>
+
+                        <!-- Dialogue Preview -->
+                        <div class="speech-balloon p-4 max-w-xl">
+                            <span class="text-rose-600 font-bangers text-base tracking-wide uppercase">Tatay Enteng:</span>
+                            <p class="text-xs sm:text-sm font-bold text-slate-800 mt-0.5">
+                                "Catch the raindrops quickly before they evaporate on the galvanized roof! Keep out dirt and contaminants if you want to avoid stomach illness!"
+                            </p>
+                        </div>
+
+                        <!-- CTA Row -->
+                        <div class="flex flex-wrap items-center gap-3 pt-2">
+                            <a href="https://j-mar114.github.io/Balde-Against-El-Ni-o/" target="_blank" rel="noopener noreferrer" class="btn-comic bg-emerald-500 hover:bg-emerald-400 text-white px-6 py-3.5 rounded-2xl font-komiks text-base flex items-center gap-2">
+                                <i class="fa-solid fa-play"></i>
+                                <span>PLAY THE WEB GAME NOW</span>
+                            </a>
+                            <a href="#levels" class="btn-comic bg-white hover:bg-slate-50 text-slate-900 px-5 py-3.5 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-list-check text-rose-500"></i>
+                                <span>Explore 5 Comic Stages</span>
+                            </a>
+                        </div>
+
+                        <!-- Quick Info Badges -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4">
+                            <div class="border-comic bg-white p-3 rounded-xl shadow-comic-sm text-center">
+                                <span class="font-komiks text-xl text-rose-600 block">5 LEVELS</span>
+                                <span class="text-[11px] font-bold text-slate-600">Comic Mini-Games</span>
+                            </div>
+                            <div class="border-comic bg-white p-3 rounded-xl shadow-comic-sm text-center">
+                                <span class="font-komiks text-xl text-sky-600 block">20 LITERS</span>
+                                <span class="text-[11px] font-bold text-slate-600">Household Quota</span>
+                            </div>
+                            <div class="border-comic bg-white p-3 rounded-xl shadow-comic-sm text-center">
+                                <span class="font-komiks text-xl text-amber-500 block">LEADERBOARD</span>
+                                <span class="text-[11px] font-bold text-slate-600">Community Records</span>
+                            </div>
+                            <div class="border-comic bg-white p-3 rounded-xl shadow-comic-sm text-center">
+                                <span class="font-komiks text-xl text-emerald-600 block">ZERO INSTALL</span>
+                                <span class="text-[11px] font-bold text-slate-600">Instant in Browser</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Hero Spotlight (Comic Card Preview) -->
+                    <div class="lg:col-span-5">
+                        <div class="border-comic-thick bg-yellow-400 p-6 rounded-3xl shadow-comic-lg text-center relative overflow-hidden">
+                            
+                            <!-- Sun Badge -->
+                            <div class="inline-block border-comic bg-rose-600 text-white px-3.5 py-1 rounded-full text-xs font-bangers tracking-wider uppercase mb-3 shadow-comic-sm">
+                                🔥 43°C HEAT INDEX BOSS BATTLE!
+                            </div>
+
+                            <div class="w-40 h-40 mx-auto my-2 p-2 bg-white border-comic rounded-2xl shadow-comic flex items-center justify-center">
+                                <img src="balde-logo.svg" alt="Balde Against El Niño app logo" class="max-w-full max-h-full object-contain">
+                            </div>
+
+                            <h3 class="font-komiks text-2xl text-slate-900 mt-2">BALDE FILTER KIT</h3>
+                            <p class="font-bangers text-base text-slate-800">
+                                The Emergency Heat Wave Survival Kit for Filipino Households
+                            </p>
+
+                            <div class="mt-4 p-3 bg-white border-comic rounded-xl text-left text-xs space-y-1 font-bold text-slate-800">
+                                <p>🪣 <strong>Author:</strong> Jaymar Budduan (@j-mar114)</p>
+                                <p>💻 <strong>Technology:</strong> HTML5 Canvas, Tailwind CSS, Vanilla JS, Web Audio</p>
+                                <p>📱 <strong>Controls:</strong> Keyboard Arrow Keys &amp; Mobile Touch / Swipe</p>
+                                <p>🌐 <strong>Platform:</strong> Hosted Live on GitHub Pages</p>
+                            </div>
+
+                            <div class="mt-4">
+                                <a href="https://j-mar114.github.io/Balde-Against-El-Ni-o/" target="_blank" rel="noopener noreferrer" class="btn-comic w-full bg-slate-900 hover:bg-slate-800 text-yellow-300 py-3 rounded-xl font-komiks text-sm flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-up-right-from-square"></i>
+                                    <span>Launch Live Web Game</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 5 COMIC LEVELS SECTION -->
+        <section id="levels" class="py-12 sm:py-20 border-b-4 border-slate-900 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="border-comic bg-amber-300 text-slate-900 px-3 py-1 rounded-full text-xs font-komiks uppercase shadow-comic-sm">
+                        Stages of Survival
+                    </span>
+                    <h2 class="font-komiks text-3xl sm:text-5xl text-slate-900 mt-2">THE 5 GAMEPLAY STAGES</h2>
+                    <p class="font-bangers text-lg text-slate-600 mt-1">
+                        Each level delivers unique mini-game mechanics, comic dialogue, and satirical challenges!
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Level 1 -->
+                    <div class="border-comic bg-sky-50 p-6 rounded-2xl shadow-comic flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="border-comic bg-sky-500 text-white px-2.5 py-0.5 rounded-lg font-komiks text-xs">LEVEL 1</span>
+                                <span class="font-bangers text-xs text-rose-600">43°C HEAT INDEX</span>
+                            </div>
+                            <h3 class="font-komiks text-xl text-slate-900 mb-2">Catching Rain in the Street</h3>
+                            <p class="text-xs text-slate-700 leading-relaxed font-medium">
+                                <strong>Where Did the Water Go?</strong> — Move your bucket left and right to catch precious raindrops falling from the sky before they evaporate under the blistering sun. Dodge falling debris and mud to keep your water collection pure and drinkable!
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t-2 border-slate-900 text-[11px] font-bold text-sky-800">
+                            💧 Target: Collect 15.0 Liters
+                        </div>
+                    </div>
+
+                    <!-- Level 2 -->
+                    <div class="border-comic bg-yellow-50 p-6 rounded-2xl shadow-comic flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="border-comic bg-yellow-400 text-slate-900 px-2.5 py-0.5 rounded-lg font-komiks text-xs">LEVEL 2</span>
+                                <span class="font-bangers text-xs text-amber-700">KIT ASSEMBLY</span>
+                            </div>
+                            <h3 class="font-komiks text-xl text-slate-900 mb-2">Assemble the Bucket Filter</h3>
+                            <p class="text-xs text-slate-700 leading-relaxed font-medium">
+                                <strong>Filter Your Own Solution!</strong> — Follow the 5-step assembly procedure to install the family water filter kit into your bucket (drill holes, insert food-grade rubber washer, fit ceramic/carbon core, tighten wing nuts, and attach clean siphon hose) before the timer runs out!
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t-2 border-slate-900 text-[11px] font-bold text-yellow-800">
+                            🔧 5-Step Filtration Assembly Challenge
+                        </div>
+                    </div>
+
+                    <!-- Level 3 -->
+                    <div class="border-comic bg-purple-50 p-6 rounded-2xl shadow-comic flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="border-comic bg-purple-500 text-white px-2.5 py-0.5 rounded-lg font-komiks text-xs">LEVEL 3</span>
+                                <span class="font-bangers text-xs text-purple-700">42°C HOUSEHOLD</span>
+                            </div>
+                            <h3 class="font-komiks text-xl text-slate-900 mb-2">Household Water Rationing</h3>
+                            <p class="text-xs text-slate-700 leading-relaxed font-medium">
+                                <strong>One Bucket, One Family!</strong> — Ration and budget the actual liters of filtered water you collected in Level 1. Make hard survival decisions: allocate drinking water to protect children from heat stroke, cook daily rice, hydrate the family pet (aspin), or take an emergency sponge bath.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t-2 border-slate-900 text-[11px] font-bold text-purple-800">
+                            ⚖️ Strict Water Allocation Budgeting
+                        </div>
+                    </div>
+
+                    <!-- Level 4 -->
+                    <div class="border-comic bg-rose-50 p-6 rounded-2xl shadow-comic flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="border-comic bg-rose-500 text-white px-2.5 py-0.5 rounded-lg font-komiks text-xs">LEVEL 4</span>
+                                <span class="font-bangers text-xs text-rose-700">HEAT OVERLOAD</span>
+                            </div>
+                            <h3 class="font-komiks text-xl text-slate-900 mb-2">Heat Wave Survival</h3>
+                            <p class="text-xs text-slate-700 leading-relaxed font-medium">
+                                <strong>43°C Heat Overload!</strong> — Fast-paced action survival: rapidly pump the aging community water well, irrigate wilting backyard crops, and hydrate family members before their health meters deplete from heat exhaustion.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t-2 border-slate-900 text-[11px] font-bold text-rose-800">
+                            🔥 Real-time Well Pumping &amp; Hydration
+                        </div>
+                    </div>
+
+                    <!-- Level 5 & Ending -->
+                    <div class="border-comic bg-emerald-50 p-6 rounded-2xl shadow-comic flex flex-col justify-between md:col-span-2 lg:col-span-2">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="border-comic bg-emerald-500 text-white px-2.5 py-0.5 rounded-lg font-komiks text-xs">FINAL LEVEL</span>
+                                <span class="font-bangers text-xs text-emerald-800">CIVIC ADVOCACY</span>
+                            </div>
+                            <h3 class="font-komiks text-xl text-slate-900 mb-2">Where Is the Permanent Solution?</h3>
+                            <p class="text-xs text-slate-700 leading-relaxed font-medium">
+                                <strong>Long-Term Policy Planning</strong> — In the final stage, players select 3 long-term public policies to determine their ending (Piped Clean Water to Every Kitchen, Forest Watershed Reforestation, and Modern Rainwater Cisterns for schools and public halls). The core message: emergency buckets help in disasters, but Filipinos deserve permanent, reliable clean water infrastructure!
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t-2 border-slate-900 text-[11px] font-bold text-emerald-900">
+                            📢 Custom Advocacy Ending &amp; Social Media Share
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SCREENSHOTS GALLERY -->
+        <section id="screenshots" class="py-12 sm:py-20 border-b-4 border-slate-900 bg-amber-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="border-comic bg-rose-500 text-white px-3 py-1 rounded-full text-xs font-komiks uppercase shadow-comic-sm">
+                        In-Game Previews
+                    </span>
+                    <h2 class="font-komiks text-3xl sm:text-5xl text-slate-900 mt-2">GAME SCREENSHOTS</h2>
+                    <p class="font-bangers text-lg text-slate-700 mt-1">
+                        Click any screenshot to open the high-resolution lightbox view!
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                    
+                    <!-- Screen 1 -->
+                    <div onclick="openLightbox('pic1.png', 'Main Menu & Storyline Screen', 'Game title, satirical tagline, community high score record, and introductory storyline featuring Tatay Enteng.')" class="border-comic bg-white p-3 rounded-2xl shadow-comic hover:shadow-comic-lg cursor-pointer transition transform hover:-translate-y-1">
+                        <div class="aspect-[9/16] rounded-xl overflow-hidden border-2 border-slate-900 bg-slate-100">
+                            <img src="pic1.png" alt="Balde Screen 1" class="w-full h-full object-cover">
+                        </div>
+                        <div class="mt-2.5 px-1">
+                            <p class="font-komiks text-xs text-slate-900 truncate">1. Main Menu</p>
+                            <p class="text-[11px] text-slate-600 font-bold truncate">Intro &amp; Record</p>
+                        </div>
+                    </div>
+
+                    <!-- Screen 2 -->
+                    <div onclick="openLightbox('pic2.png', 'Level 1: Catching Raindrops', 'Active gameplay catching rain with the bucket while avoiding heat evaporation and falling street contaminants.')" class="border-comic bg-white p-3 rounded-2xl shadow-comic hover:shadow-comic-lg cursor-pointer transition transform hover:-translate-y-1">
+                        <div class="aspect-[9/16] rounded-xl overflow-hidden border-2 border-slate-900 bg-slate-100">
+                            <img src="pic2.png" alt="Balde Screen 2" class="w-full h-full object-cover">
+                        </div>
+                        <div class="mt-2.5 px-1">
+                            <p class="font-komiks text-xs text-slate-900 truncate">2. Level 1: Rain Catch</p>
+                            <p class="text-[11px] text-slate-600 font-bold truncate">Evaporation vs Bucket</p>
+                        </div>
+                    </div>
+
+                    <!-- Screen 3 -->
+                    <div onclick="openLightbox('pic3.png', 'Level 2: Bucket Filter Kit Assembly', '5-step interactive assembly of the family water filter kit with comic dialogue from Nanay Tess.')" class="border-comic bg-white p-3 rounded-2xl shadow-comic hover:shadow-comic-lg cursor-pointer transition transform hover:-translate-y-1">
+                        <div class="aspect-[9/16] rounded-xl overflow-hidden border-2 border-slate-900 bg-slate-100">
+                            <img src="pic3.png" alt="Balde Screen 3" class="w-full h-full object-cover">
+                        </div>
+                        <div class="mt-2.5 px-1">
+                            <p class="font-komiks text-xs text-slate-900 truncate">3. Level 2: Filter Kit</p>
+                            <p class="text-[11px] text-slate-600 font-bold truncate">Interactive Assembly</p>
+                        </div>
+                    </div>
+
+                    <!-- Screen 4 -->
+                    <div onclick="openLightbox('pic4.png', 'Level 3: Household Water Rationing', 'Aling Tess budgeting mini-game allocating collected liters among family members, rice, and pets.')" class="border-comic bg-white p-3 rounded-2xl shadow-comic hover:shadow-comic-lg cursor-pointer transition transform hover:-translate-y-1">
+                        <div class="aspect-[9/16] rounded-xl overflow-hidden border-2 border-slate-900 bg-slate-100">
+                            <img src="pic4.png" alt="Balde Screen 4" class="w-full h-full object-cover">
+                        </div>
+                        <div class="mt-2.5 px-1">
+                            <p class="font-komiks text-xs text-slate-900 truncate">4. Level 3: Rationing</p>
+                            <p class="text-[11px] text-slate-600 font-bold truncate">Household Budgeting</p>
+                        </div>
+                    </div>
+
+                    <!-- Screen 5 -->
+                    <div onclick="openLightbox('pic5.png', 'Level 4 & 5: Heat Survival & Advocacy Ending', '43°C survival gauges, well pump meters, and selection of long-term public water infrastructure policies.')" class="border-comic bg-white p-3 rounded-2xl shadow-comic hover:shadow-comic-lg cursor-pointer transition transform hover:-translate-y-1">
+                        <div class="aspect-[9/16] rounded-xl overflow-hidden border-2 border-slate-900 bg-slate-100">
+                            <img src="pic5.png" alt="Balde Screen 5" class="w-full h-full object-cover">
+                        </div>
+                        <div class="mt-2.5 px-1">
+                            <p class="font-komiks text-xs text-slate-900 truncate">5. Level 4 &amp; 5: Ending</p>
+                            <p class="text-[11px] text-slate-600 font-bold truncate">Policy &amp; Advocacy</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- MECHANICS & TECH SPECS -->
+        <section id="gameplay" class="py-12 sm:py-20 border-b-4 border-slate-900 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="border-comic bg-sky-300 text-slate-900 px-3 py-1 rounded-full text-xs font-komiks uppercase shadow-comic-sm">
+                        Technical Architecture
+                    </span>
+                    <h2 class="font-komiks text-3xl sm:text-5xl text-slate-900 mt-2">CONTROLS &amp; WEB STACK</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    
+                    <!-- Controls Card -->
+                    <div class="border-comic bg-yellow-50 p-6 rounded-2xl shadow-comic space-y-4">
+                        <h3 class="font-komiks text-xl text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-gamepad text-rose-600"></i> Game Controls
+                        </h3>
+                        <div class="space-y-3 text-xs sm:text-sm font-semibold text-slate-800">
+                            <div class="p-3 bg-white border-2 border-slate-900 rounded-xl flex items-center gap-3">
+                                <span class="border-comic bg-yellow-400 px-2 py-1 rounded font-komiks text-xs">DESKTOP</span>
+                                <span>Use <strong>Arrow Keys (Left &amp; Right)</strong> or Mouse click to slide the bucket across the screen.</span>
+                            </div>
+                            <div class="p-3 bg-white border-2 border-slate-900 rounded-xl flex items-center gap-3">
+                                <span class="border-comic bg-sky-400 px-2 py-1 rounded font-komiks text-xs">MOBILE</span>
+                                <span>Drag with <strong>Touch / Swipe Gestures</strong> on your phone to catch incoming raindrops.</span>
+                            </div>
+                            <div class="p-3 bg-white border-2 border-slate-900 rounded-xl flex items-center gap-3">
+                                <span class="border-comic bg-emerald-400 px-2 py-1 rounded font-komiks text-xs">AUDIO</span>
+                                <span>Integrated <strong>Sound FX</strong> for water splashes, sizzles, and emergency voice instructions.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tech Stack Card -->
+                    <div class="border-comic bg-sky-50 p-6 rounded-2xl shadow-comic space-y-4">
+                        <h3 class="font-komiks text-xl text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-code text-sky-600"></i> Technology Stack
+                        </h3>
+                        <div class="space-y-2 text-xs font-bold text-slate-800">
+                            <div class="flex justify-between py-2 border-b-2 border-slate-900">
+                                <span>Game Engine &amp; Logic</span>
+                                <span class="text-rose-600">Vanilla JavaScript &amp; HTML5 DOM / Canvas</span>
+                            </div>
+                            <div class="flex justify-between py-2 border-b-2 border-slate-900">
+                                <span>UI Styling</span>
+                                <span class="text-yellow-600">Tailwind CSS (Neo-Brutalist Comic Aesthetic)</span>
+                            </div>
+                            <div class="flex justify-between py-2 border-b-2 border-slate-900">
+                                <span>Audio Integration</span>
+                                <span class="text-sky-600">HTML5 Audio &amp; Web Audio API</span>
+                            </div>
+                            <div class="flex justify-between py-2 border-b-2 border-slate-900">
+                                <span>Data Storage</span>
+                                <span class="text-purple-600">Client-Side LocalStorage (Leaderboard &amp; High Score)</span>
+                            </div>
+                            <div class="flex justify-between py-2">
+                                <span>Deployment Target</span>
+                                <span class="text-emerald-600">GitHub Pages (Instant Web Access)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- AUTHOR & ADVOCACY -->
+        <section id="author" class="py-12 sm:py-20 border-b-4 border-slate-900 bg-amber-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+                
+                <div class="w-20 h-20 mx-auto p-2 bg-yellow-400 border-comic rounded-2xl shadow-comic mb-4 flex items-center justify-center">
+                    <img src="balde-logo.svg" alt="Balde Against El Niño app logo" class="max-w-full max-h-full object-contain">
+                </div>
+
+                <h2 class="font-komiks text-2xl sm:text-4xl text-slate-900">Created by Jaymar Budduan</h2>
+                <p class="font-bangers text-lg text-rose-600 mt-1">
+                    GitHub: <a href="https://github.com/J-mar114" target="_blank" rel="noopener noreferrer" class="underline hover:text-rose-800">@J-mar114</a> • STI College Laoag
+                </p>
+                
+                <p class="text-slate-800 text-xs sm:text-sm mt-4 leading-relaxed font-medium">
+                    Showcased as an official student project for the CITS Week 2026 Tech Expo. This project leverages interactive web technology and satire to foster climate resilience awareness, address water inequality in vulnerable communities, and emphasize the essential human right to clean, sustainable public water infrastructure.
+                </p>
+
+                <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+                    <a href="https://j-mar114.github.io/Balde-Against-El-Ni-o/" target="_blank" rel="noopener noreferrer" class="btn-comic bg-rose-600 hover:bg-rose-500 text-white px-6 py-3 rounded-2xl font-komiks text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span>Play Live on GitHub Pages</span>
+                    </a>
+                    <a href="../../index.html" class="btn-comic bg-white hover:bg-slate-50 text-slate-900 px-5 py-3 rounded-2xl font-bold text-xs flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Back to CSIT App Store</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 py-8 text-xs border-t-4 border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2 font-bold text-white">
+                <img src="balde-logo.svg" alt="" class="w-6 h-6 object-contain">
+                <span>BALDE AGAINST EL NIÑO</span>
+                <span class="text-yellow-400">• CITS Week 2026</span>
+            </div>
+            <div class="flex items-center gap-6 font-semibold">
+                <a href="../../index.html" class="hover:text-yellow-400 transition">CSIT App Store</a>
+                <a href="../agriguard/index.html" class="hover:text-yellow-400 transition">AgriGuard Project</a>
+                <a href="https://j-mar114.github.io/Balde-Against-El-Ni-o/" target="_blank" rel="noopener noreferrer" class="text-yellow-400 hover:text-white transition">Live Web Game</a>
+            </div>
+            <p class="text-slate-500">STI College Laoag • Jaymar Budduan</p>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center">
+            <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white text-3xl p-2 hover:text-yellow-400 transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="w-full max-h-[75vh] flex items-center justify-center overflow-hidden rounded-2xl border-4 border-slate-900 bg-white p-2">
+                <img id="lightboxImg" src="" alt="Screenshot Full View" class="max-h-[72vh] max-w-full object-contain">
+            </div>
+            <div class="mt-4 text-center">
+                <h3 id="lightboxTitle" class="font-komiks text-lg text-yellow-400"></h3>
+                <p id="lightboxDesc" class="text-xs text-slate-200 mt-1 max-w-xl font-medium"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openLightbox(src, title, desc) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxTitle').textContent = title;
+            document.getElementById('lightboxDesc').textContent = desc;
+            document.getElementById('lightboxModal').classList.remove('hidden');
+        }
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.add('hidden');
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+        document.getElementById('lightboxModal').addEventListener('click', (e) => {
+            if (e.target.id === 'lightboxModal') closeLightbox();
+        });
+    </script>
+</body>
+</html>
