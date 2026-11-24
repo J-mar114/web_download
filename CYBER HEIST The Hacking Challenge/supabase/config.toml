@@ -1,0 +1,4 @@
+project_id = "cyber-heist"
+
+[functions.game-api]
+verify_jwt = false
