@@ -28,4 +28,11 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+  <!-- Aim High with STI Web Game -->
+  <url>
+    <loc>https://j-mar114.github.io/web_download/apps/aim-high-with-sti/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 </urlset>

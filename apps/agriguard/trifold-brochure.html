@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgriGuard — A4 Trifold Brochure (Front & Back)</title>
+  <style>
+    :root {
+      --canopy-950: #081c0a;
+      --canopy-900: #113414;
+      --canopy-800: #1c4b1f;
+      --canopy-700: #166534;
+      --emerald-600: #16a34a;
+      --emerald-500: #22c55e;
+      --emerald-100: #dcfce7;
+      --emerald-50: #f0fdf4;
+      --gold-400: #facc15;
+      --gold-500: #eab308;
+      --gold-100: #fef9c3;
+      --canvas: #f6faf6;
+      --surface: #ffffff;
+      --border: #dce8de;
+      --ink-900: #0f172a;
+      --ink-700: #334155;
+      --ink-500: #64748b;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    @page {
+      size: A4 landscape;
+      margin: 0;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI Variable Text", "Segoe UI", "Bahnschrift", system-ui, -apple-system, sans-serif;
+      color: var(--ink-900);
+      background: #e2e8f0;
+      line-height: 1.38;
+    }
+
+    /* Screen UI Chrome */
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 12px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .toolbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .toolbar-brand img {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .toolbar-title {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .toolbar-sub {
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.08);
+      color: #f8fafc;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s ease;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .btn-primary {
+      background: var(--emerald-600);
+      border-color: var(--emerald-500);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--canopy-700);
+    }
+
+    .workspace {
+      padding: 24px 16px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .sheet-label {
+      width: 297mm;
+      max-width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: #334155;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: -14px;
+    }
+
+    .sheet-label span.panels-hint {
+      font-weight: 500;
+      color: #475569;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    /* Exact A4 Landscape Sheet */
+    .sheet {
+      width: 297mm;
+      height: 210mm;
+      background: var(--surface);
+      display: grid;
+      grid-template-columns: 99mm 99mm 99mm;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .sheet:last-of-type {
+      page-break-after: auto;
+      break-after: auto;
+    }
+
+    /* Fold Guides (toggleable on screen) */
+    .fold-guide {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 0;
+      border-left: 1px dashed rgba(22, 163, 74, 0.45);
+      z-index: 50;
+      pointer-events: none;
+      display: none;
+    }
+
+    .show-guides .fold-guide {
+      display: block;
+    }
+
+    .fold-guide.left { left: 99mm; }
+    .fold-guide.right { left: 198mm; }
+
+    .fold-tag {
+      position: absolute;
+      top: 2mm;
+      left: 1.5mm;
+      background: rgba(15, 23, 42, 0.78);
+      color: #fff;
+      font-size: 6pt;
+      font-weight: 700;
+      padding: 0.6mm 1.5mm;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    /* Panel Container */
+    .panel {
+      width: 99mm;
+      height: 210mm;
+      padding: 7.5mm 8mm;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .panel-light {
+      background: var(--canvas);
+    }
+
+    .panel-white {
+      background: var(--surface);
+    }
+
+    .panel-cover {
+      background: radial-gradient(circle at 50% 24%, #1f5523 0%, #143b18 46%, #091f0b 100%);
+      color: #ffffff;
+    }
+
+    /* Subtle top border bar for inside/flap panels */
+    .top-stripe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1.4mm;
+      background: linear-gradient(90deg, var(--canopy-800) 0%, var(--emerald-600) 65%, var(--gold-500) 100%);
+    }
+
+    /* Typography */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5mm;
+      font-size: 6.5pt;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--canopy-700);
+      background: var(--emerald-100);
+      border: 0.25mm solid #bbf7d0;
+      padding: 0.8mm 2.4mm;
+      border-radius: 999px;
+      width: fit-content;
+    }
+
+    h1, h2, h3, h4, p {
+      margin: 0;
+    }
+
+    .panel-title {
+      font-family: "Segoe UI Variable Display", "Segoe UI", "Bahnschrift", sans-serif;
+      font-size: 14.5pt;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      color: var(--ink-900);
+      margin-top: 2mm;
+    }
+
+    .panel-lead {
+      font-size: 7.8pt;
+      color: var(--ink-700);
+      margin-top: 1.5mm;
+      line-height: 1.4;
+    }
+
+    .section-label {
+      font-size: 6.8pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--canopy-700);
+      margin-bottom: 1.8mm;
+      display: flex;
+      align-items: center;
+      gap: 1.5mm;
+    }
+
+    /* Shared Cards & Badges */
+    .card {
+      background: #ffffff;
+      border: 0.25mm solid var(--border);
+      border-radius: 3mm;
+      padding: 2.8mm 3.2mm;
+    }
+
+    .card-soft {
+      background: #eef6ef;
+      border: 0.25mm solid #cde4d0;
+      border-radius: 3mm;
+      padding: 2.8mm 3.2mm;
+    }
+
+    .mono {
+      font-family: "Cascadia Mono", "Consolas", monospace;
+    }
+
+    /* ================= FRONT COVER (PANEL 1) ================= */
+    .cover-rings {
+      position: absolute;
+      top: -12mm;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 112mm;
+      height: 112mm;
+      opacity: 0.14;
+      pointer-events: none;
+    }
+
+    .cover-top {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .cover-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.6mm;
+      padding: 1mm 3mm;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 0.25mm solid rgba(255, 255, 255, 0.22);
+      font-size: 6.3pt;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #dcfce7;
+    }
+
+    .cover-pill-dot {
+      width: 1.6mm;
+      height: 1.6mm;
+      border-radius: 50%;
+      background: var(--gold-400);
+    }
+
+    .cover-logo-frame {
+      margin-top: 4mm;
+      width: 24mm;
+      height: 29mm;
+      border-radius: 4.5mm;
+      background: #1c4b1f;
+      border: 0.45mm solid rgba(250, 204, 21, 0.55);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 0 1.5mm rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 1.2mm;
+    }
+
+    .cover-logo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .cover-brand {
+      margin-top: 2.5mm;
+      font-family: "Segoe UI Variable Display", "Segoe UI", sans-serif;
+      font-size: 27pt;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: #ffffff;
+    }
+
+    .cover-gold-sub {
+      margin-top: 1.4mm;
+      font-size: 7pt;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      color: var(--gold-400);
+      text-transform: uppercase;
+    }
+
+    .cover-headline {
+      margin-top: 2.8mm;
+      font-size: 9.2pt;
+      font-weight: 600;
+      line-height: 1.35;
+      color: #e2f5e5;
+      max-width: 78mm;
+    }
+
+    /* Cover Phone Mockup */
+    .cover-phone-wrap {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      margin: 2mm 0;
+    }
+
+    .cover-phone {
+      width: 45mm;
+      height: 75mm;
+      background: #0b1310;
+      border-radius: 5.5mm;
+      padding: 1.6mm;
+      border: 0.4mm solid rgba(255, 255, 255, 0.26);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55);
+      position: relative;
+    }
+
+    .cover-phone-screen {
+      width: 100%;
+      height: 100%;
+      border-radius: 4.2mm;
+      overflow: hidden;
+      background: #f8faf7;
+      position: relative;
+    }
+
+    .cover-phone-screen img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-top: -5%;
+    }
+
+    .cover-float-badge {
+      position: absolute;
+      bottom: 3.5mm;
+      right: -13mm;
+      background: #ffffff;
+      color: var(--ink-900);
+      border-radius: 2.5mm;
+      padding: 1.6mm 2.6mm;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+      border-left: 1mm solid var(--emerald-600);
+      text-align: left;
+      width: 34mm;
+    }
+
+    .cover-float-badge .big {
+      font-size: 8.5pt;
+      font-weight: 800;
+      color: var(--canopy-700);
+      line-height: 1.1;
+    }
+
+    .cover-float-badge .small {
+      font-size: 5.8pt;
+      font-weight: 600;
+      color: var(--ink-500);
+      margin-top: 0.4mm;
+    }
+
+    .cover-bottom {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cover-chips {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8mm;
+      margin-bottom: 3mm;
+    }
+
+    .cover-chip {
+      background: rgba(255, 255, 255, 0.09);
+      border: 0.25mm solid rgba(255, 255, 255, 0.16);
+      border-radius: 2.2mm;
+      padding: 1.6mm 2.2mm;
+      display: flex;
+      align-items: center;
+      gap: 1.6mm;
+      font-size: 6.7pt;
+      font-weight: 600;
+      color: #f0fdf4;
+    }
+
+    .cover-chip svg {
+      width: 3.3mm;
+      height: 3.3mm;
+      color: var(--gold-400);
+      flex-shrink: 0;
+    }
+
+    .cover-footer {
+      border-top: 0.25mm solid rgba(250, 204, 21, 0.35);
+      padding-top: 2.2mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 6.4pt;
+      color: #bbf7d0;
+      font-weight: 600;
+    }
+
+    .cover-footer strong {
+      color: var(--gold-400);
+      letter-spacing: 0.04em;
+    }
+
+    /* ================= INSIDE FLAP (PANEL 5) ================= */
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2mm;
+    }
+
+    .step-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 2.4mm;
+      background: #ffffff;
+      border: 0.25mm solid var(--border);
+      border-radius: 2.8mm;
+      padding: 2.2mm 2.8mm;
+    }
+
+    .step-num {
+      width: 5.5mm;
+      height: 5.5mm;
+      border-radius: 50%;
+      background: var(--emerald-600);
+      color: #ffffff;
+      font-size: 7.5pt;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.3mm;
+    }
+
+    .step-card h4 {
+      font-size: 7.8pt;
+      font-weight: 700;
+      color: var(--ink-900);
+    }
+
+    .step-card p {
+      font-size: 6.8pt;
+      color: var(--ink-700);
+      margin-top: 0.5mm;
+      line-height: 1.32;
+    }
+
+    .config-showcase {
+      display: grid;
+      grid-template-columns: 29mm 1fr;
+      gap: 2.8mm;
+      align-items: center;
+      background: #ffffff;
+      border: 0.25mm solid var(--border);
+      border-radius: 3mm;
+      padding: 2.4mm;
+    }
+
+    .mini-phone {
+      width: 100%;
+      height: 60.5mm;
+      background: #0f172a;
+      border-radius: 3.8mm;
+      padding: 1.1mm;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.16);
+    }
+
+    .mini-phone-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 2.8mm;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .mini-phone-inner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-top: -4%;
+    }
+
+    .config-notes h4 {
+      font-size: 8pt;
+      font-weight: 800;
+      color: var(--ink-900);
+    }
+
+    .config-notes p {
+      font-size: 6.8pt;
+      color: var(--ink-700);
+      margin-top: 1mm;
+      line-height: 1.35;
+    }
+
+    .preset-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2mm;
+      margin-top: 2mm;
+    }
+
+    .preset-pill {
+      font-size: 6.4pt;
+      background: var(--emerald-50);
+      border: 0.22mm solid #bbf7d0;
+      color: var(--canopy-800);
+      border-radius: 1.6mm;
+      padding: 0.9mm 1.8mm;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .req-box {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: 3mm;
+      padding: 3mm 3.4mm;
+    }
+
+    .req-title {
+      font-size: 7pt;
+      font-weight: 800;
+      color: var(--emerald-500);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.6mm;
+    }
+
+    .req-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 6.9pt;
+      padding: 1mm 0;
+      border-bottom: 0.2mm solid rgba(255, 255, 255, 0.1);
+    }
+
+    .req-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .req-row span {
+      color: #94a3b8;
+    }
+
+    .req-row strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* ================= BACK COVER (PANEL 6) ================= */
+    .back-header {
+      display: flex;
+      align-items: center;
+      gap: 2.5mm;
+      padding-bottom: 2.5mm;
+      border-bottom: 0.3mm solid var(--border);
+    }
+
+    .back-header-logo {
+      width: 9.5mm;
+      height: 9.5mm;
+      border-radius: 2.2mm;
+      overflow: hidden;
+      background: #1c4b1f;
+      flex-shrink: 0;
+    }
+
+    .back-header-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .back-header-text h3 {
+      font-size: 11pt;
+      font-weight: 800;
+      color: var(--ink-900);
+      line-height: 1.1;
+    }
+
+    .back-header-text span {
+      font-size: 6.2pt;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--emerald-600);
+    }
+
+    .stack-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2mm;
+    }
+
+    .stack-card {
+      background: var(--canvas);
+      border: 0.25mm solid var(--border);
+      border-radius: 2.4mm;
+      padding: 2mm 2.4mm;
+    }
+
+    .stack-card h5 {
+      margin: 0;
+      font-size: 6.3pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--canopy-700);
+    }
+
+    .stack-card p {
+      font-size: 6.8pt;
+      font-weight: 600;
+      color: var(--ink-900);
+      margin-top: 0.6mm;
+      line-height: 1.3;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.6mm;
+    }
+
+    .team-row {
+      display: flex;
+      align-items: center;
+      gap: 2.4mm;
+      background: var(--canvas);
+      border: 0.22mm solid var(--border);
+      border-radius: 2.4mm;
+      padding: 1.6mm 2.4mm;
+    }
+
+    .avatar {
+      width: 6.5mm;
+      height: 6.5mm;
+      border-radius: 1.8mm;
+      background: var(--canopy-800);
+      color: #ffffff;
+      font-size: 6.8pt;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .avatar.lead {
+      background: var(--emerald-600);
+    }
+
+    .team-name {
+      font-size: 7.5pt;
+      font-weight: 700;
+      color: var(--ink-900);
+      line-height: 1.15;
+    }
+
+    .team-role {
+      font-size: 6.3pt;
+      color: var(--ink-500);
+    }
+
+    .apk-box {
+      background: var(--emerald-50);
+      border: 0.25mm solid #bbf7d0;
+      border-radius: 2.6mm;
+      padding: 2.2mm 2.8mm;
+      font-size: 6.7pt;
+      color: var(--ink-700);
+    }
+
+    .apk-box-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 800;
+      color: var(--canopy-800);
+      margin-bottom: 0.8mm;
+    }
+
+    .apk-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 6.3pt;
+      color: var(--ink-700);
+    }
+
+    .back-footer {
+      background: var(--canopy-900);
+      color: #ffffff;
+      margin: 0 -8mm -7.5mm;
+      padding: 3.8mm 8mm;
+      border-top: 0.8mm solid var(--gold-500);
+    }
+
+    .back-footer .title {
+      font-size: 8pt;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .back-footer .sub {
+      font-size: 6.3pt;
+      color: #bbf7d0;
+      margin-top: 0.6mm;
+    }
+
+    /* ================= INSIDE LEFT (PANEL 2) ================= */
+    .challenge-box {
+      background: #fffbeb;
+      border: 0.25mm solid #fde68a;
+      border-left: 1.1mm solid var(--gold-500);
+      border-radius: 2.6mm;
+      padding: 2.4mm 3mm;
+    }
+
+    .challenge-box h4 {
+      font-size: 7.4pt;
+      font-weight: 800;
+      color: #92400e;
+      margin-bottom: 0.6mm;
+    }
+
+    .challenge-box p {
+      font-size: 7pt;
+      color: #78350f;
+      line-height: 1.36;
+    }
+
+    .workflow {
+      display: flex;
+      flex-direction: column;
+      gap: 2mm;
+    }
+
+    .wf-item {
+      display: flex;
+      gap: 2.5mm;
+      background: #ffffff;
+      border: 0.25mm solid var(--border);
+      border-radius: 2.8mm;
+      padding: 2.2mm 2.6mm;
+      align-items: flex-start;
+    }
+
+    .wf-icon {
+      width: 6.8mm;
+      height: 6.8mm;
+      border-radius: 2mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .wf-icon svg {
+      width: 3.8mm;
+      height: 3.8mm;
+    }
+
+    .wf-detect { background: #dcfce7; color: #15803d; }
+    .wf-alert { background: #fef3c7; color: #b45309; }
+    .wf-record { background: #dbeafe; color: #1d4ed8; }
+    .wf-measure { background: #ede9fe; color: #6d28d9; }
+
+    .wf-item h4 {
+      font-size: 7.7pt;
+      font-weight: 800;
+      color: var(--ink-900);
+      line-height: 1.15;
+    }
+
+    .wf-item p {
+      font-size: 6.7pt;
+      color: var(--ink-700);
+      margin-top: 0.5mm;
+      line-height: 1.32;
+    }
+
+    .field-proof-card {
+      background: #ffffff;
+      border: 0.25mm solid var(--border);
+      border-radius: 3mm;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+    }
+
+    .field-crop {
+      width: 100%;
+      height: 36mm;
+      overflow: hidden;
+      position: relative;
+      background: #143b18;
+    }
+
+    .field-crop img {
+      width: 112%;
+      margin-left: -6%;
+      margin-top: -40.5%;
+      display: block;
+    }
+
+    .field-tag {
+      position: absolute;
+      top: 1.8mm;
+      left: 2mm;
+      background: rgba(15, 23, 42, 0.8);
+      color: #ffffff;
+      font-size: 5.8pt;
+      font-weight: 700;
+      padding: 0.6mm 1.8mm;
+      border-radius: 1.2mm;
+      letter-spacing: 0.04em;
+    }
+
+    .field-tag-right {
+      position: absolute;
+      bottom: 1.8mm;
+      right: 2mm;
+      background: var(--emerald-600);
+      color: #ffffff;
+      font-size: 5.8pt;
+      font-weight: 800;
+      padding: 0.6mm 1.8mm;
+      border-radius: 1.2mm;
+    }
+
+    .field-proof-cap {
+      padding: 2mm 2.6mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 6.6pt;
+    }
+
+    .field-proof-cap strong {
+      color: var(--ink-900);
+    }
+
+    .field-proof-cap span {
+      color: var(--canopy-700);
+      font-weight: 700;
+    }
+
+    /* ================= INSIDE CENTER (PANEL 3) ================= */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2mm;
+    }
+
+    .feat-card {
+      background: var(--canvas);
+      border: 0.25mm solid var(--border);
+      border-radius: 2.8mm;
+      padding: 2.3mm 2.5mm;
+    }
+
+    .feat-head {
+      display: flex;
+      align-items: center;
+      gap: 1.5mm;
+      margin-bottom: 1mm;
+    }
+
+    .feat-dot {
+      width: 4.8mm;
+      height: 4.8mm;
+      border-radius: 1.4mm;
+      background: var(--emerald-100);
+      color: var(--canopy-700);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feat-dot svg {
+      width: 2.9mm;
+      height: 2.9mm;
+    }
+
+    .feat-card h4 {
+      font-size: 7.2pt;
+      font-weight: 800;
+      color: var(--ink-900);
+      line-height: 1.15;
+    }
+
+    .feat-card p {
+      font-size: 6.4pt;
+      color: var(--ink-700);
+      line-height: 1.32;
+    }
+
+    .dual-phones {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3mm;
+    }
+
+    .phone-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .phone-bezel {
+      width: 35.5mm;
+      height: 74.2mm;
+      background: #0f172a;
+      border-radius: 4.4mm;
+      padding: 1.2mm;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.16);
+      border: 0.3mm solid #334155;
+    }
+
+    .phone-view {
+      width: 100%;
+      height: 100%;
+      border-radius: 3.3mm;
+      overflow: hidden;
+      background: #f8faf7;
+    }
+
+    .phone-view img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-top: -4.2%;
+    }
+
+    .phone-caption {
+      text-align: center;
+      margin-top: 1.5mm;
+    }
+
+    .phone-caption strong {
+      display: block;
+      font-size: 7.1pt;
+      color: var(--ink-900);
+    }
+
+    .phone-caption span {
+      display: block;
+      font-size: 6pt;
+      color: var(--ink-500);
+      line-height: 1.25;
+    }
+
+    .gateway-strip {
+      background: var(--canopy-900);
+      color: #ffffff;
+      border-radius: 2.6mm;
+      padding: 2.2mm 3mm;
+      display: flex;
+      align-items: center;
+      gap: 2.2mm;
+    }
+
+    .gateway-strip svg {
+      width: 4.4mm;
+      height: 4.4mm;
+      color: var(--gold-400);
+      flex-shrink: 0;
+    }
+
+    .gateway-strip p {
+      font-size: 6.6pt;
+      color: #e2f5e5;
+      line-height: 1.3;
+    }
+
+    .gateway-strip strong {
+      color: var(--gold-400);
+    }
+
+    /* ================= INSIDE RIGHT (PANEL 4) ================= */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8mm;
+    }
+
+    .kpi-card {
+      background: #ffffff;
+      border: 0.25mm solid var(--border);
+      border-top: 0.9mm solid var(--emerald-600);
+      border-radius: 2.4mm;
+      padding: 2mm 1.8mm;
+      text-align: center;
+    }
+
+    .kpi-val {
+      font-family: "Segoe UI Variable Display", "Segoe UI", sans-serif;
+      font-size: 10.5pt;
+      font-weight: 800;
+      color: var(--canopy-800);
+      line-height: 1.1;
+    }
+
+    .kpi-lbl {
+      font-size: 5.8pt;
+      font-weight: 600;
+      color: var(--ink-500);
+      margin-top: 0.7mm;
+      line-height: 1.2;
+    }
+
+    .chart-card {
+      background: #ffffff;
+      border: 0.25mm solid var(--border);
+      border-radius: 3mm;
+      padding: 2.6mm 3mm;
+    }
+
+    .chart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.5mm;
+    }
+
+    .chart-head h4 {
+      font-size: 7.6pt;
+      font-weight: 800;
+      color: var(--ink-900);
+    }
+
+    .chart-head span {
+      font-size: 6pt;
+      font-weight: 700;
+      color: var(--canopy-700);
+      background: var(--emerald-50);
+      padding: 0.4mm 1.5mm;
+      border-radius: 999px;
+    }
+
+    .chart-note {
+      font-size: 6.3pt;
+      color: var(--ink-700);
+      margin-top: 1.2mm;
+      display: flex;
+      align-items: center;
+      gap: 1.2mm;
+    }
+
+    .battery-split {
+      display: grid;
+      grid-template-columns: 27mm 1fr;
+      gap: 2.6mm;
+      background: #ffffff;
+      border: 0.25mm solid var(--border);
+      border-radius: 3mm;
+      padding: 2.4mm;
+      align-items: center;
+    }
+
+    .battery-thumb {
+      width: 100%;
+      height: 44mm;
+      border-radius: 2.6mm;
+      background: #0f172a;
+      padding: 0.9mm;
+    }
+
+    .battery-thumb-in {
+      width: 100%;
+      height: 100%;
+      border-radius: 1.8mm;
+      overflow: hidden;
+      background: #f8faf7;
+    }
+
+    .battery-thumb-in img {
+      width: 100%;
+      display: block;
+      margin-top: -5%;
+    }
+
+    .volt-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 6.3pt;
+    }
+
+    .volt-table th {
+      text-align: left;
+      font-size: 6pt;
+      font-weight: 800;
+      color: var(--canopy-800);
+      border-bottom: 0.25mm solid var(--border);
+      padding-bottom: 0.8mm;
+    }
+
+    .volt-table td {
+      padding: 0.85mm 0;
+      border-bottom: 0.15mm solid #eef2ef;
+      color: var(--ink-700);
+    }
+
+    .volt-table td:last-child {
+      text-align: right;
+      font-weight: 800;
+      color: var(--canopy-700);
+    }
+
+    .tips-card {
+      background: #eef6ef;
+      border: 0.25mm solid #cde4d0;
+      border-radius: 2.8mm;
+      padding: 2.4mm 2.8mm;
+    }
+
+    .tips-card h4 {
+      font-size: 7.2pt;
+      font-weight: 800;
+      color: var(--canopy-900);
+      margin-bottom: 1.4mm;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1mm 2.2mm;
+    }
+
+    .tip-item {
+      display: flex;
+      align-items: center;
+      gap: 1.2mm;
+      font-size: 6.3pt;
+      font-weight: 600;
+      color: var(--ink-700);
+    }
+
+    .tip-check {
+      width: 3mm;
+      height: 3mm;
+      border-radius: 50%;
+      background: var(--emerald-600);
+      color: #ffffff;
+      font-size: 5pt;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ================= PRINT & SINGLE-SIDE CAPTURE MODES ================= */
+    body.capture-front .toolbar,
+    body.capture-front .sheet-label,
+    body.capture-front .sheet-inside,
+    body.capture-back .toolbar,
+    body.capture-back .sheet-label,
+    body.capture-back .sheet-outside {
+      display: none !important;
+    }
+
+    body.capture-front .workspace,
+    body.capture-back .workspace {
+      padding: 0 !important;
+      gap: 0 !important;
+      background: transparent !important;
+    }
+
+    body.capture-front .sheet,
+    body.capture-back .sheet {
+      box-shadow: none !important;
+    }
+
+    @media print {
+      html, body {
+        background: #ffffff !important;
+      }
+      .no-print, .toolbar, .sheet-label {
+        display: none !important;
+      }
+      .workspace {
+        padding: 0 !important;
+        gap: 0 !important;
+        display: block !important;
+      }
+      .sheet {
+        box-shadow: none !important;
+        margin: 0 !important;
+      }
+      body:not(.print-guides) .fold-guide {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="show-guides">
+
+  <!-- Interactive Toolbar (hidden when printing) -->
+  <div class="toolbar no-print">
+    <div class="toolbar-brand">
+      <img src="app_logo2.jpeg" alt="AgriGuard Logo" />
+      <div>
+        <div class="toolbar-title">AgriGuard — A4 Landscape Trifold Brochure (Front & Back)</div>
+        <div class="toolbar-sub">297 mm × 210 mm • Print duplex "Flip on short edge" at 100% scale (No Margins)</div>
+      </div>
+    </div>
+    <div class="toolbar-actions">
+      <button class="btn" onclick="toggleGuides()" id="guideBtn">Hide Fold Guides</button>
+      <button class="btn btn-primary" onclick="window.print()">Print / Save as PDF (A4 Landscape)</button>
+    </div>
+  </div>
+
+  <main class="workspace">
+
+    <!-- ================= SHEET 1: OUTSIDE (FRONT SHEET) ================= -->
+    <div class="sheet-label no-print">
+      <span>Sheet 1 — Outside (Front of A4 Page)</span>
+      <span class="panels-hint">Left: Inside Flap • Center: Back Cover • Right: Front Cover</span>
+    </div>
+
+    <section class="sheet sheet-outside" aria-label="Outside Sheet">
+      <div class="fold-guide left"><span class="fold-tag">FOLD 99 mm</span></div>
+      <div class="fold-guide right"><span class="fold-tag">FOLD 198 mm</span></div>
+
+      <!-- PANEL 5: INSIDE FLAP (LEFT) -->
+      <article class="panel panel-light">
+        <div class="top-stripe"></div>
+
+        <div>
+          <span class="eyebrow">Android Companion App</span>
+          <h2 class="panel-title">Quick Start &amp; Setup</h2>
+          <p class="panel-lead">Pair your Android phone with the AgriGuard Solar Gateway in three easy steps.</p>
+        </div>
+
+        <div class="step-list">
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <div>
+              <h4>Download the APK Package</h4>
+              <p>Get <span class="mono">AgriGuard.apk</span> (v1.0.0, 15 MB) from the CSIT App Store portal.</p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <div>
+              <h4>Enable "Install Unknown Apps"</h4>
+              <p>Open Android <em>Settings &gt; Security</em> and allow installation from your browser or file manager.</p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <div>
+              <h4>Install &amp; Connect Gateway</h4>
+              <p>Open the APK from Downloads, launch AgriGuard, and connect to the Raspberry Pi server.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="config-showcase">
+          <div class="mini-phone">
+            <div class="mini-phone-inner">
+              <img src="Config.jpg" alt="Raspberry Pi Server Config Screen" />
+            </div>
+          </div>
+          <div class="config-notes">
+            <h4>Local Gateway Config</h4>
+            <p>Instant one-tap IP presets connect directly to the field Raspberry Pi 4 server on port <span class="mono">5000</span>:</p>
+            <div class="preset-pills">
+              <div class="preset-pill"><span>Default</span><span class="mono">10.42.0.1</span></div>
+              <div class="preset-pill"><span>Hotspot</span><span class="mono">192.168.43.1</span></div>
+              <div class="preset-pill"><span>Local LAN</span><span class="mono">192.168.1.100</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="req-box">
+          <div class="req-title">System Requirements</div>
+          <div class="req-row"><span>Operating System</span><strong>Android 8.0 (Oreo)+</strong></div>
+          <div class="req-row"><span>Memory (RAM)</span><strong>2 GB min (4 GB rec.)</strong></div>
+          <div class="req-row"><span>Free Storage</span><strong>At least 100 MB</strong></div>
+          <div class="req-row"><span>Permissions</span><strong>Wi-Fi &amp; Local Network</strong></div>
+        </div>
+      </article>
+
+      <!-- PANEL 6: BACK COVER (CENTER) -->
+      <article class="panel panel-white">
+        <div class="top-stripe"></div>
+
+        <div>
+          <div class="back-header">
+            <div class="back-header-logo">
+              <img src="app_logo4.png" alt="AgriGuard Shield Mark" />
+            </div>
+            <div class="back-header-text">
+              <h3>AgriGuard</h3>
+              <span>Smart Crop Protection • AI &amp; IoT</span>
+            </div>
+          </div>
+
+          <p class="panel-lead" style="margin-top: 2.5mm;">
+            <strong>About the Project:</strong> AgriGuard is an undergraduate thesis system combining Edge Computer Vision, solar-powered deterrence hardware, and a mobile companion app to safeguard rice fields against bird pests—automatically and humanely.
+          </p>
+        </div>
+
+        <div>
+          <div class="section-label">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+            Technology &amp; Hardware Stack
+          </div>
+          <div class="stack-grid">
+            <div class="stack-card">
+              <h5>AI &amp; Computer Vision</h5>
+              <p>Python • YOLO • OpenCV</p>
+            </div>
+            <div class="stack-card">
+              <h5>Edge Gateway</h5>
+              <p>Raspberry Pi 4 • Flask API • SQLite</p>
+            </div>
+            <div class="stack-card">
+              <h5>Mobile Client</h5>
+              <p>Kotlin • Android Studio</p>
+            </div>
+            <div class="stack-card">
+              <h5>Field Hardware</h5>
+              <p>Camera Sensor • Speaker • 12V Solar</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-label">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Research &amp; Development Team
+          </div>
+          <div class="team-grid">
+            <div class="team-row">
+              <div class="avatar lead">JB</div>
+              <div>
+                <div class="team-name">Jaymar Budduan</div>
+                <div class="team-role">Project Lead / System Integrator</div>
+              </div>
+            </div>
+            <div class="team-row">
+              <div class="avatar">LM</div>
+              <div>
+                <div class="team-name">Lencher Marcos</div>
+                <div class="team-role">Documentation</div>
+              </div>
+            </div>
+            <div class="team-row">
+              <div class="avatar">JF</div>
+              <div>
+                <div class="team-name">Justine Felipe</div>
+                <div class="team-role">Evaluation</div>
+              </div>
+            </div>
+            <div class="team-row">
+              <div class="avatar">AP</div>
+              <div>
+                <div class="team-name">Ahronne Jian Pinera</div>
+                <div class="team-role">Field Testing</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="apk-box">
+          <div class="apk-box-top">
+            <span>Verified Thesis Package</span>
+            <span class="mono">v1.0.0 • 15 MB</span>
+          </div>
+          <div class="apk-meta">
+            <span>File: <strong class="mono">AgriGuard.apk</strong></span>
+            <span>Updated: <strong>Aug 21, 2026</strong></span>
+          </div>
+          <div class="apk-meta" style="margin-top: 0.4mm;">
+            <span>MD5: <span class="mono">e99a18c428cb38d5</span></span>
+            <span>Category: <strong>Smart Agri / AI</strong></span>
+          </div>
+        </div>
+
+        <div class="back-footer">
+          <div class="title">CSIT App Store • Undergraduate Thesis Edition</div>
+          <div class="sub">© 2026 AgriGuard Research Team • Smart Crop Protection System</div>
+        </div>
+      </article>
+
+      <!-- PANEL 1: FRONT COVER (RIGHT) -->
+      <article class="panel panel-cover">
+        <!-- Decorative SVG Radar Rings -->
+        <svg class="cover-rings" viewBox="0 0 200 200" fill="none">
+          <circle cx="100" cy="100" r="35" stroke="#86efac" stroke-width="0.9" stroke-dasharray="3 3"/>
+          <circle cx="100" cy="100" r="56" stroke="#86efac" stroke-width="0.7"/>
+          <circle cx="100" cy="100" r="78" stroke="#facc15" stroke-width="0.6" stroke-dasharray="4 4"/>
+          <circle cx="100" cy="100" r="96" stroke="#86efac" stroke-width="0.5"/>
+        </svg>
+
+        <div class="cover-top">
+          <div class="cover-pill">
+            <span class="cover-pill-dot"></span>
+            <span>CSIT Undergraduate Thesis • 2026</span>
+          </div>
+
+          <div class="cover-logo-frame">
+            <img src="app_logo3.png" alt="AgriGuard Official Logo" />
+          </div>
+
+          <h1 class="cover-brand">AgriGuard</h1>
+          <div class="cover-gold-sub">Solar Scarecrow &amp; Crop Protection</div>
+          <p class="cover-headline">Real-Time AI Bird Detection &amp; Smart Deterrence for Modern Fields</p>
+        </div>
+
+        <div class="cover-phone-wrap">
+          <div class="cover-phone">
+            <div class="cover-phone-screen">
+              <img src="Dashboard.jpg" alt="AgriGuard Live Dashboard Detection" />
+            </div>
+            <div class="cover-float-badge">
+              <div class="big">100% Effective</div>
+              <div class="small">Kannaway 0.97 • Stay: 0.4s</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cover-bottom">
+          <div class="cover-chips">
+            <div class="cover-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span>YOLO AI Vision</span>
+            </div>
+            <div class="cover-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+              <span>Solar Powered 12V</span>
+            </div>
+            <div class="cover-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+              <span>Harmless Deterrent</span>
+            </div>
+            <div class="cover-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg>
+              <span>Android App</span>
+            </div>
+          </div>
+
+          <div class="cover-footer">
+            <span>SOLAR GATEWAY • RASPBERRY PI 4</span>
+            <strong>PROTECT HARVESTS</strong>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ================= SHEET 2: INSIDE (BACK SHEET) ================= -->
+    <div class="sheet-label no-print">
+      <span>Sheet 2 — Inside Spread (Back of A4 Page)</span>
+      <span class="panels-hint">Left: Challenge &amp; Workflow • Center: Features &amp; App UI • Right: Analytics &amp; Solar Power</span>
+    </div>
+
+    <section class="sheet sheet-inside" aria-label="Inside Sheet">
+      <div class="fold-guide left"><span class="fold-tag">FOLD 99 mm</span></div>
+      <div class="fold-guide right"><span class="fold-tag">FOLD 198 mm</span></div>
+
+      <!-- PANEL 2: INSIDE LEFT (WORKFLOW & FIELD PROOF) -->
+      <article class="panel panel-light">
+        <div class="top-stripe"></div>
+
+        <div>
+          <span class="eyebrow">01 / System Overview</span>
+          <h2 class="panel-title">How AgriGuard Protects Fields</h2>
+          <p class="panel-lead">Automated 4-stage AI monitoring and deterrence engineered for off-grid farms.</p>
+        </div>
+
+        <div class="challenge-box">
+          <h4>The Agricultural Challenge</h4>
+          <p>Rice and grain crops face persistent damage from birds such as <strong>Maya</strong> and <strong>Kannaway</strong>. Manual watching is exhausting, static scarecrows lose effect, and open fields lack reliable electricity.</p>
+        </div>
+
+        <div class="workflow">
+          <div class="wf-item">
+            <div class="wf-icon wf-detect">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+            </div>
+            <div>
+              <h4>1. Detect — Edge AI Vision</h4>
+              <p>Smart field hardware (Raspberry Pi 4 + camera) detects incoming birds in real time using YOLO &amp; OpenCV.</p>
+            </div>
+          </div>
+
+          <div class="wf-item">
+            <div class="wf-icon wf-alert">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            </div>
+            <div>
+              <h4>2. Alert — Instant Acoustic Scare</h4>
+              <p>Speaker alarm fires immediately to deter birds and prevent crop damage without causing physical harm.</p>
+            </div>
+          </div>
+
+          <div class="wf-item">
+            <div class="wf-icon wf-record">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="7" rx="1"/><rect x="12" y="6" width="3" height="11" rx="1"/><rect x="17" y="13" width="3" height="4" rx="1"/></svg>
+            </div>
+            <div>
+              <h4>3. Record — Automated Event Log</h4>
+              <p>Flask API stores each detection in SQLite with image snapshot, exact timestamp, and bird stay duration.</p>
+            </div>
+          </div>
+
+          <div class="wf-item">
+            <div class="wf-icon wf-measure">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <div>
+              <h4>4. Measure — Deterrent Scoring</h4>
+              <p>Calculates effectiveness percentage based on how rapidly birds vacate the area after the alarm triggers.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-proof-card">
+          <div class="field-crop">
+            <img src="Dashboard.jpg" alt="Real Rice Paddy YOLO Bird Detection Capture" />
+            <div class="field-tag">REAL FIELD CAPTURE • YOLO VISION</div>
+          </div>
+          <div class="field-proof-cap">
+            <strong>#15 Kannaway (0.97 conf.)</strong>
+            <span>Stay: 0.4s • 100% Effective</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- PANEL 3: INSIDE CENTER (CORE FEATURES & APP UI) -->
+      <article class="panel panel-white">
+        <div class="top-stripe"></div>
+
+        <div>
+          <span class="eyebrow">02 / Mobile Command</span>
+          <h2 class="panel-title">Key Features &amp; App UI</h2>
+          <p class="panel-lead">Monitor detections, deterrent logs, and analytics directly from your Android device.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feat-card">
+            <div class="feat-head">
+              <div class="feat-dot">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              </div>
+              <h4>Bird Detection Feed</h4>
+            </div>
+            <p>Real-time sighting alerts with species labels (Kannaway, Maya) &amp; YOLO confidence.</p>
+          </div>
+
+          <div class="feat-card">
+            <div class="feat-head">
+              <div class="feat-dot">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h4>Protection Status</h4>
+            </div>
+            <p>Displays active Solar Gateway state, sound-fired indicator, and harmless badge.</p>
+          </div>
+
+          <div class="feat-card">
+            <div class="feat-head">
+              <div class="feat-dot">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+              </div>
+              <h4>Activity Tracking</h4>
+            </div>
+            <p>Logs every intrusion (#15, #14, #8) with exact stay duration from 0.2s to 0.5s.</p>
+          </div>
+
+          <div class="feat-card">
+            <div class="feat-head">
+              <div class="feat-dot">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+              </div>
+              <h4>Trend Analytics</h4>
+            </div>
+            <p>Filter reports by Day, Week, Month, or Year to measure farm deterrence impact.</p>
+          </div>
+        </div>
+
+        <div class="dual-phones">
+          <div class="phone-unit">
+            <div class="phone-bezel">
+              <div class="phone-view">
+                <img src="Dashboard.jpg" alt="AgriGuard Dashboard Screen" />
+              </div>
+            </div>
+            <div class="phone-caption">
+              <strong>Live Dashboard</strong>
+              <span>#15 Kannaway &amp; #14 Maya logs</span>
+            </div>
+          </div>
+
+          <div class="phone-unit">
+            <div class="phone-bezel">
+              <div class="phone-view">
+                <img src="Analysis.jpg" alt="AgriGuard Analytics and History Screen" />
+              </div>
+            </div>
+            <div class="phone-caption">
+              <strong>Analytics &amp; History</strong>
+              <span>Efficiency &amp; trend reports</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gateway-strip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+          <p><strong>Offline-First Local Wi-Fi Sync:</strong> Streams detections from the Raspberry Pi 4 Gateway (port 5000) directly in the field—no internet subscription needed.</p>
+        </div>
+      </article>
+
+      <!-- PANEL 4: INSIDE RIGHT (ANALYTICS & SOLAR POWER) -->
+      <article class="panel panel-light">
+        <div class="top-stripe"></div>
+
+        <div>
+          <span class="eyebrow">03 / Proven Impact &amp; Power</span>
+          <h2 class="panel-title">Field Metrics &amp; Solar Health</h2>
+          <p class="panel-lead">Sample evaluation data and off-grid 12V battery monitoring built for rural reliability.</p>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi-card">
+            <div class="kpi-val">100.0%</div>
+            <div class="kpi-lbl">Avg. Deterrent Efficiency</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val">0.2–0.5s</div>
+            <div class="kpi-lbl">Bird Stay After Alarm</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val">20 Events</div>
+            <div class="kpi-lbl">Analyzed (Sep 5–8)</div>
+          </div>
+        </div>
+
+        <!-- SVG Bar Chart faithful to Analysis.jpg -->
+        <div class="chart-card">
+          <div class="chart-head">
+            <h4>Detection Activity Trend</h4>
+            <span>Sep 5 – Sep 8, 2026</span>
+          </div>
+          <svg viewBox="0 0 260 92" width="100%" height="auto" style="display:block;">
+            <!-- Subtle horizontal grid lines -->
+            <line x1="18" y1="16" x2="246" y2="16" stroke="#e2e8f0" stroke-width="0.7" stroke-dasharray="2 2"/>
+            <line x1="18" y1="45" x2="246" y2="45" stroke="#e2e8f0" stroke-width="0.7" stroke-dasharray="2 2"/>
+            <line x1="18" y1="74" x2="246" y2="74" stroke="#cbd5e1" stroke-width="1"/>
+
+            <!-- Sep 5: 12 -->
+            <rect x="34" y="16" width="22" height="58" rx="4" fill="#184a1b"/>
+            <text x="45" y="12" text-anchor="middle" font-size="8.5" font-weight="800" fill="#0f172a">12</text>
+            <text x="45" y="86" text-anchor="middle" font-size="7.5" font-weight="600" fill="#64748b">Sep 5</text>
+
+            <!-- Sep 6: 6 -->
+            <rect x="92" y="45" width="22" height="29" rx="4" fill="#1c5a20"/>
+            <text x="103" y="41" text-anchor="middle" font-size="8.5" font-weight="800" fill="#0f172a">6</text>
+            <text x="103" y="86" text-anchor="middle" font-size="7.5" font-weight="600" fill="#64748b">Sep 6</text>
+
+            <!-- Sep 7: 2 -->
+            <rect x="150" y="64" width="22" height="10" rx="3.5" fill="#16a34a"/>
+            <text x="161" y="60" text-anchor="middle" font-size="8.5" font-weight="800" fill="#0f172a">2</text>
+            <text x="161" y="86" text-anchor="middle" font-size="7.5" font-weight="600" fill="#64748b">Sep 7</text>
+
+            <!-- Sep 8: 0 -->
+            <rect x="208" y="72" width="22" height="2" rx="1" fill="#22c55e"/>
+            <text x="219" y="68" text-anchor="middle" font-size="8.5" font-weight="800" fill="#16a34a">0</text>
+            <text x="219" y="86" text-anchor="middle" font-size="7.5" font-weight="600" fill="#64748b">Sep 8</text>
+
+            <!-- Trend arrow annotation -->
+            <path d="M58 19 Q136 30 202 55" fill="none" stroke="#eab308" stroke-width="1.6" stroke-dasharray="3 2"/>
+            <circle cx="202" cy="55" r="2.5" fill="#eab308"/>
+          </svg>
+          <div class="chart-note">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2.6"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            <span>Top Bird: <strong>Maya</strong> • Intrusions dropped 12 → 0 over 4 days.</span>
+          </div>
+        </div>
+
+        <div class="battery-split">
+          <div class="battery-thumb">
+            <div class="battery-thumb-in">
+              <img src="Battery.jpg" alt="Solar Battery Monitor Screen" />
+            </div>
+          </div>
+          <div>
+            <div class="section-label" style="margin-bottom: 1mm;">Solar Battery Voltage Sync</div>
+            <table class="volt-table">
+              <thead>
+                <tr><th>Voltage</th><th>Status</th><th style="text-align:right">Health</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>12.6V – 12.4V</td><td>Excellent</td><td>100%</td></tr>
+                <tr><td>12.2V</td><td>Good</td><td>90%</td></tr>
+                <tr><td>12.0V</td><td>Normal</td><td>80%</td></tr>
+                <tr><td>11.8V</td><td>Normal</td><td>70%</td></tr>
+                <tr><td>11.4V</td><td>Fair</td><td>60%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="tips-card">
+          <h4>Battery Care &amp; Field Maintenance</h4>
+          <div class="tips-grid">
+            <div class="tip-item"><span class="tip-check">✓</span>Avoid deep discharge</div>
+            <div class="tip-item"><span class="tip-check">✓</span>Keep battery charged</div>
+            <div class="tip-item"><span class="tip-check">✓</span>Monitor 12V voltage</div>
+            <div class="tip-item"><span class="tip-check">✓</span>Avoid excessive load</div>
+            <div class="tip-item"><span class="tip-check">✓</span>Keep dry &amp; ventilated</div>
+            <div class="tip-item"><span class="tip-check">✓</span>Clean solar panel</div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+  </main>
+
+  <script>
+    function toggleGuides() {
+      const body = document.body;
+      const btn = document.getElementById('guideBtn');
+      const active = body.classList.toggle('show-guides');
+      body.classList.toggle('print-guides', active);
+      btn.textContent = active ? 'Hide Fold Guides' : 'Show Fold Guides';
+    }
+
+    // Support URL params ?side=front or ?side=back for crisp PNG capture
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const side = params.get('side');
+      if (side === 'front' || side === 'outside') {
+        document.body.classList.remove('show-guides');
+        document.body.classList.add('capture-front');
+      } else if (side === 'back' || side === 'inside') {
+        document.body.classList.remove('show-guides');
+        document.body.classList.add('capture-back');
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -2,158 +2,659 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#080b0c">
-    <meta name="description" content="Explore Cyberheist, a cybersecurity arcade experience with five safe, isolated challenges in password hygiene, code breaking, log analysis, incident response, and digital forensics.">
-    <title>Cyberheist | Cybersecurity Arcade Showcase</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#059669">
+    <meta name="description" content="Explore Cyberheist, a command-driven cybersecurity arcade experience with five isolated challenges in password hygiene, code breaking, log analysis, incident response, and digital forensics.">
+    <title>Cyberheist | Cybersecurity Arcade Showcase • STI College Laoag</title>
     <link rel="icon" type="image/svg+xml" href="cyberheist-logo.svg">
+    
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans & DM Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['DM Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        stiBlue: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            600: '#0047ab',
+                            700: '#00388a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root { color-scheme: dark; --bg: #080b0c; --panel: #0e1314; --line: #202a28; --muted: #9aa8a1; --green: #b6ff68; }
-        html { scroll-padding-top: 5rem; }
-        body { margin: 0; background: var(--bg); color: #e8eee9; font-family: "Space Grotesk", sans-serif; }
-        .mono { font-family: "DM Mono", monospace; }
-        .panel { background: linear-gradient(145deg, rgba(17, 26, 22, .94), rgba(11, 15, 15, .96)); border: 1px solid var(--line); }
-        .grid-glow { background-image: linear-gradient(rgba(182,255,104,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(182,255,104,.045) 1px, transparent 1px); background-size: 42px 42px; }
-        .text-green { color: var(--green); }
-        .btn-primary { background: var(--green); color: #0a1009; transition: transform .18s ease, box-shadow .18s ease; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(182,255,104,.18); }
-        .btn-outline { border: 1px solid #39483d; color: #e8eee9; transition: border-color .18s ease, background .18s ease; }
-        .btn-outline:hover { border-color: var(--green); background: rgba(182,255,104,.06); }
-        .shot-frame { background: #070a09; border: 1px solid #28352d; box-shadow: 0 24px 80px rgba(0,0,0,.4); }
-        .shot-frame img { display: block; width: 100%; height: auto; }
-        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .mono {
+            font-family: 'DM Mono', monospace;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
     </style>
 </head>
-<body class="antialiased selection:bg-lime-300 selection:text-black">
-    <header class="sticky top-0 z-40 border-b border-white/10 bg-[#080b0c]/90 backdrop-blur-xl">
-        <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-            <a href="#top" class="flex items-center gap-3" aria-label="Cyberheist showcase home">
-                <img src="cyberheist-logo.svg" alt="" class="h-10 w-10">
-                <span class="font-bold tracking-wide">CYBER<span class="text-green">HEIST</span><small class="mono mt-0.5 block text-[9px] font-normal tracking-[.18em] text-slate-400">CSIT // LIVE EVENT</small></span>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-slate-200/80 transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2.5 sm:gap-3 flex-shrink-0">
+                <div class="w-10 h-10 rounded-xl overflow-hidden shadow-sm border border-slate-200 bg-slate-900 p-1.5 flex-shrink-0 flex items-center justify-center">
+                    <img src="cyberheist-logo.svg" alt="Cyberheist logo" class="w-full h-full object-contain">
+                </div>
+                <div>
+                    <span class="text-base sm:text-lg font-black tracking-tight text-slate-900 block leading-none">
+                        Cyberheist
+                    </span>
+                    <span class="text-[10px] font-bold text-brand-600 uppercase tracking-widest hidden sm:block mt-0.5">
+                        STI College Laoag • Cybersecurity Arcade
+                    </span>
+                </div>
             </a>
-            <nav class="hidden items-center gap-6 text-xs text-slate-300 md:flex" aria-label="Page navigation">
-                <a class="hover:text-green" href="#overview">Overview</a>
-                <a class="hover:text-green" href="#missions">Challenges</a>
-                <a class="hover:text-green" href="#screenshots">Screenshots</a>
-                <a class="hover:text-green" href="#how-to-play">How to play</a>
+
+            <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+                <a href="#overview" class="hover:text-brand-600 transition-colors">Overview</a>
+                <a href="#screenshots" class="hover:text-brand-600 transition-colors">Screenshots</a>
+                <a href="#missions" class="hover:text-brand-600 transition-colors">5 Challenges</a>
+                <a href="#how-to-play" class="hover:text-brand-600 transition-colors">Commands</a>
+                <a href="#tech-specs" class="hover:text-brand-600 transition-colors">Architecture</a>
             </nav>
-            <div class="flex items-center gap-2">
-                <a href="../../index.html" class="btn-outline rounded-xl px-3 py-2 text-xs font-semibold"><i class="fa-solid fa-arrow-left mr-1.5"></i><span class="hidden sm:inline">CSIT App Store</span><span class="sm:hidden">Store</span></a>
-                <a href="https://cyberheist12.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn-primary rounded-xl px-3 py-2 text-xs font-bold"><i class="fa-solid fa-play mr-1.5"></i>PLAY LIVE</a>
+
+            <div class="flex items-center gap-2 sm:gap-3">
+                <a href="../../index.html" aria-label="Back to CSIT App Store" class="flex items-center gap-1.5 sm:gap-2 text-xs font-bold text-slate-700 bg-white hover:bg-slate-100 px-3 py-2 rounded-xl border border-slate-200 transition-all shadow-sm active:scale-95">
+                    <i class="fa-solid fa-arrow-left text-[11px] text-[#0047AB]"></i>
+                    <span class="hidden sm:inline">CSIT App Store</span>
+                    <span class="sm:hidden">Store Hub</span>
+                </a>
+                <a href="https://cyberheist12.netlify.app/" target="_blank" rel="noopener noreferrer" class="bg-brand-600 hover:bg-brand-700 text-white px-3 sm:px-4 py-2 rounded-xl font-bold text-xs sm:text-sm shadow-md shadow-brand-600/25 transition-all flex items-center gap-1.5 sm:gap-2 active:scale-95 flex-shrink-0">
+                    <i class="fa-solid fa-play text-xs"></i>
+                    <span>PLAY LIVE</span>
+                </a>
             </div>
         </div>
     </header>
 
+    <!-- Main Content -->
     <main>
-        <section id="top" class="grid-glow relative overflow-hidden border-b border-white/10">
-            <div class="pointer-events-none absolute -right-40 -top-32 h-[32rem] w-[32rem] rounded-full bg-lime-300/5 blur-3xl"></div>
-            <div id="overview" class="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-2 lg:px-8 lg:py-24">
-                <div>
-                    <a href="../../index.html" class="mono mb-8 inline-flex items-center gap-2 text-[11px] text-slate-400 hover:text-green"><i class="fa-solid fa-arrow-left text-[9px]"></i> CSIT APP STORE <span class="text-slate-600">/</span> CYBERSECURITY ARCADE</a>
-                    <div class="mb-5 flex flex-wrap gap-2">
-                        <span class="mono rounded-full border border-lime-300/30 bg-lime-300/10 px-3 py-1 text-[10px] text-green"><i class="fa-solid fa-shield-halved mr-1.5"></i>SAFE SIMULATION</span>
-                        <span class="mono rounded-full border border-slate-700 bg-slate-900/70 px-3 py-1 text-[10px] text-slate-300">5 CHALLENGES · ~10 MIN</span>
+        <!-- Hero / Play Store Banner Section -->
+        <section id="overview" class="pt-8 pb-16 bg-gradient-to-b from-emerald-50/60 via-slate-50 to-slate-50 border-b border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Breadcrumb Badge -->
+                <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/90 border border-emerald-200 text-emerald-900 text-xs font-semibold mb-6 shadow-sm">
+                    <a href="../../index.html" class="hover:underline flex items-center gap-1.5 text-emerald-800">
+                        <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                        <span>CSIT App Store</span>
+                    </a>
+                    <span class="text-emerald-400">/</span>
+                    <span class="text-emerald-900 font-bold">Cyberheist</span>
+                    <span class="text-emerald-400">•</span>
+                    <span class="text-slate-600 font-medium">Cybersecurity Arcade &amp; Simulation</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Left Hero Column -->
+                    <div class="lg:col-span-8 flex flex-col md:flex-row gap-4 sm:gap-6 items-start">
+                        <!-- App Squircle Icon -->
+                        <div class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-3xl overflow-hidden flex-shrink-0 shadow-lg border-4 border-white bg-slate-900 p-3 flex items-center justify-center">
+                            <img src="cyberheist-logo.svg" alt="Cyberheist app logo" class="w-full h-full object-contain">
+                        </div>
+
+                        <!-- App Info & Details -->
+                        <div class="space-y-3">
+                            <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+                                Cyberheist: Cybersecurity Arcade &amp; Ethical Simulation
+                            </h1>
+                            <p class="text-brand-700 font-semibold text-base flex items-center gap-2">
+                                <span>Cyberheist Development Team</span>
+                                <i class="fa-solid fa-circle-check text-xs text-blue-600" title="Verified Project"></i>
+                            </p>
+                            <p class="text-slate-600 text-sm md:text-base leading-relaxed max-w-2xl">
+                                Put your security instincts to the test. Cyberheist turns cybersecurity fundamentals into a fast, command-driven arcade experience with five isolated challenges in password hygiene, code breaking, event log analysis, incident response, and forensics.
+                            </p>
+
+                            <!-- Play Store Stats Bar -->
+                            <div class="pt-4 flex flex-wrap items-center gap-x-4 gap-y-3 border-t border-slate-200/80 text-slate-700 text-sm">
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-shield-halved text-brand-600 text-base"></i>
+                                    <span class="font-bold text-slate-900">Interactive Web App</span>
+                                    <span class="text-xs text-slate-500">React + Supabase</span>
+                                </div>
+                                <div class="h-4 w-px bg-slate-300 hidden sm:block"></div>
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-list-check text-blue-600 text-base"></i>
+                                    <span class="font-bold text-slate-900">5 Challenges</span>
+                                    <span class="text-xs text-slate-500">~10 Min Run</span>
+                                </div>
+                                <div class="h-4 w-px bg-slate-300 hidden sm:block"></div>
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-graduation-cap text-[#0047AB] text-base"></i>
+                                    <span class="font-bold text-slate-900">STI College Laoag</span>
+                                    <span class="text-xs text-slate-500">CITS Week 2026</span>
+                                </div>
+                            </div>
+
+                            <!-- CTAs -->
+                            <div class="pt-2 flex flex-wrap items-center gap-3">
+                                <a href="https://cyberheist12.netlify.app/" target="_blank" rel="noopener noreferrer" class="bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 px-6 rounded-xl text-sm shadow-md shadow-brand-600/25 transition active:scale-95 flex items-center gap-2">
+                                    <i class="fa-solid fa-play"></i>
+                                    <span>Launch Live Simulation</span>
+                                </a>
+                                <a href="#screenshots" class="bg-white hover:bg-slate-100 text-slate-700 font-bold py-3 px-5 rounded-xl text-sm border border-slate-200 shadow-sm transition active:scale-95 flex items-center gap-2">
+                                    <i class="fa-regular fa-images text-brand-600"></i>
+                                    <span>View Screenshots</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <h1 class="max-w-3xl text-4xl font-bold leading-[1.04] tracking-tight sm:text-6xl">BREAK THE SYSTEM.<br><span class="text-green">CLAIM YOUR RANK.</span></h1>
-                    <p class="mt-6 max-w-xl text-base leading-7 text-slate-300 sm:text-lg">Think like a defender, investigate the clues, and put your security instincts to the test. Cyberheist turns cybersecurity fundamentals into a fast, command-driven arcade challenge.</p>
-                    <p class="mt-4 max-w-xl text-sm leading-6 text-slate-400">Each run draws five objectives from an isolated training simulation. No real systems are accessed; the focus is on careful analysis, ethical decision-making, and learning how to spot security risks.</p>
-                    <div class="mt-8 flex flex-wrap gap-3">
-                        <a href="https://cyberheist12.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn-primary rounded-xl px-5 py-3 text-sm font-bold"><i class="fa-solid fa-arrow-up-right-from-square mr-2"></i>Launch Cyberheist</a>
-                        <a href="#screenshots" class="btn-outline rounded-xl px-5 py-3 text-sm font-semibold"><i class="fa-regular fa-images mr-2"></i>View screenshots</a>
+
+                    <!-- Right Hero Spotlight (Screenshot Preview) -->
+                    <div class="lg:col-span-4">
+                        <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-3">
+                            <div class="aspect-video w-full rounded-xl overflow-hidden bg-slate-900 border border-slate-200 cursor-pointer group" onclick="openLightbox('Pic 4.png', 'Operator Console & Live Challenge', 'Real-time challenge view showing the command line, simulated evidence log with timestamps and IP addresses, candidate choices, and reputation point tracking.')">
+                                <img src="Pic 4.png" alt="Cyberheist operator console" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                            </div>
+                            <div class="p-1 space-y-1.5 text-xs text-slate-600">
+                                <div class="flex justify-between py-1 border-b border-slate-100 font-medium">
+                                    <span>Environment</span>
+                                    <strong class="text-slate-800">100% Isolated Sandbox</strong>
+                                </div>
+                                <div class="flex justify-between py-1 border-b border-slate-100 font-medium">
+                                    <span>Track</span>
+                                    <strong class="text-slate-800">Cybersecurity &amp; Education</strong>
+                                </div>
+                                <div class="flex justify-between py-1 border-b border-slate-100 font-medium">
+                                    <span>Controls</span>
+                                    <strong class="text-slate-800">Command-Driven Terminal</strong>
+                                </div>
+                                <div class="flex justify-between py-1 font-medium">
+                                    <span>Backend</span>
+                                    <strong class="text-slate-800">Supabase Leaderboard</strong>
+                                </div>
+                            </div>
+                            <a href="https://cyberheist12.netlify.app/" target="_blank" rel="noopener noreferrer" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-1.5 transition">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                <span>Open Fullscreen App</span>
+                            </a>
+                        </div>
                     </div>
-                    <div class="mono mt-9 flex flex-wrap gap-x-6 gap-y-3 text-[10px] tracking-wide text-slate-400">
-                        <span><i class="fa-solid fa-lock mr-1.5 text-green"></i>ISOLATED TRAINING</span>
-                        <span><i class="fa-solid fa-terminal mr-1.5 text-green"></i>COMMAND-DRIVEN</span>
-                        <span><i class="fa-solid fa-trophy mr-1.5 text-green"></i>LEADERBOARD RUNS</span>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREENSHOTS GALLERY SHOWCASE -->
+        <section id="screenshots" class="py-14 sm:py-20 bg-white border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 uppercase tracking-wider">
+                        Live Game Captures
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2.5">
+                        Field Screenshots &amp; In-Game Interface
+                    </h2>
+                    <p class="text-slate-600 text-sm mt-2">
+                        Click any screenshot below to inspect the full-resolution view.
+                    </p>
+                </div>
+
+                <!-- 2-Column Primary Spotlight Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    
+                    <!-- Screen 1: Terminal Console -->
+                    <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200 hover:border-emerald-400 hover:shadow-md cursor-pointer transition transform hover:-translate-y-1" onclick="openLightbox('Pic 4.png', 'Operator Console & Live Challenge (Login Outlier)', 'Real-time challenge view showing the command line, simulated evidence log with timestamps and IP addresses, candidate choices, and reputation point tracking.')">
+                        <div class="aspect-video rounded-xl overflow-hidden bg-slate-900 border border-slate-200">
+                            <img src="Pic 4.png" alt="In-game Cyberheist operator console" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-2">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xs sm:text-sm font-bold text-slate-900">01 — Operator Console: "Login Outlier"</h3>
+                                <span class="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">In-Game</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-1">
+                                Type <code class="mono text-emerald-700 font-bold">scan</code> and <code class="mono text-emerald-700 font-bold">inspect</code> to review log packets and detect anomalies.
+                            </p>
+                        </div>
                     </div>
+
+                    <!-- Screen 2: Simulation Preview -->
+                    <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200 hover:border-emerald-400 hover:shadow-md cursor-pointer transition transform hover:-translate-y-1" onclick="openLightbox('Pic 3.png', 'Synthetic Simulation Preview', 'Isolated training module visualization mapping the local client operator to the synthetic SIM-07 fake target node with simulated event telemetry.')">
+                        <div class="aspect-video rounded-xl overflow-hidden bg-slate-900 border border-slate-200">
+                            <img src="Pic 3.png" alt="Synthetic simulation preview modal" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-2">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xs sm:text-sm font-bold text-slate-900">02 — Synthetic Simulation Stream &amp; Node Mapping</h3>
+                                <span class="text-[10px] font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded">Node Setup</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-1">
+                                Sandbox connection mapping between operator client and simulated target node SIM-07.
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
-                <figure class="shot-frame overflow-hidden rounded-2xl">
-                    <div class="mono flex items-center justify-between border-b border-white/10 px-4 py-3 text-[10px] text-slate-400"><span><i class="fa-solid fa-circle mr-1 text-[7px] text-red-400"></i><i class="fa-solid fa-circle mr-1 text-[7px] text-amber-300"></i><i class="fa-solid fa-circle mr-2 text-[7px] text-green"></i>CYBERHEIST // HOME</span><span>LIVE PREVIEW</span></div>
-                    <img src="cyberheist-home.png" alt="Screenshot of Cyberheist's dark cybersecurity arcade landing page" width="824" height="768">
-                    <figcaption class="border-t border-white/10 px-4 py-3 text-xs text-slate-400">The live event home screen introduces the challenges and safe simulation.</figcaption>
-                </figure>
-            </div>
-        </section>
 
-        <section class="border-b border-white/10 bg-[#0b1010]">
-            <div class="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-7 sm:px-6 md:grid-cols-4 lg:px-8">
-                <div><p class="mono text-[10px] text-slate-500">EXPERIENCE</p><p class="mt-1 text-sm font-semibold">Cybersecurity Arcade</p></div>
-                <div><p class="mono text-[10px] text-slate-500">RUN LENGTH</p><p class="mt-1 text-sm font-semibold">About 10 minutes</p></div>
-                <div><p class="mono text-[10px] text-slate-500">OBJECTIVES</p><p class="mt-1 text-sm font-semibold">5 per run</p></div>
-                <div><p class="mono text-[10px] text-slate-500">PLATFORM</p><p class="mt-1 text-sm font-semibold">Browser-based web app</p></div>
-            </div>
-        </section>
+                <!-- 3-Column Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Screen 3: Briefing -->
+                    <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200 hover:border-emerald-400 hover:shadow-md cursor-pointer transition transform hover:-translate-y-1" onclick="openLightbox('Pic 2.png', 'Mission Briefing & Operator ID', 'Custom callsign entry, difficulty setting (Medium // 200 PTS), hint penalty rules, and one-run verified leaderboard enrollment.')">
+                        <div class="aspect-[16/10] rounded-xl overflow-hidden bg-slate-900 border border-slate-200">
+                            <img src="Pic 2.png" alt="Mission briefing setup screen" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-2">
+                            <h3 class="text-xs font-bold text-slate-900">03 — Mission Briefing &amp; Callsign Setup</h3>
+                            <p class="text-[11px] text-slate-500 mt-0.5">Set operator callsign, adjust run difficulty, and verify leaderboard rules.</p>
+                        </div>
+                    </div>
 
-        <section id="missions" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-            <div class="mb-8 max-w-2xl">
-                <p class="mono text-[10px] tracking-[.22em] text-green">MISSION TYPES // 01—05</p>
-                <h2 class="mt-3 text-3xl font-bold sm:text-4xl">Five ways to <span class="text-green">outsmart the system.</span></h2>
-                <p class="mt-3 text-sm leading-6 text-slate-400">Every challenge rewards observation and reasoning—not real-world access or intrusion.</p>
-            </div>
-            <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                <article class="panel rounded-2xl p-5"><span class="mono text-xs text-green">01 // CREDENTIALS</span><h3 class="mt-4 font-bold">Password Crack</h3><p class="mt-2 text-sm leading-6 text-slate-400">Read the clues and identify the weak credential in a simulated scenario.</p></article>
-                <article class="panel rounded-2xl p-5"><span class="mono text-xs text-green">02 // CIPHER</span><h3 class="mt-4 font-bold">Code Breaker</h3><p class="mt-2 text-sm leading-6 text-slate-400">Decode a message by following the evidence and applying pattern recognition.</p></article>
-                <article class="panel rounded-2xl p-5"><span class="mono text-xs text-green">03 // SIGNAL</span><h3 class="mt-4 font-bold">Log Analysis</h3><p class="mt-2 text-sm leading-6 text-slate-400">Separate a suspicious event from routine activity in a log-based puzzle.</p></article>
-                <article class="panel rounded-2xl p-5"><span class="mono text-xs text-green">04 // RESPONSE</span><h3 class="mt-4 font-bold">Security Breach</h3><p class="mt-2 text-sm leading-6 text-slate-400">Choose a safe, responsible response to a fictional security incident.</p></article>
-                <article class="panel rounded-2xl p-5 sm:col-span-2 lg:col-span-2"><span class="mono text-xs text-green">05 // EVIDENCE</span><h3 class="mt-4 font-bold">Digital Forensics</h3><p class="mt-2 text-sm leading-6 text-slate-400">Follow a trail of fictional evidence and find the signal that explains what happened.</p></article>
-            </div>
-        </section>
+                    <!-- Screen 4: Debrief -->
+                    <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200 hover:border-emerald-400 hover:shadow-md cursor-pointer transition transform hover:-translate-y-1" onclick="openLightbox('Ending.png', 'Mission Debrief & Secure Exit', 'End-of-run debrief sequence showing 600 PTS final score, 5 of 5 completed objectives, debrief sequence timer, and sealed training route verification.')">
+                        <div class="aspect-[16/10] rounded-xl overflow-hidden bg-slate-900 border border-slate-200">
+                            <img src="Ending.png" alt="Mission debrief score summary" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-2">
+                            <h3 class="text-xs font-bold text-slate-900">04 — Secure Exit &amp; Final Score (600 PTS)</h3>
+                            <p class="text-[11px] text-slate-500 mt-0.5">Review 5/5 objective completion and verified submission to the leaderboard.</p>
+                        </div>
+                    </div>
 
-        <section id="how-to-play" class="border-y border-white/10 bg-[#0b1010]">
-            <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-                <div class="mb-8">
-                    <p class="mono text-[10px] tracking-[.22em] text-green">PLAYER GUIDE // TERMINAL BASICS</p>
-                    <h2 class="mt-3 text-3xl font-bold sm:text-4xl">Type commands. <span class="text-green">Follow the evidence.</span></h2>
+                    <!-- Screen 5: Gateway -->
+                    <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200 hover:border-emerald-400 hover:shadow-md cursor-pointer transition transform hover:-translate-y-1 sm:col-span-2 lg:col-span-1" onclick="openLightbox('pic1.png', 'Cyberheist Landing Terminal Gateway', 'Terminal-inspired hero layout showing proxy chain verification, network status, sound controls, and Netlify hosting.')">
+                        <div class="aspect-[16/10] rounded-xl overflow-hidden bg-slate-900 border border-slate-200">
+                            <img src="pic1.png" alt="Cyberheist live event portal" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-2">
+                            <h3 class="text-xs font-bold text-slate-900">05 — Command Gateway &amp; Main Portal</h3>
+                            <p class="text-[11px] text-slate-500 mt-0.5">Portal with audio controls, verified connection status, and quick launch.</p>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                    <article class="panel rounded-2xl p-5"><span class="mono text-xs text-green">01 / START</span><h3 class="mt-3 font-bold">Launch your run</h3><p class="mt-2 text-sm leading-6 text-slate-400">Choose a difficulty, set a callsign, and begin a training run.</p></article>
-                    <article class="panel rounded-2xl p-5"><span class="mono text-xs text-green">02 / SCAN</span><h3 class="mt-3 font-bold">Map the training node</h3><p class="mt-2 text-sm leading-6 text-slate-400">Type <code class="mono rounded bg-black/40 px-1.5 py-0.5 text-green">scan</code> to review the objective.</p></article>
-                    <article class="panel rounded-2xl p-5"><span class="mono text-xs text-green">03 / INSPECT</span><h3 class="mt-3 font-bold">Read the evidence</h3><p class="mt-2 text-sm leading-6 text-slate-400">Use <code class="mono rounded bg-black/40 px-1.5 py-0.5 text-green">inspect</code> to see clues and possible findings.</p></article>
-                    <article class="panel rounded-2xl p-5"><span class="mono text-xs text-green">04 / ANALYZE</span><h3 class="mt-3 font-bold">Submit your finding</h3><p class="mt-2 text-sm leading-6 text-slate-400">Use <code class="mono rounded bg-black/40 px-1.5 py-0.5 text-green">analyze B</code> to submit a candidate answer.</p></article>
-                    <article class="panel rounded-2xl p-5 sm:col-span-2"><span class="mono text-xs text-green">05 / CONTINUE</span><h3 class="mt-3 font-bold">Move to the next objective</h3><p class="mt-2 text-sm leading-6 text-slate-400">After resolving a challenge, type <code class="mono rounded bg-black/40 px-1.5 py-0.5 text-green">next</code>. Use <code class="mono rounded bg-black/40 px-1.5 py-0.5 text-green">help</code> to review available commands.</p></article>
+
+            </div>
+        </section>
+
+        <!-- 5 MISSION OBJECTIVES SECTION -->
+        <section id="missions" class="py-14 sm:py-20 bg-slate-50 border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-[#0047AB] border border-blue-200 uppercase tracking-wider">
+                        Mission Modules 01 — 05
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2.5">
+                        Five Cybersecurity Challenges
+                    </h2>
+                    <p class="text-slate-600 text-sm mt-2">
+                        Every challenge rewards systematic observation, pattern recognition, and sound defensive security principles.
+                    </p>
+                </div>
+
+                <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                    
+                    <!-- Module 1 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-emerald-400 hover:shadow-md transition">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="mono text-xs text-emerald-700 font-bold">01 // LOG ANALYSIS</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">+100 PTS</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-list-check text-emerald-600 text-sm"></i> Login Outlier
+                        </h3>
+                        <p class="mt-2 text-xs text-slate-600 leading-relaxed">
+                            Examine harmless event streams, compare source IP addresses and timestamps, and identify the single anomalous sign-in attempt.
+                        </p>
+                    </div>
+
+                    <!-- Module 2 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-emerald-400 hover:shadow-md transition">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="mono text-xs text-emerald-700 font-bold">02 // THREAT MITIGATION</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">+100 PTS</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fa-brands fa-usb text-emerald-600 text-sm"></i> Unknown USB
+                        </h3>
+                        <p class="mt-2 text-xs text-slate-600 leading-relaxed">
+                            Triage a physical security risk: determine how to handle an untrusted flash drive found on-site without triggering automated autorun malware.
+                        </p>
+                    </div>
+
+                    <!-- Module 3 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-emerald-400 hover:shadow-md transition">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="mono text-xs text-emerald-700 font-bold">03 // CIPHER BREAKING</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">+100 PTS</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-key text-emerald-600 text-sm"></i> Shift Cipher
+                        </h3>
+                        <p class="mt-2 text-xs text-slate-600 leading-relaxed">
+                            Decode obfuscated messages using frequency analysis and Caesar shift patterns to uncover the hidden operator passphrase.
+                        </p>
+                    </div>
+
+                    <!-- Module 4 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-emerald-400 hover:shadow-md transition">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="mono text-xs text-emerald-700 font-bold">04 // HASH VERIFICATION</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">+100 PTS</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-fingerprint text-emerald-600 text-sm"></i> File Integrity
+                        </h3>
+                        <p class="mt-2 text-xs text-slate-600 leading-relaxed">
+                            Cross-reference SHA-256 cryptographic checksums against baseline hashes to locate tampered binaries and unauthorized file replacements.
+                        </p>
+                    </div>
+
+                    <!-- Module 5 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-emerald-400 hover:shadow-md transition sm:col-span-2 lg:col-span-2">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="mono text-xs text-emerald-700 font-bold">05 // INCIDENT RESPONSE</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">+100 PTS</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-magnifying-glass-chart text-emerald-600 text-sm"></i> The Leaked Note &amp; Incident Containment
+                        </h3>
+                        <p class="mt-2 text-xs text-slate-600 leading-relaxed">
+                            Connect multiple fragmented clues across access control lists, network artifacts, and memory strings to reconstruct the incident and select the correct containment action.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- COMMAND-LINE CONTROLS GUIDE -->
+        <section id="how-to-play" class="py-14 sm:py-20 bg-white border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-800 border border-slate-200 uppercase tracking-wider">
+                        Terminal Cheatsheet
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2.5">
+                        Interactive Command Syntax
+                    </h2>
+                    <p class="text-slate-600 text-sm mt-2">
+                        The Cyberheist terminal accepts lightweight commands directly through the input bar or mobile prompt.
+                    </p>
+                </div>
+
+                <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    
+                    <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="mono text-xs text-slate-400 font-bold">01 / DISCOVERY</span>
+                            <code class="mono bg-slate-900 px-2 py-0.5 rounded text-xs text-emerald-400 font-bold">scan</code>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm">Map Training Node</h3>
+                        <p class="mt-1.5 text-xs text-slate-600">
+                            Initializes the training node, verifies isolated routing, and prepares the challenge evidence packet.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="mono text-xs text-slate-400 font-bold">02 / FORENSICS</span>
+                            <code class="mono bg-slate-900 px-2 py-0.5 rounded text-xs text-emerald-400 font-bold">inspect</code>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm">Read Evidence Packet</h3>
+                        <p class="mt-1.5 text-xs text-slate-600">
+                            Dumps event logs, server timestamps, user records, and candidate answers (A, B, C, D) to screen.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="mono text-xs text-slate-400 font-bold">03 / SUBMISSION</span>
+                            <code class="mono bg-slate-900 px-2 py-0.5 rounded text-xs text-emerald-400 font-bold">analyze &lt;opt&gt;</code>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm">Submit Candidate Answer</h3>
+                        <p class="mt-1.5 text-xs text-slate-600">
+                            Submit your verified conclusion (e.g. <code class="mono text-emerald-700 font-bold">analyze A</code>) to score reputation points.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="mono text-xs text-slate-400 font-bold">04 / ASSISTANCE</span>
+                            <code class="mono bg-slate-900 px-2 py-0.5 rounded text-xs text-emerald-400 font-bold">hint</code>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm">Unlock Guidance</h3>
+                        <p class="mt-1.5 text-xs text-slate-600">
+                            Stuck on a tricky cipher? Unlock a hint for -25 simulation points to point you in the right direction.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 sm:col-span-2">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="mono text-xs text-slate-400 font-bold">05 / ADVANCE</span>
+                            <code class="mono bg-slate-900 px-2 py-0.5 rounded text-xs text-emerald-400 font-bold">next</code>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm">Seal Node &amp; Advance to Next Stage</h3>
+                        <p class="mt-1.5 text-xs text-slate-600">
+                            Locks in your verified stage score and advances to the next challenge. Type <code class="mono text-emerald-700 font-bold">help</code> at any time for the full command list.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TECHNICAL ARCHITECTURE & STACK -->
+        <section id="tech-specs" class="py-14 sm:py-20 bg-slate-50 border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-[#0047AB] border border-blue-200 uppercase tracking-wider">
+                        Technical Architecture
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2.5">
+                        System Architecture &amp; Ethical Guarantee
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    
+                    <!-- Tech Stack Card -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-4">
+                        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-microchip text-emerald-600"></i> Modern Web Stack
+                        </h3>
+                        <div class="space-y-2 text-xs font-medium text-slate-700">
+                            <div class="flex justify-between py-2 border-b border-slate-200">
+                                <span class="text-slate-500">Frontend Framework</span>
+                                <strong class="text-slate-900">React 18 &amp; TypeScript</strong>
+                            </div>
+                            <div class="flex justify-between py-2 border-b border-slate-200">
+                                <span class="text-slate-500">Build Tooling</span>
+                                <strong class="text-slate-900">Vite (Fast HMR)</strong>
+                            </div>
+                            <div class="flex justify-between py-2 border-b border-slate-200">
+                                <span class="text-slate-500">Backend &amp; Database</span>
+                                <strong class="text-slate-900">Supabase (PostgreSQL &amp; Edge Functions)</strong>
+                            </div>
+                            <div class="flex justify-between py-2 border-b border-slate-200">
+                                <span class="text-slate-500">UI Styling</span>
+                                <strong class="text-slate-900">Tailwind CSS</strong>
+                            </div>
+                            <div class="flex justify-between py-2">
+                                <span class="text-slate-500">Deployment Target</span>
+                                <strong class="text-slate-900">Netlify Edge Hosting</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ethical Sandbox Card -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-4">
+                        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-shield-halved text-[#0047AB]"></i> Ethical Sandbox Guarantee
+                        </h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Cyberheist is strictly designed as an educational training application. Every command, log line, and evidence packet is simulated locally:
+                        </p>
+                        <ul class="space-y-2 text-xs text-slate-600">
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-600 text-[11px] font-bold"></i>
+                                <span><strong>No live network access:</strong> Zero packets sent to outside domains or hosts.</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-600 text-[11px] font-bold"></i>
+                                <span><strong>Fictional targets:</strong> All IP addresses (RFC 5737 test nets) and usernames are synthetic.</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-600 text-[11px] font-bold"></i>
+                                <span><strong>Defensive focus:</strong> Promotes safe credential hygiene, log audits, and rapid containment.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- BOTTOM CALL TO ACTION -->
+        <section class="py-14 sm:py-20 bg-slate-900 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="space-y-2 text-center md:text-left">
+                    <span class="mono text-xs text-emerald-400 font-bold uppercase tracking-wider">Ready for the simulation?</span>
+                    <h2 class="text-2xl sm:text-3xl font-black">
+                        Step up to the terminal. Prove your instincts.
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-400 max-w-xl">
+                        Challenge your classmates on the live Supabase leaderboard. Can you reach 600 points on a flawless run?
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3">
+                    <a href="https://cyberheist12.netlify.app/" target="_blank" rel="noopener noreferrer" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-6 py-3 rounded-xl text-xs sm:text-sm shadow-md transition active:scale-95 flex items-center gap-2">
+                        <i class="fa-solid fa-play"></i>
+                        <span>Play Live on Netlify</span>
+                    </a>
+                    <a href="../../index.html" class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-5 py-3 rounded-xl text-xs sm:text-sm border border-slate-700 transition active:scale-95 flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>CSIT App Store</span>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <section id="screenshots" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-            <div class="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-                <div><p class="mono text-[10px] tracking-[.22em] text-green">LIVE APP // SCREENSHOTS</p><h2 class="mt-3 text-3xl font-bold sm:text-4xl">A look inside <span class="text-green">the experience.</span></h2></div>
-                <p class="max-w-md text-sm leading-6 text-slate-400">Captured from the public Cyberheist app. Screens show its landing page and the operator sign-up flow.</p>
-            </div>
-            <div class="grid items-start gap-6 lg:grid-cols-[1.2fr_.8fr]">
-                <figure class="shot-frame overflow-hidden rounded-2xl">
-                    <img src="cyberheist-home.png" alt="Live Cyberheist home page with the terminal-themed hero and event navigation" width="824" height="768" loading="lazy">
-                    <figcaption class="border-t border-white/10 px-4 py-3 text-xs text-slate-400">01 — Landing page and terminal-inspired visual.</figcaption>
-                </figure>
-                <figure class="shot-frame overflow-hidden rounded-2xl">
-                    <img src="cyberheist-operator-flow.png" alt="Cyberheist operator ID sign-up screen with a callsign field" width="824" height="768" loading="lazy">
-                    <figcaption class="border-t border-white/10 px-4 py-3 text-xs text-slate-400">02 — Operator ID sign-up screen.</figcaption>
-                </figure>
-            </div>
-        </section>
-
-        <section class="mx-auto max-w-7xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
-            <div class="panel grid gap-8 rounded-3xl p-6 sm:p-9 lg:grid-cols-[1fr_auto] lg:items-center">
-                <div>
-                    <p class="mono text-[10px] tracking-[.22em] text-green">ETHICAL PLAY // SAFETY FIRST</p>
-                    <h2 class="mt-3 text-2xl font-bold">Practice in the sandbox. <span class="text-green">Protect the real world.</span></h2>
-                    <p class="mt-3 max-w-2xl text-sm leading-6 text-slate-400">Cyberheist is designed as a safe, fictional training experience. Its terminal commands operate only within the app's local challenge simulation; they are not instructions to access outside systems.</p>
-                </div>
-                <a href="https://cyberheist12.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn-primary inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-bold"><i class="fa-solid fa-arrow-right mr-2"></i>Enter the heist</a>
-            </div>
-        </section>
     </main>
 
-    <footer class="border-t border-white/10 bg-[#060808]">
-        <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-            <span>© 2026 CYBER HEIST · BUILT FOR CSIT</span>
-            <div class="flex gap-5"><a href="../../index.html" class="hover:text-green">CSIT App Store</a><a href="https://cyberheist12.netlify.app/" target="_blank" rel="noopener noreferrer" class="hover:text-green">Live App <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[9px]"></i></a></div>
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-slate-400 py-10 text-xs border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2 font-bold text-white">
+                <div class="w-6 h-6 rounded-md bg-slate-800 p-0.5 flex items-center justify-center">
+                    <img src="cyberheist-logo.svg" alt="" class="w-full h-full object-contain">
+                </div>
+                <span>Cyberheist</span>
+                <span class="text-emerald-400">• CITS Week 2026</span>
+            </div>
+            <div class="flex items-center gap-6 font-medium">
+                <a href="../../index.html" class="hover:text-white transition">CSIT App Store</a>
+                <a href="../agriguard/index.html" class="hover:text-white transition">AgriGuard</a>
+                <a href="../aim-high-with-sti/index.html" class="hover:text-white transition">Aim High with STI</a>
+                <a href="../balde-against-el-nino/index.html" class="hover:text-white transition">Balde Against El Niño</a>
+                <a href="https://cyberheist12.netlify.app/" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:text-white transition">Live Web App</a>
+            </div>
+            <p class="text-slate-500">STI College Laoag • CSIT Tech Expo</p>
         </div>
     </footer>
+
+    <!-- INTERACTIVE LIGHTBOX MODAL -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center">
+            <button onclick="closeLightbox()" aria-label="Close lightbox modal" class="absolute -top-12 right-0 text-white text-3xl p-2 hover:text-emerald-400 transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="w-full max-h-[75vh] flex items-center justify-center overflow-hidden rounded-2xl border border-slate-700 bg-slate-900 p-2 shadow-2xl">
+                <img id="lightboxImg" src="" alt="Screenshot Full View" class="max-h-[72vh] max-w-full object-contain rounded-xl">
+            </div>
+
+            <div class="mt-4 text-center px-4">
+                <h3 id="lightboxTitle" class="font-bold text-base text-white"></h3>
+                <p id="lightboxDesc" class="text-xs text-slate-300 mt-1 max-w-2xl font-medium leading-relaxed"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX SCRIPT -->
+    <script>
+        function openLightbox(src, title, desc) {
+            const modal = document.getElementById('lightboxModal');
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxTitle').textContent = title;
+            document.getElementById('lightboxDesc').textContent = desc;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+        document.getElementById('lightboxModal').addEventListener('click', (e) => {
+            if (e.target.id === 'lightboxModal') closeLightbox();
+        });
+    </script>
 </body>
 </html>

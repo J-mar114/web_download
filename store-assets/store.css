@@ -1,23 +1,29 @@
 /* ==========================================================================
-   CSIT App Store - Design System & Modern UI/UX Stylesheet
-   Fonts: Plus Jakarta Sans & Cinzel (Official CITS Seal)
-   Theme: Professional Clean Tech / Modern Store UI
+   CSIT App Store - Clean Design System & Modern UI/UX Stylesheet
+   Theme: STI Institutional Tech & Professional Clean Light Showcase
+   Palette: STI Royal Blue (#0047AB), Academic Gold (#F59E0B), Clean Slate & White
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
-    --primary-indigo: #4f46e5;
-    --primary-hover: #4338ca;
-    --accent-violet: #8b5cf6;
-    --bg-light: #f8fafc;
-    --bg-dark: #0b0f19;
-    --card-dark: #111827;
-    --border-light: rgba(226, 232, 240, 0.9);
-    --border-dark: rgba(30, 41, 59, 0.85);
+    --sti-blue: #0047ab;
+    --sti-blue-hover: #00398a;
+    --sti-blue-light: #eff6ff;
+    --sti-blue-border: #bfdbfe;
+    --sti-gold: #f59e0b;
+    --sti-gold-hover: #d97706;
+    --sti-gold-light: #fffbeb;
+    --bg-page: #f8fafc;
+    --surface-card: #ffffff;
+    --border-subtle: #e2e8f0;
+    --border-hover: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
 }
 
-/* Base Smooth Transition */
+/* Base Smoothing */
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -30,39 +36,17 @@ html {
 
 body {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: var(--bg-light);
-    color: #1e293b;
-    transition: background-color 0.25s ease, color 0.25s ease;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    line-height: 1.5;
 }
 
-.dark body, html.dark body {
-    background-color: var(--bg-dark);
-    color: #f1f5f9;
-}
-
-/* Modern Glassmorphism Surfaces */
-.glass-nav {
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-}
-
-.dark .glass-nav {
-    background: rgba(11, 15, 25, 0.88);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-}
-
-.glass-card {
+/* Crisp Clean Navigation Surface */
+.clean-nav {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-}
-
-.dark .glass-card {
-    background: rgba(17, 24, 39, 0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-subtle);
 }
 
 /* Hide Scrollbar for Horizontal Filter Track while keeping momentum scroll */
@@ -75,67 +59,49 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
-/* Global Custom Scrollbar */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
 }
 ::-webkit-scrollbar-track {
     background: #f1f5f9;
-}
-.dark ::-webkit-scrollbar-track {
-    background: #0b0f19;
 }
 ::-webkit-scrollbar-thumb {
     background: #cbd5e1;
     border-radius: 9999px;
 }
-.dark ::-webkit-scrollbar-thumb {
-    background: #334155;
-    border-radius: 9999px;
-}
 ::-webkit-scrollbar-thumb:hover {
     background: #94a3b8;
 }
-.dark ::-webkit-scrollbar-thumb:hover {
-    background: #475569;
+
+/* Subtle, Human Hero Backdrop (No gaudy AI neon blobs) */
+.hero-clean-bg {
+    background-color: #ffffff;
+    background-image: 
+        radial-gradient(#e2e8f0 1px, transparent 1px),
+        radial-gradient(#e2e8f0 1px, #ffffff 1px);
+    background-size: 28px 28px;
+    background-position: 0 0, 14px 14px;
 }
 
-/* Dynamic Ambient Hero Glow */
-.hero-ambient-glow {
-    background: radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 90% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 50% 90%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
-}
-
-.dark .hero-ambient-glow {
-    background: radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.16) 0%, transparent 45%),
-                radial-gradient(circle at 90% 30%, rgba(139, 92, 246, 0.16) 0%, transparent 45%),
-                radial-gradient(circle at 50% 90%, rgba(59, 130, 246, 0.10) 0%, transparent 55%);
-}
-
-/* Subtle Tech Dot Grid Pattern */
-.tech-dot-pattern {
-    background-size: 24px 24px;
-    background-image: radial-gradient(rgba(79, 70, 229, 0.08) 1px, transparent 1px);
-}
-
-.dark .tech-dot-pattern {
-    background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-}
-
-/* App Store Card Polish */
+/* Store Cards - Refined, Grounded & Physical */
 .store-card {
-    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    background: #ffffff;
+    border: 1px solid var(--border-subtle);
+    border-radius: 1.25rem;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
                 border-color 0.2s ease;
 }
 
 .store-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.08), 0 4px 8px -2px rgba(15, 23, 42, 0.03);
+    border-color: #93c5fd;
 }
 
-/* Squircle App Icons - Bulletproof Responsive Dimensions */
+/* Squircle App Icons */
 .app-squircle {
     width: 4rem;
     height: 4rem;
@@ -143,61 +109,43 @@ body {
     min-height: 4rem;
     max-width: 4rem;
     max-height: 4rem;
-    border-radius: 1.15rem;
+    border-radius: 1rem;
     overflow: hidden !important;
     flex-shrink: 0 !important;
     aspect-ratio: 1 / 1;
-    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--border-subtle);
+    background-color: #f8fafc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
 @media (min-width: 640px) {
     .app-squircle {
-        width: 5rem;
-        height: 5rem;
-        min-width: 5rem;
-        min-height: 5rem;
-        max-width: 5rem;
-        max-height: 5rem;
-        border-radius: 1.25rem;
+        width: 4.75rem;
+        height: 4.75rem;
+        min-width: 4.75rem;
+        min-height: 4.75rem;
+        max-width: 4.75rem;
+        max-height: 4.75rem;
+        border-radius: 1.15rem;
     }
 }
 
 .app-squircle img {
     width: 100% !important;
     height: 100% !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
     object-fit: cover !important;
     display: block !important;
 }
 
-/* Button & Tap Interactions */
+/* Tap Interaction */
 .tap-effect {
-    transition: transform 0.12s ease, filter 0.15s ease;
+    transition: transform 0.1s ease, filter 0.15s ease;
 }
 .tap-effect:active {
-    transform: scale(0.97);
+    transform: scale(0.98);
 }
 
-/* Shimmer Highlight for Live Badges */
-.badge-shimmer {
-    position: relative;
-    overflow: hidden;
-}
-.badge-shimmer::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%; width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    animation: shimmerSlide 3.5s infinite;
-}
-
-@keyframes shimmerSlide {
-    0% { left: -100%; }
-    40%, 100% { left: 100%; }
-}
-
-/* Modal Bottom-Sheet for Mobile */
+/* Clean Modal */
 @media (max-width: 639px) {
     .modal-bottom-sheet {
         align-items: flex-end !important;
@@ -206,359 +154,7 @@ body {
     .modal-bottom-sheet > div {
         border-bottom-left-radius: 0 !important;
         border-bottom-right-radius: 0 !important;
-        max-height: 85vh !important;
+        max-height: 88vh !important;
         width: 100% !important;
-    }
-}
-
-/* ============================================================
-   CITS ANIMATED SPLASH SCREEN OVERLAY
-============================================================ */
-#cits-splash {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: radial-gradient(circle at center, #0c314d 0%, #051624 65%, #020b12 100%);
-    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.7s;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-#cits-splash.light-theme {
-    background: radial-gradient(circle at center, #ffffff 0%, #eef4f9 65%, #dce6ef 100%);
-}
-
-#cits-splash.splash-hidden {
-    opacity: 0;
-    transform: scale(1.05);
-    visibility: hidden;
-    pointer-events: none;
-}
-
-/* Subtle animated tech grid background */
-.tech-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
-    mask-image: radial-gradient(circle at center, black 25%, transparent 75%);
-    -webkit-mask-image: radial-gradient(circle at center, black 25%, transparent 75%);
-    pointer-events: none;
-}
-
-.light-theme .tech-grid {
-    background-image:
-        linear-gradient(rgba(9, 39, 61, 0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(9, 39, 61, 0.06) 1px, transparent 1px);
-}
-
-/* Expanding ambient radar pulse behind logo */
-.radar-ring {
-    position: absolute;
-    width: min(76vw, 360px);
-    height: min(76vw, 360px);
-    border-radius: 9999px;
-    border: 1.5px solid rgba(0, 212, 255, 0.35);
-    opacity: 0;
-    pointer-events: none;
-}
-
-.animate-active .radar-ring-1 {
-    animation: radarPulse 2.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s infinite;
-}
-
-.animate-active .radar-ring-2 {
-    animation: radarPulse 2.8s cubic-bezier(0.16, 1, 0.3, 1) 1.5s infinite;
-}
-
-@keyframes radarPulse {
-    0% {
-        transform: scale(0.75);
-        opacity: 0.65;
-    }
-    100% {
-        transform: scale(1.55);
-        opacity: 0;
-    }
-}
-
-/* Logo Stage Container */
-.logo-stage {
-    position: relative;
-    width: min(74vw, 300px);
-    height: min(74vw, 300px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.55));
-}
-
-.light-theme .logo-stage {
-    filter: drop-shadow(0 14px 28px rgba(9, 39, 61, 0.22));
-}
-
-#cits-logo-svg {
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-}
-
-/* 1. Outer Ring Reveal & Spin-in */
-.ring-group {
-    transform-origin: 250px 250px;
-    opacity: 0;
-    transform: scale(0.84) rotate(-32deg);
-}
-
-.animate-active .ring-group {
-    animation: ringReveal 1.05s cubic-bezier(0.22, 1, 0.36, 1) 0.85s forwards;
-}
-
-@keyframes ringReveal {
-    0% {
-        opacity: 0;
-        transform: scale(0.84) rotate(-32deg);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
-    }
-}
-
-/* 2. Shield Pop & Outline Draw */
-.shield-group {
-    transform-origin: 250px 250px;
-    opacity: 0;
-    transform: scale(0.75);
-}
-
-.animate-active .shield-group {
-    animation: shieldPop 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
-}
-
-@keyframes shieldPop {
-    0% {
-        opacity: 0;
-        transform: scale(0.72);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.shield-stroke-draw {
-    stroke-dasharray: 1200;
-    stroke-dashoffset: 1200;
-}
-
-.animate-active .shield-stroke-draw {
-    animation: drawStroke 1.1s cubic-bezier(0.4, 0, 0.2, 1) 0.15s forwards;
-}
-
-/* 3. Circuit Traces Drawing */
-.circuit-line {
-    stroke-dasharray: 320;
-    stroke-dashoffset: 320;
-}
-
-.animate-active .circuit-line {
-    animation: drawStroke 0.95s cubic-bezier(0.4, 0, 0.2, 1) 0.45s forwards;
-}
-
-.circuit-node {
-    transform-box: fill-box;
-    transform-origin: center;
-    opacity: 0;
-    transform: scale(0);
-}
-
-.animate-active .circuit-node {
-    animation: nodePop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 1.05s forwards;
-}
-
-.animate-active .cyan-glow-pulse {
-    animation:
-        drawStroke 0.95s cubic-bezier(0.4, 0, 0.2, 1) 0.45s forwards,
-        neonBreathe 2.4s ease-in-out 1.6s infinite;
-}
-
-.animate-active .core-node-pulse {
-    animation:
-        nodePop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 1.05s forwards,
-        corePulse 2s ease-in-out 1.6s infinite;
-}
-
-@keyframes drawStroke {
-    to {
-        stroke-dashoffset: 0;
-    }
-}
-
-@keyframes nodePop {
-    0% {
-        opacity: 0;
-        transform: scale(0);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes neonBreathe {
-    0%, 100% {
-        filter: drop-shadow(0 0 2px rgba(0, 212, 255, 0.55));
-    }
-    50% {
-        filter: drop-shadow(0 0 9px rgba(0, 212, 255, 1));
-    }
-}
-
-@keyframes corePulse {
-    0%, 100% {
-        transform: scale(1);
-        filter: drop-shadow(0 0 3px rgba(0, 212, 255, 0.7));
-    }
-    50% {
-        transform: scale(1.18);
-        filter: drop-shadow(0 0 11px rgba(0, 212, 255, 1));
-    }
-}
-
-/* 4. Center "CiTS" Banner & Individual Letters */
-.cits-banner {
-    transform-origin: 250px 250px;
-    opacity: 0;
-    transform: scaleX(0.4);
-}
-
-.animate-active .cits-banner {
-    animation: bannerExpand 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
-}
-
-@keyframes bannerExpand {
-    0% {
-        opacity: 0;
-        transform: scaleX(0.4);
-    }
-    100% {
-        opacity: 1;
-        transform: scaleX(1);
-    }
-}
-
-.letter-c, .letter-i, .letter-t, .letter-s {
-    opacity: 0;
-}
-
-.animate-active .letter-c {
-    animation: slideFromLeft 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.75s forwards;
-}
-
-.animate-active .letter-i {
-    animation: slideFromTop 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.88s forwards;
-}
-
-.animate-active .letter-t {
-    animation: slideFromBottom 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.98s forwards;
-}
-
-.animate-active .letter-s {
-    animation: slideFromRight 0.55s cubic-bezier(0.22, 1, 0.36, 1) 1.08s forwards;
-}
-
-@keyframes slideFromLeft {
-    0% { opacity: 0; transform: translateX(-22px); }
-    100% { opacity: 1; transform: translateX(0); }
-}
-@keyframes slideFromRight {
-    0% { opacity: 0; transform: translateX(22px); }
-    100% { opacity: 1; transform: translateX(0); }
-}
-@keyframes slideFromTop {
-    0% { opacity: 0; transform: translateY(-20px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-@keyframes slideFromBottom {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-/* 5. Sheen Sweep */
-.sheen-rect {
-    transform: translateX(-520px) skewX(-22deg);
-    opacity: 0;
-}
-
-.animate-active .sheen-rect {
-    animation: sheenSweep 1.2s ease-in-out 1.65s forwards;
-}
-
-@keyframes sheenSweep {
-    0% {
-        transform: translateX(-520px) skewX(-22deg);
-        opacity: 0.7;
-    }
-    100% {
-        transform: translateX(540px) skewX(-22deg);
-        opacity: 0;
-    }
-}
-
-/* 6. Gentle Floating Idle Motion */
-.animate-active .logo-float {
-    animation: floatIdle 3.8s ease-in-out 2s infinite;
-}
-
-@keyframes floatIdle {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-6px); }
-}
-
-/* Ring Serif Typography */
-.ring-text {
-    font-family: 'Cinzel', Georgia, 'Times New Roman', serif;
-    font-weight: 800;
-    fill: #ffffff;
-    letter-spacing: 2.2px;
-}
-
-/* Loading Bar Animation */
-.loading-bar-fill {
-    width: 0%;
-}
-
-.animate-active .loading-bar-fill {
-    animation: progressFill 2.9s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
-}
-
-@keyframes progressFill {
-    0% { width: 0%; }
-    35% { width: 45%; }
-    70% { width: 80%; }
-    100% { width: 100%; }
-}
-
-/* Subtitle fade-up */
-.splash-meta {
-    opacity: 0;
-    transform: translateY(14px);
-}
-
-.animate-active .splash-meta {
-    animation: metaFadeUp 0.7s ease-out 1.15s forwards;
-}
-
-@keyframes metaFadeUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
     }
 }

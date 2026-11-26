@@ -24,6 +24,7 @@ web_download/
 │
 ├── apps/                           # Student project showcases
 │   ├── agriguard/                  # AgriGuard download & thesis showcase
+│   ├── aim-high-with-sti/          # Aim High with STI academic arcade web game
 │   ├── balde-against-el-nino/      # Civic-education web game
 │   └── cyberheist/                 # Cybersecurity arcade showcase & live-app captures
 │       ├── index.html              # Cyberheist project showcase
@@ -43,6 +44,7 @@ web_download/
 | Application | Category | Status | Version | Tech Stack |
 | :--- | :--- | :--- | :--- | :--- |
 | **AgriGuard** | Agriculture & AI | **Available** | `v1.0.0` | Kotlin, OpenCV, YOLO, Flask, Raspberry Pi 4 |
+| **Aim High with STI** | Web Game & Civic Tech | **Available** | `v1.2.0 (Laoag Edition)` | HTML5 Canvas, Tailwind, Vanilla JS, Web Audio API |
 | **BALDE AGAINST EL NIÑO** | Web Game & Civic Tech | **Available** | `v1.0.0` | HTML5 Canvas, Tailwind, Vanilla JS, Web Audio API |
 | **CYBERHEIST** | Cybersecurity & Education | **Available** | `Live Web Edition` | React, TypeScript, Vite, Tailwind CSS, Supabase |
 

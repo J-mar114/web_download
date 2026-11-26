@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="CITS Tech Expo 2026 - Official exhibition portal for student-engineered web applications, mobile platforms, and IoT systems at STI College Laoag.">
-    <meta name="theme-color" content="#4f46e5">
-    <title>CITS Tech Expo 2026 | Student Web & Mobile Showcase • STI College Laoag</title>
+    <meta name="description" content="CITS Tech Expo 2026 - Official exhibition directory for student-engineered web applications, mobile platforms, and IoT systems at STI College Laoag.">
+    <meta name="theme-color" content="#0047ab">
+    <title>CITS Tech Expo 2026 | Student Project Directory • STI College Laoag</title>
     
     <!-- Store Favicon -->
     <link rel="icon" type="image/jpeg" href="store-assets/store-logo.jpg">
@@ -14,22 +14,31 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        indigo: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            200: '#c7d2fe',
-                            300: '#a5b4fc',
-                            400: '#818cf8',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                            800: '#3730a3',
-                            900: '#312e81',
-                            950: '#1e1b4b',
+                        stiBlue: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#1d4ed8',
+                            700: '#0047ab',
+                            800: '#00388a',
+                            900: '#002a6b',
+                            950: '#001a44',
+                        },
+                        stiGold: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            300: '#fcd34d',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
                         }
                     }
                 }
@@ -40,276 +49,67 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Custom Store CSS -->
+    <!-- Custom Clean Store CSS -->
     <link rel="stylesheet" href="store-assets/store.css">
 </head>
-<body class="bg-slate-50 dark:bg-[#0b0f19] text-slate-800 dark:text-slate-100 antialiased selection:bg-indigo-600 selection:text-white min-h-screen flex flex-col transition-colors duration-200">
-
-    <!-- ============================================================
-         START: ANIMATED CITS SPLASH SCREEN OVERLAY
-    ============================================================ -->
-    <div id="cits-splash" class="animate-active" role="status" aria-label="Loading CSIT App Store">
-        <!-- Subtle tech grid & expanding radar rings -->
-        <div class="tech-grid"></div>
-        <div class="radar-ring radar-ring-1"></div>
-        <div class="radar-ring radar-ring-2"></div>
-
-        <!-- Animated Logo Container -->
-        <div class="logo-stage logo-float z-10">
-            <svg id="cits-logo-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <!-- Metallic Silver Gradient -->
-                    <linearGradient id="silverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#e5ecf1" />
-                        <stop offset="50%" stop-color="#c4cfd8" />
-                        <stop offset="100%" stop-color="#96a5b2" />
-                    </linearGradient>
-
-                    <!-- Bright Cyan Tech Gradient -->
-                    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#38ecff" />
-                        <stop offset="55%" stop-color="#00c8ff" />
-                        <stop offset="100%" stop-color="#0095d9" />
-                    </linearGradient>
-
-                    <!-- Deep Navy Shield Gradient -->
-                    <linearGradient id="navyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#0c324f" />
-                        <stop offset="100%" stop-color="#061d2f" />
-                    </linearGradient>
-
-                    <!-- Sheen Sweep Gradient -->
-                    <linearGradient id="sheenGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="rgba(255,255,255,0)" />
-                        <stop offset="50%" stop-color="rgba(255,255,255,0.45)" />
-                        <stop offset="100%" stop-color="rgba(255,255,255,0)" />
-                    </linearGradient>
-
-                    <!-- Clip Path for Sheen inside Logo Circle -->
-                    <clipPath id="logoClip">
-                        <circle cx="250" cy="250" r="240" />
-                    </clipPath>
-
-                    <!-- Circular Text Paths -->
-                    <path id="topTextArc" d="M 250,454 A 204,204 0 1,1 250,46 A 204,204 0 1,1 250,454" />
-                    <path id="bottomTextArc" d="M 250,24 A 226,226 0 1,0 250,476 A 226,226 0 1,0 250,24" />
-                </defs>
-
-                <!-- LAYER 1: OUTER CIRCULAR RING & TEXT -->
-                <g class="ring-group">
-                    <circle cx="250" cy="250" r="242" fill="#082438" stroke="#020d15" stroke-width="5" />
-                    <circle cx="250" cy="250" r="184" fill="#ffffff" stroke="#020d15" stroke-width="4" />
-
-                    <!-- Curved Top Organization Text -->
-                    <text class="ring-text" font-size="25.5">
-                        <textPath href="#topTextArc" startOffset="50%" text-anchor="middle">
-                            COMPUTING &amp; INFORMATION TECHNOLOGY SOCIETY
-                        </textPath>
-                    </text>
-
-                    <!-- Curved Bottom Campus Text -->
-                    <text class="ring-text" font-size="27">
-                        <textPath href="#bottomTextArc" startOffset="50%" text-anchor="middle">
-                            STI LAOAG
-                        </textPath>
-                    </text>
-
-                    <!-- Metallic Separator Dots -->
-                    <circle cx="132" cy="428" r="7.5" fill="url(#silverGrad)" />
-                    <circle cx="368" cy="428" r="7.5" fill="url(#silverGrad)" />
-                </g>
-
-                <!-- LAYER 2: HEXAGONAL SHIELD -->
-                <g class="shield-group">
-                    <path
-                        d="M 250 78 L 384 156 L 384 294 Q 376 368 250 422 Q 124 368 116 294 L 116 156 Z"
-                        fill="url(#silverGrad)"
-                        stroke="#8a9aa6"
-                        stroke-width="2"
-                    />
-                    <path
-                        d="M 250 86 L 376 160 L 376 292 Q 368 361 250 413 Q 132 361 124 292 L 124 160 Z"
-                        fill="#072135"
-                    />
-                    <path
-                        class="shield-stroke-draw"
-                        d="M 250 96 L 366 164 L 366 290 Q 358 353 250 403 Q 142 353 134 290 L 134 164 Z"
-                        fill="url(#navyGrad)"
-                        stroke="url(#silverGrad)"
-                        stroke-width="5"
-                    />
-                </g>
-
-                <!-- LAYER 3: CIRCUIT BOARD TRACES -->
-                <g class="circuits-group" stroke-linecap="round" stroke-linejoin="round" fill="none">
-                    <path class="circuit-line cyan-glow-pulse" d="M 250 158 L 250 184" stroke="url(#cyanGrad)" stroke-width="5.5" />
-                    <path class="circuit-line cyan-glow-pulse" d="M 237 151 L 196 178" stroke="url(#cyanGrad)" stroke-width="5" />
-                    <path class="circuit-line cyan-glow-pulse" d="M 263 151 L 304 178" stroke="url(#cyanGrad)" stroke-width="5" />
-                    <circle class="circuit-node core-node-pulse" cx="250" cy="143" r="13.5" fill="#09273d" stroke="url(#cyanGrad)" stroke-width="6.5" />
-
-                    <path class="circuit-line" d="M 142 198 L 142 175 L 174 156 L 188 164" stroke="url(#cyanGrad)" stroke-width="4" />
-                    <path class="circuit-line" d="M 145 174 L 160 185" stroke="url(#cyanGrad)" stroke-width="4" />
-                    <circle class="circuit-node" cx="192" cy="166" r="5" fill="#09273d" stroke="url(#silverGrad)" stroke-width="3.2" />
-
-                    <path class="circuit-line" d="M 358 198 L 358 175 L 326 156 L 312 164" stroke="url(#cyanGrad)" stroke-width="4" />
-                    <path class="circuit-line" d="M 355 174 L 340 185" stroke="url(#cyanGrad)" stroke-width="4" />
-                    <circle class="circuit-node" cx="308" cy="166" r="5" fill="#09273d" stroke="url(#silverGrad)" stroke-width="3.2" />
-
-                    <path class="circuit-line cyan-glow-pulse" d="M 146 318 L 194 356 L 214 377 L 250 395" stroke="url(#cyanGrad)" stroke-width="4.2" />
-                    <path class="circuit-line cyan-glow-pulse" d="M 354 318 L 306 356 L 286 377 L 250 395" stroke="url(#cyanGrad)" stroke-width="4.2" />
-
-                    <path class="circuit-line" d="M 226 364 L 204 342 L 186 324" stroke="url(#silverGrad)" stroke-width="3.2" />
-                    <circle class="circuit-node" cx="182" cy="320" r="4.5" fill="#09273d" stroke="url(#silverGrad)" stroke-width="2.8" />
-                    <path class="circuit-line" d="M 210 348 L 192 340 L 178 334" stroke="url(#silverGrad)" stroke-width="3" />
-                    <circle class="circuit-node" cx="173" cy="332" r="4.5" fill="#09273d" stroke="url(#silverGrad)" stroke-width="2.8" />
-
-                    <path class="circuit-line" d="M 274 364 L 296 342 L 314 324" stroke="url(#silverGrad)" stroke-width="3.2" />
-                    <circle class="circuit-node" cx="318" cy="320" r="4.5" fill="#09273d" stroke="url(#silverGrad)" stroke-width="2.8" />
-                    <path class="circuit-line" d="M 290 348 L 308 340 L 322 334" stroke="url(#silverGrad)" stroke-width="3" />
-                    <circle class="circuit-node" cx="327" cy="332" r="4.5" fill="#09273d" stroke="url(#silverGrad)" stroke-width="2.8" />
-
-                    <path class="circuit-line cyan-glow-pulse" d="M 250 218 L 250 364" stroke="url(#cyanGrad)" stroke-width="5" />
-                    <circle class="circuit-node core-node-pulse" cx="250" cy="372" r="7.5" fill="#09273d" stroke="url(#cyanGrad)" stroke-width="4.5" />
-                </g>
-
-                <!-- LAYER 4: CENTER "CiTS" EMBLEM BANNER & LETTERS -->
-                <g class="cits-banner">
-                    <path
-                        d="M 104 216 L 160 183 L 340 183 L 396 216 L 396 286 L 340 318 L 160 318 L 104 286 Z"
-                        fill="#072135"
-                        stroke="url(#cyanGrad)"
-                        stroke-width="4.5"
-                        stroke-linejoin="round"
-                    />
-                </g>
-
-                <!-- Letter "C" (Silver) -->
-                <g class="letter-c">
-                    <path
-                        d="M 202 192 L 162 192 L 116 220 L 116 282 L 162 308 L 204 308 L 204 284 L 168 284 L 142 269 L 142 233 L 168 216 L 202 216 Z"
-                        fill="url(#silverGrad)"
-                    />
-                </g>
-
-                <!-- Letter "i" (Silver) -->
-                <g class="letter-i">
-                    <polygon points="214,204 238,192 238,212 214,224" fill="url(#silverGrad)" />
-                    <polygon points="214,234 238,222 238,308 214,296" fill="url(#silverGrad)" />
-                </g>
-
-                <!-- Glowing Center Node between i and T -->
-                <g>
-                    <path class="circuit-line cyan-glow-pulse" d="M 250 220 L 250 322" stroke="url(#cyanGrad)" stroke-width="4.5" stroke-linecap="round" />
-                    <circle class="circuit-node core-node-pulse" cx="250" cy="256" r="7" fill="#38ecff" />
-                </g>
-
-                <!-- Letter "T" (Silver) -->
-                <g class="letter-t">
-                    <polygon points="262,192 322,192 308,214 286,214 286,296 262,308" fill="url(#silverGrad)" />
-                </g>
-
-                <!-- Letter "S" (Bright Cyan) -->
-                <g class="letter-s">
-                    <path
-                        d="M 332 194 L 382 222 L 366 239 L 336 221 L 326 228 L 326 238 L 384 265 L 384 284 L 344 308 L 298 308 L 298 286 L 336 286 L 354 275 L 354 269 L 302 246 L 302 214 Z"
-                        fill="url(#cyanGrad)"
-                    />
-                </g>
-
-                <!-- LAYER 5: METALLIC SHEEN SWEEP -->
-                <g clip-path="url(#logoClip)" pointer-events="none">
-                    <rect class="sheen-rect" x="0" y="0" width="160" height="500" fill="url(#sheenGrad)" />
-                </g>
-            </svg>
-        </div>
-
-        <!-- Splash Subtitle & Loading Progress Bar -->
-        <div class="splash-meta z-10 mt-6 flex flex-col items-center w-64 sm:w-72 px-4">
-            <p id="splash-title" class="text-xs sm:text-sm font-bold tracking-[0.22em] uppercase text-cyan-300 text-center font-mono">
-                CSIT APP STORE • STI LAOAG
-            </p>
-            <div class="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden mt-3 border border-cyan-500/20 shadow-inner">
-                <div class="loading-bar-fill h-full bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-500 rounded-full shadow-[0_0_12px_rgba(0,212,255,0.8)]"></div>
-            </div>
-            <p id="splash-status" class="text-[11px] text-slate-400 mt-2 tracking-wide font-medium">
-                Initializing CSIT Repository...
-            </p>
-            <span class="text-[9px] text-slate-500 dark:text-slate-400/60 mt-3 tracking-widest uppercase">Tap anywhere to skip</span>
-        </div>
-    </div>
-    <!-- ============================================================
-         END: ANIMATED CITS SPLASH SCREEN OVERLAY
-    ============================================================ -->
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-[#0047AB] selection:text-white min-h-screen flex flex-col">
 
     <!-- Header / Navbar -->
-    <header class="sticky top-0 z-40 glass-nav border-b border-slate-200/80 dark:border-slate-800/80 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3 sm:gap-4">
+    <header class="sticky top-0 z-40 clean-nav transition-all duration-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3 sm:gap-6">
             
-            <!-- Brand Logo & Title -->
-            <a href="index.html" class="flex items-center gap-2.5 sm:gap-3 group flex-shrink-0">
-                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden shadow-md shadow-indigo-600/15 border border-slate-200/80 dark:border-slate-700/80 group-hover:scale-105 transition-transform flex-shrink-0">
+            <!-- Brand Logo & Institutional Title -->
+            <a href="index.html" class="flex items-center gap-3 group flex-shrink-0">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden border border-slate-200 group-hover:border-blue-400 transition-colors flex-shrink-0 bg-white">
                     <img src="store-assets/store-logo.jpg" alt="CITS Expo Logo" class="w-full h-full object-cover">
                 </div>
                 <div>
-                    <div class="flex items-center gap-1.5 sm:gap-2">
-                        <span class="text-base sm:text-lg font-black tracking-tight text-slate-900 dark:text-white leading-none">CSIT Project Hub</span>
-                        <span class="hidden sm:inline-block px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-indigo-50 text-indigo-700 dark:bg-indigo-950/70 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-800/60">CITS Expo</span>
+                    <div class="flex items-center gap-2">
+                        <span class="text-base sm:text-lg font-black tracking-tight text-slate-900 leading-none">CSIT Project Hub</span>
+                        <span class="hidden sm:inline-block px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-blue-50 text-[#0047AB] border border-blue-200">CITS 2026</span>
                     </div>
-                    <span class="text-[10px] font-semibold text-slate-500 dark:text-slate-400 tracking-wide hidden sm:block mt-0.5">CITS Week 2026 • STI College Laoag</span>
+                    <span class="text-[11px] font-medium text-slate-500 tracking-wide hidden sm:block mt-0.5">STI College Laoag • Computing &amp; IT Society</span>
                 </div>
             </a>
 
-            <!-- Search in Header (Desktop: >= 768px) -->
+            <!-- Search in Header (Desktop) -->
             <div class="hidden md:flex flex-1 max-w-md mx-2 lg:mx-6">
                 <div class="relative w-full">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-                    <input type="text" id="searchInput" placeholder="Search web apps, mobile systems, IoT projects..." 
-                           class="w-full bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 pl-9 pr-16 py-2 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition placeholder:text-slate-400">
+                    <input type="text" id="searchInput" placeholder="Search web apps, mobile systems, tech stack..." 
+                           class="w-full bg-slate-50 border border-slate-200 text-slate-800 pl-9 pr-16 py-2 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#0047AB] focus:bg-white focus:border-transparent transition placeholder:text-slate-400">
                     <div class="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-1">
-                        <button id="clearSearchBtn" aria-label="Clear Search" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hidden text-xs p-1">
+                        <button id="clearSearchBtn" aria-label="Clear Search" class="text-slate-400 hover:text-slate-600 hidden text-xs p-1">
                             <i class="fa-solid fa-circle-xmark"></i>
                         </button>
-                        <kbd class="hidden lg:inline-block px-1.5 py-0.5 text-[9px] font-mono text-slate-400 bg-slate-200/80 dark:bg-slate-800 rounded border border-slate-300 dark:border-slate-700">/</kbd>
+                        <kbd class="hidden lg:inline-block px-1.5 py-0.5 text-[9px] font-mono text-slate-400 bg-slate-200/80 rounded border border-slate-300">/</kbd>
                     </div>
                 </div>
             </div>
 
             <!-- Nav Actions -->
-            <div class="flex items-center gap-2 sm:gap-3">
-                <nav class="hidden lg:flex items-center gap-5 text-xs font-semibold text-slate-600 dark:text-slate-300 mr-1">
-                    <a href="#apps" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Exhibits</a>
-                    <a href="#featured" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Featured</a>
-                    <a href="#about" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">About Expo</a>
+            <div class="flex items-center gap-3">
+                <nav class="hidden lg:flex items-center gap-6 text-xs font-semibold text-slate-600 mr-1">
+                    <a href="#apps" class="hover:text-[#0047AB] transition">All Exhibits</a>
+                    <a href="#tracks" class="hover:text-[#0047AB] transition">Tracks</a>
+                    <a href="#about" class="hover:text-[#0047AB] transition">About Expo</a>
                 </nav>
 
-                <!-- Theme Toggle Button -->
-                <button id="themeToggleBtn" aria-label="Toggle Dark/Light Mode" class="w-9 h-9 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center transition tap-effect">
-                    <i id="themeToggleIcon" class="fa-solid fa-moon text-slate-600 dark:text-slate-300 text-xs"></i>
+                <!-- Clean Exhibit Submission CTA -->
+                <button onclick="openSubmissionModal()" class="bg-[#0047AB] hover:bg-[#00388a] active:scale-95 text-white px-3 sm:px-4 py-2 rounded-xl text-xs font-bold shadow-sm flex items-center gap-1.5 transition tap-effect">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                    <span>Submit Project</span>
                 </button>
-
-                <!-- Direct Exhibit Links -->
-                <a href="apps/agriguard/index.html" class="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold shadow-md shadow-emerald-600/20 flex items-center gap-1.5 transition tap-effect">
-                    <i class="fa-solid fa-shield-halved text-xs"></i>
-                    <span class="hidden sm:inline">AgriGuard</span>
-                </a>
-                <a href="apps/balde-against-el-nino/index.html" class="bg-sky-600 hover:bg-sky-700 active:scale-95 text-white px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold shadow-md shadow-sky-600/20 flex items-center gap-1.5 transition tap-effect">
-                    <i class="fa-solid fa-droplet text-xs"></i>
-                    <span class="hidden sm:inline">Balde</span>
-                </a>
-                <a href="apps/cyberheist/index.html" class="bg-lime-500 hover:bg-lime-400 active:scale-95 text-slate-950 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs font-bold shadow-md shadow-lime-500/20 flex items-center gap-1.5 transition tap-effect">
-                    <i class="fa-solid fa-shield-halved text-xs"></i>
-                    <span class="hidden sm:inline">Cyberheist</span>
-                </a>
             </div>
         </div>
 
-        <!-- Mobile Search Bar (Screen < 768px) -->
-        <div class="md:hidden px-4 pb-3 pt-1 border-t border-slate-100 dark:border-slate-800/80 bg-white/50 dark:bg-slate-900/50">
+        <!-- Mobile Search Bar (< 768px) -->
+        <div class="md:hidden px-4 pb-3 pt-1 border-t border-slate-100 bg-white">
             <div class="relative w-full">
                 <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-                <input type="text" id="mobileSearchInput" placeholder="Search web apps, mobile systems, categories..." 
-                       class="w-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 pl-9 pr-8 py-2 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500 transition placeholder:text-slate-400">
-                <button id="clearMobileSearchBtn" aria-label="Clear Search" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hidden text-xs">
+                <input type="text" id="mobileSearchInput" placeholder="Search projects, authors, categories..." 
+                       class="w-full bg-slate-50 border border-slate-200 text-slate-800 pl-9 pr-8 py-2 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#0047AB] focus:bg-white transition placeholder:text-slate-400">
+                <button id="clearMobileSearchBtn" aria-label="Clear Search" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 hidden text-xs">
                     <i class="fa-solid fa-circle-xmark"></i>
                 </button>
             </div>
@@ -320,248 +120,220 @@
     <main class="flex-1">
         
         <!-- Hero Section -->
-        <section class="relative pt-6 sm:pt-12 pb-10 sm:pb-16 hero-ambient-glow tech-dot-pattern border-b border-slate-200/80 dark:border-slate-800/80 overflow-hidden">
+        <section class="relative pt-8 sm:pt-14 pb-12 sm:pb-16 hero-clean-bg border-b border-slate-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 
-                <!-- Breadcrumb Badge -->
-                <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-indigo-50/90 dark:bg-indigo-950/80 border border-indigo-200/70 dark:border-indigo-800/60 text-indigo-800 dark:text-indigo-300 text-[11px] sm:text-xs font-semibold mb-4 sm:mb-6 shadow-sm">
-                    <span class="w-2 h-2 rounded-full bg-indigo-600 animate-ping"></span>
-                    <i class="fa-solid fa-flask-vial text-indigo-600 dark:text-indigo-400"></i>
-                    <span>CITS Week 2026 • Student Web, Mobile &amp; IoT Project Expo</span>
-                </div>
-
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                     
                     <!-- Left Hero Copy -->
                     <div class="lg:col-span-7 space-y-4 sm:space-y-6">
-                        <h1 class="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.2]">
-                            Discover <span class="text-indigo-600 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-indigo-400 dark:via-indigo-300 dark:to-white">Student Innovations</span> &amp; Tech Systems
+                        <!-- Institutional Breadcrumb Badge -->
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-[#0047AB] text-xs font-semibold shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-[#0047AB]"></span>
+                            <span>CITS Week 2026 • STI College Laoag Student Expo</span>
+                        </div>
+
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
+                            Exhibiting Student Innovations &amp; <span class="text-[#0047AB]">Applied Tech Systems</span>
                         </h1>
-                        <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-base leading-relaxed max-w-2xl">
-                            Welcome to the official project showcase of CITS Week 2026 at STI College Laoag. Explore interactive web applications, mobile platforms, computer vision, and IoT prototypes engineered by BSCS and BSIT students.
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl">
+                            The central showcase of student-engineered web platforms, interactive civic games, computer vision prototypes, and capstone research developed by BSCS and BSIT students.
                         </p>
 
-                        <!-- Quick Category Tag Row -->
-                        <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 pt-1 text-xs">
-                            <span class="text-slate-400 text-[11px] font-medium mr-1 hidden xs:inline">Featured Tracks:</span>
-                            <button onclick="setCategoryFilter('Agriculture & AI')" class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 font-semibold hover:border-emerald-500 transition tap-effect flex items-center gap-1.5 text-xs">
-                                <i class="fa-solid fa-seedling text-emerald-500 text-[11px]"></i>
+                        <!-- Quick Track Filter Buttons -->
+                        <div class="flex flex-wrap items-center gap-2 pt-1 text-xs" id="tracks">
+                            <span class="text-slate-400 text-xs font-medium mr-1 hidden xs:inline">Tracks:</span>
+                            <button onclick="setCategoryFilter('Agriculture & AI')" class="px-3 py-1.5 rounded-xl bg-white text-slate-700 border border-slate-200 font-semibold hover:border-[#0047AB] hover:text-[#0047AB] transition tap-effect flex items-center gap-1.5 shadow-sm">
+                                <i class="fa-solid fa-seedling text-emerald-600 text-xs"></i>
                                 <span>Agriculture &amp; AI</span>
                             </button>
-                            <button onclick="setCategoryFilter('Web Game & Civic Tech')" class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 font-semibold hover:border-amber-500 transition tap-effect flex items-center gap-1.5 text-xs">
-                                <i class="fa-solid fa-gamepad text-amber-500 text-[11px]"></i>
+                            <button onclick="setCategoryFilter('Web Game & Civic Tech')" class="px-3 py-1.5 rounded-xl bg-white text-slate-700 border border-slate-200 font-semibold hover:border-[#0047AB] hover:text-[#0047AB] transition tap-effect flex items-center gap-1.5 shadow-sm">
+                                <i class="fa-solid fa-gamepad text-amber-600 text-xs"></i>
                                 <span>Web Game &amp; Civic Tech</span>
                             </button>
-                            <button onclick="setCategoryFilter('Cybersecurity & Education')" class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 font-semibold hover:border-lime-500 transition tap-effect flex items-center gap-1.5 text-xs">
-                                <i class="fa-solid fa-shield-halved text-lime-500 text-[11px]"></i>
+                            <button onclick="setCategoryFilter('Cybersecurity & Education')" class="px-3 py-1.5 rounded-xl bg-white text-slate-700 border border-slate-200 font-semibold hover:border-[#0047AB] hover:text-[#0047AB] transition tap-effect flex items-center gap-1.5 shadow-sm">
+                                <i class="fa-solid fa-shield-halved text-blue-600 text-xs"></i>
                                 <span>Cybersecurity &amp; Education</span>
-                            </button>
-                            <button onclick="setCategoryFilter('all')" class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-800/60 font-semibold hover:bg-indigo-100 transition tap-effect flex items-center gap-1.5 text-xs">
-                                <i class="fa-solid fa-shapes text-indigo-500 text-[11px]"></i>
-                                <span>View All (3)</span>
                             </button>
                         </div>
 
-                        <!-- Hero Stats Bar (Authentic CITS Expo Metrics) -->
-                        <div class="pt-4 sm:pt-5 border-t border-slate-200/80 dark:border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4">
-                            <div class="bg-white/80 dark:bg-slate-900/90 backdrop-blur p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-200/70 dark:border-slate-800 shadow-sm">
-                                <div class="text-xl sm:text-3xl font-black text-slate-900 dark:text-white" id="statTotalApps">3</div>
-                                <div class="text-[10px] sm:text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-0.5">Featured Projects</div>
+                        <!-- Authentic Metrics Bar -->
+                        <div class="pt-4 sm:pt-6 border-t border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                            <div class="bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200 shadow-sm">
+                                <div class="text-2xl sm:text-3xl font-black text-slate-900" id="statTotalApps">4</div>
+                                <div class="text-xs font-medium text-slate-500 mt-0.5">Exhibited Projects</div>
                             </div>
-                            <div class="bg-white/80 dark:bg-slate-900/90 backdrop-blur p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-200/70 dark:border-slate-800 shadow-sm">
-                                <div class="text-xl sm:text-3xl font-black text-slate-900 dark:text-white" id="statTotalCats">3</div>
-                                <div class="text-[10px] sm:text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-0.5">Research Tracks</div>
+                            <div class="bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200 shadow-sm">
+                                <div class="text-2xl sm:text-3xl font-black text-slate-900" id="statTotalCats">3</div>
+                                <div class="text-xs font-medium text-slate-500 mt-0.5">Research Tracks</div>
                             </div>
-                            <div class="bg-white/80 dark:bg-slate-900/90 backdrop-blur p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-200/70 dark:border-slate-800 shadow-sm">
-                                <div class="text-xl sm:text-3xl font-black text-slate-900 dark:text-white">100%</div>
-                                <div class="text-[10px] sm:text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-0.5">Student Engineered</div>
+                            <div class="bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200 shadow-sm">
+                                <div class="text-2xl sm:text-3xl font-black text-slate-900">100%</div>
+                                <div class="text-xs font-medium text-slate-500 mt-0.5">Student Engineered</div>
                             </div>
-                            <div class="bg-white/80 dark:bg-slate-900/90 backdrop-blur p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-200/70 dark:border-slate-800 shadow-sm">
-                                <div class="text-xl sm:text-3xl font-black text-indigo-600 dark:text-indigo-400">2026</div>
-                                <div class="text-[10px] sm:text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-0.5">CITS Week Edition</div>
+                            <div class="bg-white p-3.5 sm:p-4 rounded-xl border border-slate-200 shadow-sm">
+                                <div class="text-2xl sm:text-3xl font-black text-[#0047AB]">2026</div>
+                                <div class="text-xs font-medium text-slate-500 mt-0.5">CITS Week Edition</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Right Hero Spotlight: Featured Live Project Cards -->
-                    <div class="lg:col-span-5 space-y-4" id="featured">
-                        
-                        <!-- Project 1: AgriGuard -->
-                        <div class="bg-gradient-to-br from-slate-900 to-slate-950 p-4 sm:p-5 rounded-2xl border border-emerald-500/30 shadow-xl text-white relative overflow-hidden group hover:border-emerald-500/60 transition">
-                            <div class="flex items-center justify-between gap-2 mb-3">
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 badge-shimmer">
-                                    <i class="fa-solid fa-circle-check text-emerald-400"></i>
-                                    <span>Live Working System</span>
-                                </span>
-                                <span class="text-[10px] font-mono text-slate-400">Agriculture &amp; AI</span>
+                    <!-- Right Hero: Authentic Expo Information & Spotlight Panel (Eliminates Duplicate Cards) -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden">
+                            <div class="flex items-center gap-3 pb-5 border-b border-slate-100">
+                                <div class="w-12 h-12 rounded-xl overflow-hidden border border-slate-200 bg-slate-50 p-1 flex-shrink-0">
+                                    <img src="store-assets/store-logo.jpg" alt="CITS Seal" class="w-full h-full object-contain">
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-extrabold text-slate-900 leading-tight">Computing &amp; IT Society</h3>
+                                    <p class="text-xs text-slate-500">STI College Laoag • Capstone &amp; Expo Archive</p>
+                                </div>
                             </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-14 h-14 sm:w-16 sm:h-16 app-squircle overflow-hidden border border-emerald-500/30 flex-shrink-0">
-                                    <img src="apps/agriguard/app_logo2.jpeg" alt="AgriGuard App Icon" class="w-full h-full object-cover">
+
+                            <div class="py-5 space-y-3.5">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-7 h-7 rounded-lg bg-blue-50 text-[#0047AB] flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold">
+                                        <i class="fa-solid fa-code"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-slate-800">Direct Web Game &amp; App Access</h4>
+                                        <p class="text-xs text-slate-500 mt-0.5">Launch student web applications and playable games directly in your browser.</p>
+                                    </div>
                                 </div>
-                                <div class="min-w-0 flex-1">
-                                    <h3 class="text-base font-black text-white truncate">AgriGuard</h3>
-                                    <p class="text-[11px] text-emerald-400 font-semibold truncate">Smart Crop Protection &amp; Bird Deterrent</p>
-                                    <p class="text-[10px] text-slate-400 truncate mt-0.5">Raspberry Pi • OpenCV • Mobile APK</p>
+
+                                <div class="flex items-start gap-3">
+                                    <div class="w-7 h-7 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold">
+                                        <i class="fa-solid fa-file-lines"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-slate-800">Technical Abstracts &amp; Architecture</h4>
+                                        <p class="text-xs text-slate-500 mt-0.5">Review undergraduate capstone documentation, hardware diagrams, and repositories.</p>
+                                    </div>
                                 </div>
-                                <a href="apps/agriguard/index.html" class="flex-shrink-0 bg-emerald-600 hover:bg-emerald-500 text-white p-2.5 rounded-xl text-xs transition tap-effect" title="Explore AgriGuard">
-                                    <i class="fa-solid fa-arrow-right"></i>
+
+                                <div class="flex items-start gap-3">
+                                    <div class="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold">
+                                        <i class="fa-solid fa-mobile-screen"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-slate-800">APK Packages &amp; Sideloading</h4>
+                                        <p class="text-xs text-slate-500 mt-0.5">Download release builds directly for mobile IoT testing on Android devices.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                                <a href="#apps" class="w-full bg-[#0047AB] hover:bg-[#00388a] active:scale-95 text-white py-2.5 px-4 rounded-xl text-xs font-bold text-center shadow-sm transition flex items-center justify-center gap-2 tap-effect">
+                                    <span>Browse All 4 Exhibited Projects</span>
+                                    <i class="fa-solid fa-arrow-down text-xs"></i>
                                 </a>
                             </div>
                         </div>
-
-                        <!-- Project 2: Balde Against El Niño -->
-                        <div class="bg-gradient-to-br from-slate-900 to-slate-950 p-4 sm:p-5 rounded-2xl border border-amber-500/30 shadow-xl text-white relative overflow-hidden group hover:border-amber-500/60 transition">
-                            <div class="flex items-center justify-between gap-2 mb-3">
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 badge-shimmer">
-                                    <i class="fa-solid fa-gamepad text-amber-400"></i>
-                                    <span>Playable Web Game</span>
-                                </span>
-                                <span class="text-[10px] font-mono text-slate-400">Web Game &amp; Civic Tech</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-14 h-14 sm:w-16 sm:h-16 app-squircle overflow-hidden border border-amber-500/30 flex-shrink-0 bg-white flex items-center justify-center p-1">
-                                    <img src="apps/balde-against-el-nino/balde-logo.svg" alt="Balde Against El Niño app logo" class="w-full h-full object-contain">
-                                </div>
-                                <div class="min-w-0 flex-1">
-                                    <h3 class="text-base font-black text-white truncate">BALDE AGAINST EL NIÑO</h3>
-                                    <p class="text-[11px] text-amber-400 font-semibold truncate">One Bucket, One Family — Satirical Survival Game</p>
-                                    <p class="text-[10px] text-slate-400 truncate mt-0.5">5 Comic Stages • 43°C Heat Index • Jaymar Budduan</p>
-                                </div>
-                                <a href="apps/balde-against-el-nino/index.html" class="flex-shrink-0 bg-amber-500 hover:bg-amber-400 text-slate-900 p-2.5 rounded-xl text-xs transition tap-effect font-bold" title="Explore Balde Game Showcase">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Project 3: Cyberheist -->
-                        <div class="bg-gradient-to-br from-slate-900 to-slate-950 p-4 sm:p-5 rounded-2xl border border-lime-500/30 shadow-xl text-white relative overflow-hidden group hover:border-lime-500/60 transition">
-                            <div class="flex items-center justify-between gap-2 mb-3">
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-lime-500/20 text-lime-300 border border-lime-500/40 badge-shimmer">
-                                    <i class="fa-solid fa-shield-halved text-lime-300"></i>
-                                    <span>Live Cybersecurity Arcade</span>
-                                </span>
-                                <span class="text-[10px] font-mono text-slate-400">Cybersecurity &amp; Education</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-14 h-14 sm:w-16 sm:h-16 app-squircle overflow-hidden border border-lime-500/30 flex-shrink-0 bg-slate-950 flex items-center justify-center p-1">
-                                    <img src="apps/cyberheist/cyberheist-logo.svg" alt="Cyberheist logo" class="w-full h-full object-contain">
-                                </div>
-                                <div class="min-w-0 flex-1">
-                                    <h3 class="text-base font-black text-white truncate">CYBERHEIST</h3>
-                                    <p class="text-[11px] text-lime-300 font-semibold truncate">Cybersecurity Arcade &amp; Safe Simulation</p>
-                                    <p class="text-[10px] text-slate-400 truncate mt-0.5">5 Challenges • Isolated Training • Web App</p>
-                                </div>
-                                <a href="apps/cyberheist/index.html" class="flex-shrink-0 bg-lime-400 hover:bg-lime-300 text-slate-950 p-2.5 rounded-xl text-xs transition tap-effect font-bold" title="Explore Cyberheist Showcase">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-
                     </div>
 
                 </div>
             </div>
         </section>
 
-        <!-- Category Filter Section (Sticky) -->
-        <section class="py-3.5 bg-white/95 dark:bg-[#0b0f19]/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 sticky top-16 z-30 shadow-sm">
+        <!-- Category Filter Section (Sticky Bar) -->
+        <section class="py-3 bg-white/95 backdrop-blur-md border-b border-slate-200 sticky top-16 z-30 shadow-sm">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1" id="categoryFilters">
-                    <!-- Injected by store.js -->
+                    <!-- Populated by store.js -->
                 </div>
             </div>
         </section>
 
         <!-- Main App Catalog Grid Section -->
-        <section id="apps" class="py-12 sm:py-16 bg-slate-50 dark:bg-[#0b0f19]">
+        <section id="apps" class="py-12 sm:py-16 bg-slate-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <!-- Section Header -->
                 <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8">
                     <div>
-                        <div class="inline-flex items-center gap-2 text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-1">
-                            <i class="fa-solid fa-cubes"></i>
-                            <span>Project Exhibition Directory</span>
+                        <div class="inline-flex items-center gap-2 text-xs font-bold text-[#0047AB] uppercase tracking-wider mb-1">
+                            <i class="fa-solid fa-folder-open"></i>
+                            <span>Exhibition Directory</span>
                         </div>
-                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
                             Exhibited Student Innovations
                         </h2>
                     </div>
-                    <div class="text-xs font-semibold text-slate-500 dark:text-slate-400" id="resultCount">
+                    <div class="text-xs font-semibold text-slate-500" id="resultCount">
                         Loading exhibited projects...
                     </div>
                 </div>
 
                 <!-- App Cards Responsive Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6" id="appGrid">
-                    <!-- Injected by store.js -->
+                    <!-- Populated by store.js -->
                 </div>
             </div>
         </section>
 
         <!-- About CITS Week Tech Expo Section -->
-        <section id="about" class="py-16 bg-white dark:bg-slate-900/60 border-t border-slate-200/80 dark:border-slate-800/80">
+        <section id="about" class="py-16 bg-white border-t border-slate-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-3xl mx-auto text-center mb-12">
-                    <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 uppercase tracking-widest border border-indigo-200/50 dark:border-indigo-800/50">
+                    <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-[#0047AB] uppercase tracking-widest border border-blue-200">
                         CITS Week 2026 Tech Expo
                     </span>
-                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight mt-3">
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-3">
                         Celebrating Computing &amp; IT Innovation at STI College Laoag
                     </h2>
-                    <p class="text-slate-600 dark:text-slate-300 text-sm mt-3 leading-relaxed">
-                        The CITS Project Showcase is an interactive college exhibition portal designed to highlight student-engineered software systems, web platforms, and hardware prototypes across computer science and information technology disciplines.
+                    <p class="text-slate-600 text-sm mt-3 leading-relaxed">
+                        The CSIT Project Hub is an institutional academic exhibition portal dedicated to cataloging software applications, web games, and hardware systems engineered by students across IT disciplines.
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                    <div class="p-6 rounded-3xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 space-y-3 shadow-sm">
-                        <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl">
+                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-[#0047AB] flex items-center justify-center text-xl">
                             <i class="fa-solid fa-laptop-code"></i>
                         </div>
-                        <h3 class="text-base font-bold text-slate-900 dark:text-white">Web &amp; Mobile Portals</h3>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                            Featuring responsive web applications, cloud dashboards, and sideloadable Android packages developed for community and organizational use.
+                        <h3 class="text-base font-bold text-slate-900">Web &amp; Mobile Portals</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Responsive web applications, cloud utilities, and sideloadable Android APK packages engineered for community, institutional, and civic utility.
                         </p>
                     </div>
 
-                    <div class="p-6 rounded-3xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 space-y-3 shadow-sm">
-                        <div class="w-12 h-12 rounded-2xl bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl">
+                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl">
                             <i class="fa-solid fa-microchip"></i>
                         </div>
-                        <h3 class="text-base font-bold text-slate-900 dark:text-white">Applied AI &amp; Hardware IoT</h3>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                            Practical integration with Raspberry Pi, ESP32 microcontrollers, OpenCV computer vision, ultrasonic arrays, and real-time sensor streams.
+                        <h3 class="text-base font-bold text-slate-900">Applied AI &amp; Hardware IoT</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Practical hardware integration utilizing Raspberry Pi, ESP32 microcontrollers, OpenCV computer vision, and real-time sensor streams.
                         </p>
                     </div>
 
-                    <div class="p-6 rounded-3xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 space-y-3 shadow-sm">
-                        <div class="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl">
+                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl">
                             <i class="fa-solid fa-graduation-cap"></i>
                         </div>
-                        <h3 class="text-base font-bold text-slate-900 dark:text-white">Thesis &amp; Capstone Defense</h3>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                            Showcases research rigor and oral defense prototypes presented for panel evaluation and peer learning during the college fair.
+                        <h3 class="text-base font-bold text-slate-900">Thesis &amp; Capstone Defense</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Peer learning and academic archive reflecting rigor, research methodologies, and oral defense prototypes presented for panel evaluation.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Graduating Student Callout Banner -->
-        <section class="py-12 bg-gradient-to-r from-indigo-700 via-indigo-800 to-purple-800 text-white">
+        <!-- Exhibit Submission Banner -->
+        <section class="py-12 bg-[#0047AB] text-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
                 <div class="space-y-1 text-center md:text-left">
                     <h3 class="text-xl sm:text-2xl font-black">Exhibiting a project for CITS Week 2026?</h3>
-                    <p class="text-xs sm:text-sm text-indigo-200">
+                    <p class="text-xs sm:text-sm text-blue-100">
                         Feature your team's web application, mobile prototype, or hardware project in the official CITS exhibition directory.
                     </p>
                 </div>
                 <div class="flex-shrink-0">
-                    <button onclick="alert('To exhibit your project, add a folder under apps/ and configure your project entry in store-assets/store.js!')" class="bg-white hover:bg-slate-100 text-indigo-900 font-bold px-5 py-3 rounded-2xl text-xs sm:text-sm shadow-xl transition active:scale-95 flex items-center gap-2 tap-effect">
-                        <i class="fa-solid fa-folder-plus text-indigo-600"></i>
-                        <span>Exhibit Submission Info</span>
+                    <button onclick="openSubmissionModal()" class="bg-white hover:bg-slate-100 text-[#0047AB] font-bold px-5 py-3 rounded-xl text-xs sm:text-sm shadow-md transition active:scale-95 flex items-center gap-2 tap-effect">
+                        <i class="fa-solid fa-folder-plus text-[#0047AB]"></i>
+                        <span>Exhibit Submission Guidelines</span>
                     </button>
                 </div>
             </div>
@@ -569,11 +341,11 @@
 
     </main>
 
-    <!-- Quick View / App Details Modal (Mobile Bottom-Sheet on small screens, Centered on desktop) -->
-    <div id="quickViewModal" class="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4 bg-slate-950/70 backdrop-blur-sm hidden transition-opacity modal-bottom-sheet">
-        <div class="bg-white dark:bg-slate-900 rounded-t-3xl sm:rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 relative max-h-[85vh] sm:max-h-[90vh] overflow-y-auto">
+    <!-- Quick View / App Details Modal -->
+    <div id="quickViewModal" class="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4 bg-slate-950/60 backdrop-blur-sm hidden transition-opacity modal-bottom-sheet">
+        <div class="bg-white rounded-t-3xl sm:rounded-2xl max-w-lg w-full p-6 shadow-xl border border-slate-200 relative max-h-[85vh] sm:max-h-[90vh] overflow-y-auto">
             <!-- Close Button -->
-            <button onclick="closeQuickView()" aria-label="Close dialog" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 transition tap-effect">
+            <button onclick="closeQuickView()" aria-label="Close dialog" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition tap-effect">
                 <i class="fa-solid fa-xmark text-sm"></i>
             </button>
             <div id="quickViewContent" class="space-y-4">
@@ -582,14 +354,69 @@
         </div>
     </div>
 
+    <!-- Student Project Submission Guidelines Modal (Replaces cheap alert) -->
+    <div id="submissionModal" class="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4 bg-slate-950/60 backdrop-blur-sm hidden transition-opacity modal-bottom-sheet">
+        <div class="bg-white rounded-t-3xl sm:rounded-2xl max-w-lg w-full p-6 sm:p-7 shadow-xl border border-slate-200 relative max-h-[85vh] sm:max-h-[90vh] overflow-y-auto">
+            <!-- Close Button -->
+            <button onclick="closeSubmissionModal()" aria-label="Close dialog" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition tap-effect">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+            
+            <div class="space-y-4">
+                <div class="flex items-center gap-3 pb-3 border-b border-slate-100">
+                    <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#0047AB] flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-folder-plus"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-slate-900">Project Exhibition Guidelines</h3>
+                        <p class="text-xs text-slate-500">CITS Week 2026 • STI College Laoag</p>
+                    </div>
+                </div>
+
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    BSIT and BSCS students exhibiting projects for CITS Week can submit their live systems, web games, or capstone deliverables by following these steps:
+                </p>
+
+                <div class="space-y-2.5 text-xs text-slate-700">
+                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-2.5">
+                        <span class="w-5 h-5 rounded-full bg-[#0047AB] text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0 mt-0.5">1</span>
+                        <div>
+                            <strong>Create Your Project Directory:</strong> Add a dedicated folder inside <code class="bg-slate-200 px-1 py-0.5 rounded text-[11px] font-mono">apps/&lt;your-project&gt;/</code> containing your HTML, assets, or mobile APK.
+                        </div>
+                    </div>
+
+                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-2.5">
+                        <span class="w-5 h-5 rounded-full bg-[#0047AB] text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0 mt-0.5">2</span>
+                        <div>
+                            <strong>Register in Catalog:</strong> Add your project metadata entry inside <code class="bg-slate-200 px-1 py-0.5 rounded text-[11px] font-mono">store-assets/store.js</code> under <code class="bg-slate-200 px-1 py-0.5 rounded text-[11px] font-mono">APPS_CATALOG</code>.
+                        </div>
+                    </div>
+
+                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-2.5">
+                        <span class="w-5 h-5 rounded-full bg-[#0047AB] text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0 mt-0.5">3</span>
+                        <div>
+                            <strong>CITS Review &amp; Approval:</strong> Coordinate with your Capstone Adviser or CITS Officers for exhibition verification.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button onclick="closeSubmissionModal()" class="w-full bg-[#0047AB] hover:bg-[#00388a] text-white font-bold py-2.5 px-4 rounded-xl text-xs shadow-sm transition tap-effect">
+                        Understood, Got It!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
-    <footer class="bg-slate-900 dark:bg-[#070a12] text-slate-400 text-xs py-12 border-t border-slate-800">
+    <footer class="bg-slate-900 text-slate-400 text-xs py-12 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
                 
                 <div class="sm:col-span-2 space-y-3">
                     <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-lg overflow-hidden border border-slate-700">
+                        <div class="w-8 h-8 rounded-lg overflow-hidden border border-slate-700 bg-white">
                             <img src="store-assets/store-logo.jpg" alt="CITS Logo" class="w-full h-full object-cover">
                         </div>
                         <span class="text-base font-black text-white">CSIT Project Hub</span>
@@ -603,11 +430,9 @@
                     <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-3">Featured Exhibits</h4>
                     <ul class="space-y-2 text-xs">
                         <li><a href="apps/agriguard/index.html" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px]"></i> AgriGuard (Agriculture &amp; AI)</a></li>
-                        <li><a href="apps/balde-against-el-nino/index.html" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px]"></i> BALDE AGAINST EL NIÑO (Web Game)</a></li>
-                        <li><a href="apps/cyberheist/index.html" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px]"></i> CYBERHEIST (Cybersecurity Arcade)</a></li>
-                        <li><a href="javascript:void(0)" onclick="openQuickView('agriguard')" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-circle-info text-[10px] text-emerald-400"></i> AgriGuard Abstract</a></li>
-                        <li><a href="javascript:void(0)" onclick="openQuickView('balde-against-el-nino')" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-circle-info text-[10px] text-amber-400"></i> Balde Game Abstract</a></li>
-                        <li><a href="javascript:void(0)" onclick="openQuickView('cyberheist')" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-circle-info text-[10px] text-lime-400"></i> Cyberheist Abstract</a></li>
+                        <li><a href="apps/aim-high-with-sti/index.html" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px]"></i> Aim High with STI (Web Game)</a></li>
+                        <li><a href="apps/balde-against-el-nino/index.html" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px]"></i> Balde Against El Niño (Web Game)</a></li>
+                        <li><a href="apps/cyberheist/index.html" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px]"></i> Cyberheist (Cybersecurity Arcade)</a></li>
                     </ul>
                 </div>
 
@@ -616,9 +441,7 @@
                     <ul class="space-y-2 text-xs">
                         <li><a href="#about" class="hover:text-white transition">About CITS Week Expo</a></li>
                         <li><a href="#apps" class="hover:text-white transition">Browse All Exhibits</a></li>
-                        <li><a href="apps/agriguard/index.html#specs" class="hover:text-white transition">AgriGuard Technical Specs</a></li>
-                        <li><a href="apps/agriguard/index.html#team" class="hover:text-white transition">AgriGuard Research Team</a></li>
-                        <li><button type="button" onclick="replaySplashScreen()" class="hover:text-cyan-400 transition flex items-center gap-1.5 text-slate-400 text-left"><i class="fa-solid fa-play text-[9px] text-cyan-400"></i> Replay CITS Intro Splash</button></li>
+                        <li><a href="javascript:void(0)" onclick="openSubmissionModal()" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-plus text-[9px] text-blue-400"></i> Submit New Project</a></li>
                     </ul>
                 </div>
             </div>

@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#002D5A">
+    <meta name="description" content="Play Aim High with STI — STI College Laoag Edition. An arcade student flyer web game featuring procedural Web Audio, dynamic Laoag landmarks, academic power-ups, and shareable certificates.">
+    <title>Aim High with STI | Official Web Game & Academic Aviation Arcade</title>
+    <link rel="icon" type="image/svg+xml" href="app_logo.svg">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif']
+                    },
+                    colors: {
+                        sti: {
+                            navy: '#002D5A',
+                            dark: '#001A38',
+                            deep: '#001124',
+                            blue: '#004B93',
+                            sky: '#006CD9',
+                            gold: '#FFD100',
+                            goldHover: '#F5C400',
+                            goldLight: '#FFF59D',
+                            amber: '#D97706',
+                            surface: '#0A2540'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .font-display {
+            font-family: 'Outfit', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+        .glass-dark {
+            background: rgba(0, 30, 65, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .gold-glow {
+            box-shadow: 0 10px 30px -5px rgba(255, 209, 0, 0.35);
+        }
+        .navy-glow {
+            box-shadow: 0 16px 36px -8px rgba(0, 45, 90, 0.38);
+        }
+        @media (max-width: 639px) {
+            .hero-stat-divider {
+                display: none;
+            }
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-sti-gold selection:text-sti-navy">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-slate-200/80 transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2.5 sm:gap-3 flex-shrink-0">
+                <div class="w-10 h-10 rounded-xl overflow-hidden shadow-md shadow-sti-navy/20 flex-shrink-0 bg-sti-navy p-1">
+                    <img src="app_logo.svg" alt="Aim High with STI logo" class="w-full h-full object-contain">
+                </div>
+                <div>
+                    <span class="text-lg sm:text-xl font-display font-black tracking-tight text-slate-900 block leading-none">
+                        Aim High <span class="text-sti-blue">with STI</span>
+                    </span>
+                    <span class="text-[10px] font-bold text-sti-amber uppercase tracking-widest hidden sm:block mt-0.5">
+                        STI College Laoag • Web Arcade
+                    </span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+                <a href="#overview" class="hover:text-sti-blue transition-colors">Overview</a>
+                <a href="#how-to-play" class="hover:text-sti-blue transition-colors">Gameplay</a>
+                <a href="#screenshots" class="hover:text-sti-blue transition-colors">Screenshots</a>
+                <a href="#features" class="hover:text-sti-blue transition-colors">Features</a>
+                <a href="#specs" class="hover:text-sti-blue transition-colors">Tech Specs</a>
+                <a href="#faq" class="hover:text-sti-blue transition-colors">FAQ</a>
+            </nav>
+
+            <div class="flex items-center gap-2 sm:gap-3">
+                <a href="../../index.html" aria-label="Back to CSIT App Store" class="flex items-center gap-1.5 sm:gap-2 text-xs font-bold text-slate-700 bg-white hover:bg-slate-100 px-3 py-2 rounded-xl border border-slate-200 transition-all shadow-sm active:scale-95">
+                    <i class="fa-solid fa-arrow-left text-[11px] text-sti-blue"></i>
+                    <span class="hidden sm:inline">CSIT App Store</span>
+                    <span class="sm:hidden">Store</span>
+                </a>
+                <button onclick="openPlayModal()" aria-label="Play Live Game" class="bg-gradient-to-r from-sti-navy to-sti-blue hover:from-sti-blue hover:to-sti-navy text-sti-gold px-3 sm:px-5 py-2 rounded-xl font-display font-black text-xs sm:text-sm shadow-lg shadow-sti-navy/30 transition-all duration-200 flex items-center gap-1.5 sm:gap-2 active:scale-95 flex-shrink-0 border border-sti-gold/40">
+                    <i class="fa-solid fa-gamepad text-xs"></i>
+                    <span>PLAY GAME</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero / Play Store Banner Section -->
+        <section id="overview" class="pt-8 pb-16 bg-gradient-to-b from-blue-50/70 via-slate-50 to-slate-50 border-b border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Breadcrumb Badge -->
+                <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/80 border border-blue-200 text-sti-navy text-xs font-semibold mb-6 shadow-sm">
+                    <a href="../../index.html" class="hover:underline flex items-center gap-1.5 text-sti-blue font-bold">
+                        <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                        <span>CSIT App Store</span>
+                    </a>
+                    <span class="text-blue-300">/</span>
+                    <span class="text-sti-navy font-black">Aim High with STI</span>
+                    <span class="text-blue-300">•</span>
+                    <span class="text-slate-600 font-medium">Campus Tech Expo 2026 Showcase</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- App Info Main -->
+                    <div class="lg:col-span-8 flex flex-col md:flex-row gap-5 sm:gap-7 items-start">
+                        <!-- App Icon -->
+                        <div class="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-3xl overflow-hidden flex-shrink-0 shadow-2xl shadow-sti-navy/40 relative border-4 border-white bg-sti-navy p-2 flex items-center justify-center">
+                            <img src="app_logo.svg" alt="Aim High with STI App Icon" class="w-full h-full object-contain drop-shadow">
+                            <div class="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-sti-gold text-sti-navy text-[9px] font-black tracking-wider uppercase shadow">
+                                WEB 2D
+                            </div>
+                        </div>
+
+                        <!-- App Title & Developer Meta -->
+                        <div class="space-y-3 flex-1">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="px-2.5 py-0.5 rounded-md bg-sti-gold/20 border border-sti-gold/60 text-amber-800 text-[11px] font-extrabold uppercase tracking-wide">
+                                    Official Campus Game
+                                </span>
+                                <span class="px-2.5 py-0.5 rounded-md bg-emerald-100 border border-emerald-300 text-emerald-800 text-[11px] font-bold">
+                                    Instant Web Play
+                                </span>
+                            </div>
+
+                            <h1 class="text-2xl sm:text-3xl md:text-4xl font-display font-black text-slate-900 tracking-tight leading-tight">
+                                Aim High with STI: STI College Laoag
+                            </h1>
+                            <p class="text-sti-blue font-bold text-sm sm:text-base flex items-center gap-2">
+                                <span>Jaymar Budduan (@j-mar114)</span>
+                                <i class="fa-solid fa-circle-check text-xs text-blue-600" title="Verified Campus Creator"></i>
+                                <span class="text-slate-400 font-normal">|</span>
+                                <span class="text-slate-600 font-medium text-xs sm:text-sm">STI College Laoag</span>
+                            </p>
+                            <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                                Take flight across the iconic Laoag skyline! <strong class="text-slate-800 font-semibold">Aim High with STI</strong> is a responsive arcade web flight simulator crafted with pure HTML5 Canvas and procedural Web Audio. Dodge academic challenge pillars, collect scholarships and coffee boosts, climb from <em>Freshman Flyer</em> to <em>Summa Cum Laude</em>, and export a high-resolution student flyer certificate.
+                            </p>
+
+                            <!-- Play Store Stats Bar -->
+                            <div class="pt-4 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-slate-200/80 text-slate-700 text-sm">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex items-center text-amber-500 font-black">
+                                        <span>5.0</span>
+                                        <i class="fa-solid fa-star text-xs ml-1"></i>
+                                    </div>
+                                    <span class="text-xs text-slate-500">Campus Rated</span>
+                                </div>
+                                <div class="hero-stat-divider h-4 w-px bg-slate-300"></div>
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-gamepad text-sti-blue text-base"></i>
+                                    <span class="font-bold text-slate-900">Web Arcade</span>
+                                    <span class="text-xs text-slate-500">HTML5 Canvas</span>
+                                </div>
+                                <div class="hero-stat-divider h-4 w-px bg-slate-300"></div>
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-bolt text-amber-500"></i>
+                                    <span class="font-bold text-slate-900">Zero Install</span>
+                                    <span class="text-xs text-slate-500">60 FPS Native</span>
+                                </div>
+                                <div class="hero-stat-divider h-4 w-px bg-slate-300"></div>
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-users text-emerald-600"></i>
+                                    <span class="font-bold text-slate-900">Rated E</span>
+                                    <span class="text-xs text-slate-500">For Everyone</span>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="pt-5 flex flex-wrap gap-3 sm:gap-4">
+                                <button onclick="openPlayModal()" class="w-full sm:w-auto justify-center bg-gradient-to-r from-sti-navy to-sti-blue hover:from-sti-blue hover:to-sti-navy text-sti-gold px-8 py-3.5 rounded-2xl font-display font-black text-base shadow-xl shadow-sti-navy/30 hover:shadow-sti-navy/40 hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-3 border border-sti-gold/40">
+                                    <i class="fa-solid fa-play text-sm text-sti-gold"></i>
+                                    <span>PLAY WEB GAME NOW</span>
+                                </button>
+                                
+                                <a href="https://j-mar114.github.io/AimHighWithSTI/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto justify-center bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 px-6 py-3.5 rounded-2xl font-bold text-sm shadow-sm hover:shadow flex items-center gap-2 transition-all">
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-sti-blue"></i>
+                                    <span>Open Live Github Host</span>
+                                </a>
+
+                                <button onclick="openShareModal()" class="w-full sm:w-auto justify-center bg-blue-50 hover:bg-blue-100 text-sti-blue border border-blue-200 px-5 py-3.5 rounded-2xl font-bold text-sm flex items-center gap-2 transition-colors">
+                                    <i class="fa-solid fa-share-nodes text-xs"></i>
+                                    <span>Share Game</span>
+                                </button>
+                            </div>
+
+                            <!-- Trust Badges -->
+                            <div class="pt-3 flex flex-wrap items-center gap-4 text-xs text-slate-500">
+                                <span class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-shield-halved text-emerald-600"></i>
+                                    <span>No Downloads or APK Required</span>
+                                </span>
+                                <span class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-award text-amber-500"></i>
+                                    <span>Official STI College Laoag Student Project</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Side Card - Quick Verification -->
+                    <div class="lg:col-span-4 bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm space-y-4">
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                            <h3 class="font-bold text-slate-900 flex items-center gap-2 text-base">
+                                <i class="fa-solid fa-certificate text-sti-blue"></i>
+                                <span>Game Specifications</span>
+                            </h3>
+                            <span class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-[10px] font-black uppercase">
+                                Verified Web App
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-500">
+                            Optimized for seamless performance across touch mobile phones, tablets, Chromebooks, and high-refresh desktop monitors.
+                        </p>
+
+                        <ul class="space-y-3 text-xs text-slate-600 pt-1">
+                            <li class="flex justify-between items-center">
+                                <span class="text-slate-400">Version:</span>
+                                <span class="font-semibold text-slate-800">v1.2.0 (Laoag Edition)</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span class="text-slate-400">Rendering Engine:</span>
+                                <span class="font-semibold text-slate-800">HTML5 Canvas 2D</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span class="text-slate-400">Audio Pipeline:</span>
+                                <span class="font-semibold text-slate-800">Web Audio API Synthesizer</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span class="text-slate-400">Framerate:</span>
+                                <span class="font-semibold text-emerald-600 font-mono">60 FPS Hardware-Sync</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span class="text-slate-400">High Score Storage:</span>
+                                <span class="font-semibold text-slate-800">Browser LocalStorage</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span class="text-slate-400">Export Feature:</span>
+                                <span class="font-semibold text-slate-800">800x1040 PNG Certificate</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span class="text-slate-400">Controls:</span>
+                                <span class="font-semibold text-slate-800">Touch / Click / Spacebar</span>
+                            </li>
+                        </ul>
+
+                        <div class="pt-2">
+                            <div class="bg-gradient-to-br from-blue-50 to-amber-50/50 rounded-2xl p-3.5 border border-blue-200/80 flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-sti-navy text-sti-gold flex items-center justify-center text-lg flex-shrink-0">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-slate-900">Be Future-Ready</div>
+                                    <div class="text-[10px] text-slate-600">Created for CITS Week & Tech Expo 2026 at STI College Laoag.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- How To Play / Gameplay Workflow Section -->
+        <section id="how-to-play" class="py-16 bg-white border-b border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-sti-blue text-xs font-semibold mb-3">
+                        <i class="fa-solid fa-compass"></i>
+                        <span>Flight Academy</span>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+                        How to Play & Master Aim High
+                    </h2>
+                    <p class="text-slate-600 text-sm mt-2">
+                        Simple one-button mechanics backed by dynamic physics, challenging academic hurdles, and honors certifications.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Step 1 -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-blue-100 text-sti-blue rounded-xl flex items-center justify-center text-xl mb-4 font-black">
+                            <i class="fa-solid fa-feather-pointed"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">1. Flutter & Lift</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Tap your screen, click your mouse, or press <strong class="text-slate-800">SPACE</strong> / <strong class="text-slate-800">↑</strong> to flap the golden STI wings and counter downward gravity.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center text-xl mb-4 font-black">
+                            <i class="fa-solid fa-monument"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">2. Dodge Obstacles</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Navigate narrow gaps between academic pencil pillars, exam scrolls, and Laoag architectural hazards without touching borders.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-xl mb-4 font-black">
+                            <i class="fa-solid fa-mug-hot"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">3. Snag Power-Ups</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Catch floating shields for invulnerability, caffeine boosts for speed control, and streak stars to rapidly inflate your score.
+                        </p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-purple-100 text-purple-700 rounded-xl flex items-center justify-center text-xl mb-4 font-black">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">4. Flex Honors</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Surpass 40+ points for <strong class="text-slate-800">Summa Cum Laude</strong> and generate a customized high-res PNG certificate for social media!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screenshots Interactive Gallery Section -->
+        <section id="screenshots" class="py-16 bg-slate-50 border-b border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sti-gold/20 text-amber-900 text-xs font-semibold mb-2">
+                            <i class="fa-solid fa-camera"></i>
+                            <span>In-Game Showcase</span>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+                            Gameplay Screenshots & Artifacts
+                        </h2>
+                        <p class="text-slate-500 text-sm mt-1">
+                            Direct visual captures of the Flutter-inspired UI, Laoag parallax landmarks, and official academic certificates.
+                        </p>
+                    </div>
+                    <!-- Navigation Controls -->
+                    <div class="flex gap-2 mt-4 md:mt-0">
+                        <button onclick="scrollScreenshots(-340)" class="w-10 h-10 rounded-full border border-slate-300 bg-white hover:bg-slate-100 flex items-center justify-center text-slate-600 transition-colors shadow-sm active:scale-95" aria-label="Previous screenshot">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <button onclick="scrollScreenshots(340)" class="w-10 h-10 rounded-full border border-slate-300 bg-white hover:bg-slate-100 flex items-center justify-center text-slate-600 transition-colors shadow-sm active:scale-95" aria-label="Next screenshot">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Horizontal Scroll Container -->
+                <div id="screenshotContainer" class="flex gap-6 overflow-x-auto pb-6 scroll-smooth snap-x snap-mandatory">
+                    <!-- Screenshot 1 -->
+                    <div class="flex-none w-72 md:w-80 snap-start bg-white rounded-3xl border border-slate-200/90 p-3 shadow-xl hover:shadow-2xl transition-all group">
+                        <div class="overflow-hidden rounded-2xl bg-slate-900 aspect-[9/19.5] relative cursor-pointer" onclick="openLightbox('1.jpg', 'Flutter Animated Splash & Campus Emblem')">
+                            <img src="1.jpg" alt="Flutter Animated Splash Screen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4">
+                                <span class="text-white text-xs font-bold flex items-center gap-1.5">
+                                    <i class="fa-solid fa-expand text-sti-gold"></i>
+                                    <span>Flutter Animated Splash</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h4 class="font-bold text-slate-900 text-sm">Flutter-Inspired Splash</h4>
+                            <p class="text-xs text-slate-500 mt-1">Elastic spring emblem animation with dual golden wings and energy rings.</p>
+                        </div>
+                    </div>
+
+                    <!-- Screenshot 2 -->
+                    <div class="flex-none w-72 md:w-80 snap-start bg-white rounded-3xl border border-slate-200/90 p-3 shadow-xl hover:shadow-2xl transition-all group">
+                        <div class="overflow-hidden rounded-2xl bg-slate-900 aspect-[9/19.5] relative cursor-pointer" onclick="openLightbox('2.jpg', 'Laoag Parallax Skies & Flight Physics')">
+                            <img src="2.jpg" alt="In-Flight Laoag Skies Gameplay" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4">
+                                <span class="text-white text-xs font-bold flex items-center gap-1.5">
+                                    <i class="fa-solid fa-expand text-sti-gold"></i>
+                                    <span>Laoag Skyline & Obstacles</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h4 class="font-bold text-slate-900 text-sm">In-Flight Laoag Skies</h4>
+                            <p class="text-xs text-slate-500 mt-1">Sinking Bell Tower background with layered cloud simulation and particle trails.</p>
+                        </div>
+                    </div>
+
+                    <!-- Screenshot 3 -->
+                    <div class="flex-none w-72 md:w-80 snap-start bg-white rounded-3xl border border-slate-200/90 p-3 shadow-xl hover:shadow-2xl transition-all group">
+                        <div class="overflow-hidden rounded-2xl bg-slate-900 aspect-[9/19.5] relative cursor-pointer" onclick="openLightbox('3.jpg', 'Academic Pillars & Shield Power-Ups')">
+                            <img src="3.jpg" alt="Academic Pillars and Power-Ups" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4">
+                                <span class="text-white text-xs font-bold flex items-center gap-1.5">
+                                    <i class="fa-solid fa-expand text-sti-gold"></i>
+                                    <span>Pillars & Invulnerability</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h4 class="font-bold text-slate-900 text-sm">Pillars & Power-Ups</h4>
+                            <p class="text-xs text-slate-500 mt-1">Academic challenge gates with coffee sprint timers and energy barrier shields.</p>
+                        </div>
+                    </div>
+
+                    <!-- Screenshot 4 -->
+                    <div class="flex-none w-72 md:w-80 snap-start bg-white rounded-3xl border border-slate-200/90 p-3 shadow-xl hover:shadow-2xl transition-all group">
+                        <div class="overflow-hidden rounded-2xl bg-slate-900 aspect-[9/19.5] relative cursor-pointer" onclick="openLightbox('4.jpg', 'Game Over, Score Records & Rank Evaluation')">
+                            <img src="4.jpg" alt="Game Over and Academic Honors" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4">
+                                <span class="text-white text-xs font-bold flex items-center gap-1.5">
+                                    <i class="fa-solid fa-expand text-sti-gold"></i>
+                                    <span>High Score & Honors Modal</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h4 class="font-bold text-slate-900 text-sm">Academic Honors & Ranking</h4>
+                            <p class="text-xs text-slate-500 mt-1">Automatic Latin honors evaluation with high score persistence in LocalStorage.</p>
+                        </div>
+                    </div>
+
+                    <!-- Screenshot 5 -->
+                    <div class="flex-none w-72 md:w-80 snap-start bg-white rounded-3xl border border-slate-200/90 p-3 shadow-xl hover:shadow-2xl transition-all group">
+                        <div class="overflow-hidden rounded-2xl bg-slate-900 aspect-[9/19.5] relative cursor-pointer" onclick="openLightbox('5.jpg', 'In-Flight Pause Screen & Sound Toggle')">
+                            <img src="5.jpg" alt="In-Flight Pause Screen and Audio Settings" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4">
+                                <span class="text-white text-xs font-bold flex items-center gap-1.5">
+                                    <i class="fa-solid fa-expand text-sti-gold"></i>
+                                    <span>HUD & Audio Controls</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h4 class="font-bold text-slate-900 text-sm">Heads-Up Display & Pause</h4>
+                            <p class="text-xs text-slate-500 mt-1">Zero-latency Web Audio toggle with instant pause and restart capabilities.</p>
+                        </div>
+                    </div>
+
+                    <!-- Screenshot 6: Official Certificate -->
+                    <div class="flex-none w-72 md:w-80 snap-start bg-gradient-to-b from-sti-navy to-sti-dark text-white rounded-3xl border-2 border-sti-gold/60 p-3 shadow-xl hover:shadow-2xl transition-all group">
+                        <div class="overflow-hidden rounded-2xl bg-black aspect-[800/1040] relative cursor-pointer" onclick="openLightbox('6.png', 'Official STI College Laoag Student Flyer Certificate (800x1040 PNG)')">
+                            <img src="6.png" alt="Official Student Flyer Certificate" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
+                                <span class="text-sti-gold text-xs font-bold flex items-center gap-1.5">
+                                    <i class="fa-solid fa-file-arrow-down"></i>
+                                    <span>800x1040 PNG Certificate</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h4 class="font-bold text-sti-gold text-sm flex items-center gap-1.5">
+                                <span>Official Flyer Certificate</span>
+                                <i class="fa-solid fa-medal text-xs"></i>
+                            </h4>
+                            <p class="text-xs text-blue-200 mt-1">Procedurally drawn offscreen canvas with unique serial number and student signature line.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-16 bg-white border-b border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-sti-blue text-xs font-semibold mb-3">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>Core Engineering</span>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+                        Key Features & Technical Innovations
+                    </h2>
+                    <p class="text-slate-600 text-sm mt-2">
+                        Engineered from scratch to combine nostalgic arcade thrill with modern web standards and authentic STI pride.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:max-w-6xl lg:mx-auto">
+                    
+                    <!-- Feature 1 -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-blue-100 text-sti-blue rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-wave-square"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Procedural Web Audio Engine</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Zero external MP3/WAV dependencies. Generates authentic retro chiptune sine, triangle, and square waveforms dynamically using the native Web Audio API with low latency and dynamic audio compression.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-city"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Laoag Landmarks Parallax</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Pays tribute to Ilocos Norte heritage with a procedural multi-layer backdrop featuring the historic Laoag Sinking Bell Tower, distant Paoay sand dunes, and the iconic Bangui wind turbines.
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Latin Honors Grading System</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Translates game proficiency directly into academic tiers: Freshman Flyer (0-4 pts), STI Scholar (5-14 pts), Cum Laude (15-24 pts), Magna Cum Laude (25-39 pts), and Summa Cum Laude (40+ pts).
+                        </p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-purple-100 text-purple-700 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-id-card"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Verifiable Certificate Generator</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Renders an 800x1040 high-resolution official Student Flyer Certificate on an offscreen HTML5 canvas with cryptographic serial hashes, custom student names, and instant one-tap PNG downloads for My Day.
+                        </p>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-rose-100 text-rose-700 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Fluid Cross-Platform Engine</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Built with delta-time framerate smoothing and dynamic screen shake. Automatically scales from compact vertical mobile screens (1224x2720 aspect) to wide desktop browsers with touch, mouse, and keyboard bindings.
+                        </p>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Zero-Install Instant Play</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            No heavy APK downloads or app store hurdles. Instant cold starts under 1.5 seconds with browser LocalStorage memory ensuring personal best scores and custom callsigns remain saved safely.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Specs & Guide Section -->
+        <section id="specs" class="py-16 bg-slate-50 border-b border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    
+                    <!-- Guide Steps -->
+                    <div id="guide" class="lg:col-span-7 space-y-6">
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-sti-blue text-xs font-semibold mb-3">
+                                <i class="fa-solid fa-gamepad"></i>
+                                <span>Immediate Access</span>
+                            </div>
+                            <h2 class="text-2xl font-display font-extrabold text-slate-900 tracking-tight">
+                                How to Launch & Play Aim High
+                            </h2>
+                            <p class="text-slate-500 text-sm mt-1">
+                                Aim High with STI is designed as an unrestricted progressive web arcade app. Follow these easy steps:
+                            </p>
+                        </div>
+
+                        <div class="space-y-4 pt-2">
+                            <!-- Step 1 -->
+                            <div class="flex gap-4 p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm">
+                                <div class="w-8 h-8 rounded-full bg-sti-navy text-sti-gold font-bold flex items-center justify-center flex-shrink-0 text-sm">
+                                    1
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800 text-sm">Launch on Any Modern Browser</h4>
+                                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                                        Click the <strong class="text-slate-700 font-semibold">Play Game</strong> button above or navigate to the official host at <code class="bg-slate-100 px-1 py-0.5 rounded text-sti-blue">https://j-mar114.github.io/AimHighWithSTI/</code>.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="flex gap-4 p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm">
+                                <div class="w-8 h-8 rounded-full bg-sti-navy text-sti-gold font-bold flex items-center justify-center flex-shrink-0 text-sm">
+                                    2
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800 text-sm">Dismiss Splash & Choose Controls</h4>
+                                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                                        Tap anywhere or click to dismiss the animated STI Laoag splash screen. On phones, tap the screen; on computers, use the <strong class="text-slate-700 font-semibold">Spacebar</strong>, <strong class="text-slate-700 font-semibold">Up Arrow</strong>, or mouse clicks.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="flex gap-4 p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm">
+                                <div class="w-8 h-8 rounded-full bg-sti-navy text-sti-gold font-bold flex items-center justify-center flex-shrink-0 text-sm">
+                                    3
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800 text-sm">Save High Scores & Download Certificates</h4>
+                                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                                        When game over triggers, click <strong class="text-slate-700 font-semibold">"Flex sa My Day / Report Card"</strong> to input your name and export an official 800x1040 flyer certificate image!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tip Box -->
+                        <div class="bg-amber-50/80 border border-amber-200/80 p-4 rounded-2xl flex items-start gap-3">
+                            <i class="fa-solid fa-lightbulb text-amber-600 text-lg mt-0.5"></i>
+                            <div class="text-xs text-amber-900">
+                                <span class="font-bold">Pro-Tip for STIers:</span> Keep a steady rhythm of gentle taps rather than frantic spamming. When you snag a Shield, you can safely pass directly through one pillar collision!
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tech Specs Table -->
+                    <div class="lg:col-span-5 bg-sti-navy text-white p-7 rounded-3xl shadow-2xl space-y-5 border border-sti-gold/30 relative overflow-hidden">
+                        <!-- Background Glow -->
+                        <div class="absolute -top-24 -right-24 w-48 h-48 bg-sti-blue/50 rounded-full blur-3xl pointer-events-none"></div>
+
+                        <div class="flex items-center gap-2 text-sti-gold font-semibold text-xs tracking-wider uppercase">
+                            <i class="fa-solid fa-microchip"></i>
+                            <span>Engine Architecture</span>
+                        </div>
+
+                        <h3 class="text-xl font-display font-black text-white">Technical Specifications</h3>
+
+                        <div class="space-y-3 text-xs border-t border-blue-900/80 pt-4">
+                            <div class="flex justify-between py-1.5 border-b border-blue-900/60">
+                                <span class="text-blue-200">Framework:</span>
+                                <span class="font-semibold text-white">Vanilla JavaScript (ES6+)</span>
+                            </div>
+                            <div class="flex justify-between py-1.5 border-b border-blue-900/60">
+                                <span class="text-blue-200">Styling:</span>
+                                <span class="font-semibold text-white">Tailwind CSS + Glassmorphism</span>
+                            </div>
+                            <div class="flex justify-between py-1.5 border-b border-blue-900/60">
+                                <span class="text-blue-200">Audio System:</span>
+                                <span class="font-semibold text-white">Native Web Audio API Synth</span>
+                            </div>
+                            <div class="flex justify-between py-1.5 border-b border-blue-900/60">
+                                <span class="text-blue-200">Physics:</span>
+                                <span class="font-semibold text-white">Euler Integration with Elastic Damping</span>
+                            </div>
+                            <div class="flex justify-between py-1.5 border-b border-blue-900/60">
+                                <span class="text-blue-200">Certificate Export:</span>
+                                <span class="font-semibold text-white">HTML5 Canvas toDataURL (PNG)</span>
+                            </div>
+                            <div class="flex justify-between py-1.5 border-b border-blue-900/60">
+                                <span class="text-blue-200">Bundle Size:</span>
+                                <span class="font-semibold text-emerald-400">&lt; 150 KB (Compressed)</span>
+                            </div>
+                            <div class="flex justify-between py-1.5">
+                                <span class="text-blue-200">Campus Host:</span>
+                                <span class="font-semibold text-sti-gold">STI College Laoag</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-950/70 border border-blue-800/80 p-3.5 rounded-xl text-[11px] text-blue-200 space-y-1">
+                            <div class="font-bold text-sti-gold flex items-center gap-1.5">
+                                <i class="fa-solid fa-globe"></i>
+                                <span>Zero-Setup Academic Deployment</span>
+                            </div>
+                            <p class="leading-relaxed">
+                                Runs client-side in sandboxed browser contexts without tracking cookies, ads, or required authentication.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-xl mx-auto mb-10">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold mb-2">
+                        <i class="fa-solid fa-circle-question"></i>
+                        <span>Got Questions?</span>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+                        Frequently Asked Questions
+                    </h2>
+                </div>
+
+                <div class="space-y-4">
+                    <details class="group bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200/80 [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-800 cursor-pointer text-sm sm:text-base">
+                            <span>Do I need to install an APK or app to play Aim High with STI?</span>
+                            <span class="transition group-open:rotate-180 text-sti-blue">
+                                <i class="fa-solid fa-chevron-down text-xs"></i>
+                            </span>
+                        </summary>
+                        <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+                            No installation or APK sideloading is required! Aim High with STI runs 100% inside your web browser via HTML5 Canvas and vanilla JavaScript. Simply click "PLAY GAME" or open the GitHub Pages URL on any device to enjoy instant 60 FPS gameplay.
+                        </p>
+                    </details>
+
+                    <details class="group bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200/80 [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-800 cursor-pointer text-sm sm:text-base">
+                            <span>How do I unlock Latin Honors and the Summa Cum Laude rank?</span>
+                            <span class="transition group-open:rotate-180 text-sti-blue">
+                                <i class="fa-solid fa-chevron-down text-xs"></i>
+                            </span>
+                        </summary>
+                        <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+                            Your academic ranking updates dynamically as your flight score increases:
+                            <br>• <strong>0–4 points:</strong> Freshman Flyer
+                            <br>• <strong>5–14 points:</strong> STI Scholar
+                            <br>• <strong>15–24 points:</strong> Cum Laude
+                            <br>• <strong>25–39 points:</strong> Magna Cum Laude
+                            <br>• <strong>40+ points:</strong> Summa Cum Laude 👑
+                        </p>
+                    </details>
+
+                    <details class="group bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200/80 [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-800 cursor-pointer text-sm sm:text-base">
+                            <span>How does the Student Flyer Certificate generator work?</span>
+                            <span class="transition group-open:rotate-180 text-sti-blue">
+                                <i class="fa-solid fa-chevron-down text-xs"></i>
+                            </span>
+                        </summary>
+                        <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+                            When your flight concludes, the game engine invokes a high-resolution 800x1040 offscreen canvas. It draws the official STI College Laoag insignia, gold foil borders, academic seal, cryptographic verification serial, and your custom name. You can save it as an image with one click to flex on Facebook, Instagram, or TikTok My Day!
+                        </p>
+                    </details>
+
+                    <details class="group bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200/80 [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-800 cursor-pointer text-sm sm:text-base">
+                            <span>Does the game remember my high scores?</span>
+                            <span class="transition group-open:rotate-180 text-sti-blue">
+                                <i class="fa-solid fa-chevron-down text-xs"></i>
+                            </span>
+                        </summary>
+                        <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+                            Yes! Your all-time personal best and flyer callsign are preserved safely in your browser's LocalStorage memory. Whenever you return to the page, your record and credentials will be waiting for you.
+                        </p>
+                    </details>
+
+                    <details class="group bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200/80 [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between font-bold text-slate-800 cursor-pointer text-sm sm:text-base">
+                            <span>How does sound work without loading any audio files?</span>
+                            <span class="transition group-open:rotate-180 text-sti-blue">
+                                <i class="fa-solid fa-chevron-down text-xs"></i>
+                            </span>
+                        </summary>
+                        <p class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+                            The game features a custom procedural sound synthesizer using the native Web Audio API. Every flap, point chime, collision thud, medal flourish, and power-up whoosh is generated purely from math, frequencies, and oscillators in real time with zero network bandwidth!
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Development Team & Heritage Section -->
+        <section id="team" class="py-12 bg-slate-50 border-t border-slate-200/60">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-xl mx-auto mb-8">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-semibold mb-2">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Project Credits</span>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+                        Development & Academic Leadership
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <!-- Developer 1 -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-sti-navy text-sti-gold flex items-center justify-center text-lg font-black flex-shrink-0">
+                            JB
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900">Jaymar Budduan</h3>
+                            <p class="text-xs text-sti-blue font-semibold mt-0.5">@j-mar114 • Creator & Developer</p>
+                            <p class="text-xs text-slate-500 mt-1">Lead Developer, Game Design, Canvas Physics & Web Audio Architecture</p>
+                        </div>
+                    </div>
+
+                    <!-- Campus 2 -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-sti-blue text-white flex items-center justify-center text-lg font-black flex-shrink-0">
+                            STI
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900">STI College Laoag</h3>
+                            <p class="text-xs text-sti-blue font-semibold mt-0.5">Academic Institution</p>
+                            <p class="text-xs text-slate-500 mt-1">CITS Tech Expo 2026 Showcase & Student Innovation Ecosystem</p>
+                        </div>
+                    </div>
+
+                    <!-- CSIT 3 -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-lg font-black flex-shrink-0">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900">CSIT Tech Expo</h3>
+                            <p class="text-xs text-sti-blue font-semibold mt-0.5">Exhibition Track</p>
+                            <p class="text-xs text-slate-500 mt-1">Undergraduate Web Engineering & Interactive Media Showcase</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Interactive Play Modal -->
+    <div id="playModal" class="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-slate-950/80 backdrop-blur-md hidden transition-opacity">
+        <div class="bg-slate-900 rounded-3xl max-w-4xl w-full h-[90vh] max-h-[820px] shadow-2xl border border-sti-gold/40 flex flex-col relative overflow-hidden">
+            <!-- Modal Header -->
+            <div class="px-5 py-3.5 bg-sti-navy flex items-center justify-between border-b border-blue-900 flex-shrink-0">
+                <div class="flex items-center gap-3">
+                    <img src="app_logo.svg" alt="Aim High" class="w-7 h-7">
+                    <div>
+                        <div class="text-sm font-display font-black text-white leading-none">
+                            Aim High with STI <span class="text-sti-gold text-xs font-normal">| Live Game</span>
+                        </div>
+                        <div class="text-[10px] text-blue-200">Interactive Canvas Session</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <a href="https://j-mar114.github.io/AimHighWithSTI/" target="_blank" rel="noopener noreferrer" class="text-xs text-sti-gold hover:underline flex items-center gap-1 font-bold px-2 py-1 bg-blue-950 rounded-lg">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        <span class="hidden sm:inline">Open New Tab</span>
+                    </a>
+                    <button onclick="closePlayModal()" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 transition-colors" title="Close Game">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Frame -->
+            <div class="flex-1 bg-black relative flex items-center justify-center">
+                <iframe id="gameIframe" src="" class="w-full h-full border-0" allow="autoplay; fullscreen" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div id="shareModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden transition-opacity">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-5 border border-slate-100 relative">
+            <button onclick="closeShareModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center space-y-2">
+                <div class="w-16 h-16 rounded-2xl bg-blue-100 text-sti-navy flex items-center justify-center text-3xl mx-auto shadow-inner">
+                    <i class="fa-solid fa-share-nodes text-sti-blue"></i>
+                </div>
+                <h3 class="text-xl font-display font-black text-slate-900">Share Aim High with STI</h3>
+                <p class="text-xs text-slate-500">
+                    Challenge your classmates, faculty, and friends to beat your flight score!
+                </p>
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 text-xs text-slate-600 space-y-3">
+                <div class="font-bold text-slate-800">Official Game Link:</div>
+                <div class="flex items-center gap-2">
+                    <input id="shareUrlInput" type="text" readonly value="https://j-mar114.github.io/AimHighWithSTI/" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs font-mono text-slate-700 select-all focus:outline-none">
+                    <button onclick="copyShareUrl()" class="px-3.5 py-2 rounded-xl bg-sti-navy hover:bg-sti-blue text-sti-gold font-bold text-xs flex-shrink-0 transition-colors">
+                        Copy
+                    </button>
+                </div>
+                <p id="copyToast" class="text-[11px] text-emerald-600 font-bold hidden text-center">
+                    <i class="fa-solid fa-check"></i> Copied to clipboard!
+                </p>
+            </div>
+
+            <div class="pt-1">
+                <a href="https://j-mar114.github.io/AimHighWithSTI/" target="_blank" class="w-full bg-gradient-to-r from-sti-navy to-sti-blue hover:from-sti-blue hover:to-sti-navy text-sti-gold py-3 px-4 rounded-xl font-display font-black text-xs shadow-lg shadow-sti-navy/20 flex items-center justify-center gap-2 transition-all">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Launch Game Directly</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal for Screenshots -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-md hidden transition-opacity" onclick="closeLightbox(event)">
+        <div class="relative max-w-4xl max-h-[92vh] flex flex-col items-center">
+            <button onclick="closeLightbox()" class="absolute -top-11 right-0 text-white hover:text-sti-gold text-lg px-2 py-1 font-bold">
+                ✕ Close
+            </button>
+            <img id="lightboxImg" src="" alt="Screenshot expanded" class="max-h-[80vh] w-auto rounded-2xl shadow-2xl border border-white/20 object-contain">
+            <p id="lightboxCaption" class="text-white text-xs sm:text-sm font-semibold mt-3 text-center px-4"></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-sti-dark text-slate-400 text-xs py-10 border-t border-blue-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-sti-navy border border-sti-gold/40 flex items-center justify-center text-sti-gold p-1">
+                    <img src="app_logo.svg" alt="STI Emblem" class="w-full h-full object-contain">
+                </div>
+                <div>
+                    <div class="font-display font-black text-white text-sm">Aim High with STI</div>
+                    <div class="text-[10px] uppercase tracking-[0.2em] text-sti-gold">STI College Laoag • Be Future-Ready</div>
+                </div>
+            </div>
+            
+            <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-slate-400">
+                <a href="../../index.html" class="hover:text-white transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-store text-sti-blue"></i>
+                    <span>Back to CSIT App Store</span>
+                </a>
+                <span class="text-slate-700">|</span>
+                <a href="https://j-mar114.github.io/AimHighWithSTI/" target="_blank" class="hover:text-sti-gold transition-colors flex items-center gap-1.5">
+                    <i class="fa-brands fa-github text-slate-300"></i>
+                    <span>GitHub Pages Edition</span>
+                </a>
+                <span class="text-slate-700">|</span>
+                <span>© 2026 Jaymar Budduan & STI College Laoag</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // Screenshot scrolling
+        function scrollScreenshots(offset) {
+            const container = document.getElementById('screenshotContainer');
+            container.scrollBy({ left: offset, behavior: 'smooth' });
+        }
+
+        // Live Play Modal
+        function openPlayModal() {
+            const modal = document.getElementById('playModal');
+            const iframe = document.getElementById('gameIframe');
+            iframe.src = 'https://j-mar114.github.io/AimHighWithSTI/';
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePlayModal() {
+            const modal = document.getElementById('playModal');
+            const iframe = document.getElementById('gameIframe');
+            iframe.src = '';
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Share Modal
+        function openShareModal() {
+            const modal = document.getElementById('shareModal');
+            modal.classList.remove('hidden');
+        }
+
+        function closeShareModal() {
+            const modal = document.getElementById('shareModal');
+            modal.classList.add('hidden');
+        }
+
+        function copyShareUrl() {
+            const input = document.getElementById('shareUrlInput');
+            input.select();
+            input.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(input.value).then(() => {
+                const toast = document.getElementById('copyToast');
+                toast.classList.remove('hidden');
+                setTimeout(() => toast.classList.add('hidden'), 2500);
+            });
+        }
+
+        // Lightbox
+        function openLightbox(src, caption) {
+            const modal = document.getElementById('lightboxModal');
+            const img = document.getElementById('lightboxImg');
+            const cap = document.getElementById('lightboxCaption');
+            img.src = src;
+            cap.textContent = caption;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(e) {
+            if (e && e.target && e.target.id === 'lightboxImg') return;
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Close on outside click
+        window.onclick = function(event) {
+            const playModal = document.getElementById('playModal');
+            const shareModal = document.getElementById('shareModal');
+            if (event.target === playModal) {
+                closePlayModal();
+            }
+            if (event.target === shareModal) {
+                closeShareModal();
+            }
+        };
+
+        // Keyboard ESC handler
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closePlayModal();
+                closeShareModal();
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
